@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mirza Omar Baig — DevOps & SRE Consultant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: #0A0E17;
+      color: #E8EDF2;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    ::selection { background: #00D4AA; color: #0A0E17; }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #0A0E17; }
+    ::-webkit-scrollbar-thumb { background: #1E293B; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #00D4AA; }
+
+    a { color: #00D4AA; text-decoration: none; transition: color .3s; }
+    a:hover { color: #FF6B6B; }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    /* Navigation */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      padding: 16px 0; z-index: 100;
+      transition: background .4s, box-shadow .4s, transform .4s;
+      transform: translateY(0);
+    }
+    nav.scrolled { background: rgba(10,14,23,.85); backdrop-filter: blur(20px); box-shadow: 0 1px 0 #1E293B; }
+    nav.hidden { transform: translateY(-100%); }
+    nav .container { display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700; font-size: 1.2rem;
+      background: linear-gradient(135deg, #00D4AA, #34D399);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      font-size: .875rem; font-weight: 500; color: #8899AA;
+      position: relative; padding-bottom: 4px;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 2px; background: #00D4AA; transform: scaleX(0);
+      transition: transform .3s; transform-origin: right;
+    }
+    .nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
+    .nav-links a:hover { color: #E8EDF2; }
+    .mobile-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .mobile-toggle span { display: block; width: 24px; height: 2px; background: #E8EDF2; transition: .3s; border-radius: 2px; }
+
+    /* Sections */
+    section { padding: 100px 0; position: relative; }
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .75rem; font-weight: 500;
+      color: #00D4AA; letter-spacing: 2px; text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .section-desc {
+      color: #8899AA;
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin-bottom: 48px;
+    }
+
+    /* Hero */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(0,212,170,.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(255,107,107,.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 80%, rgba(52,211,153,.05) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: rgba(0,212,170,.1);
+      border: 1px solid rgba(0,212,170,.2);
+      border-radius: 100px;
+      font-size: .8rem;
+      font-weight: 500;
+      color: #00D4AA;
+      margin-bottom: 24px;
+    }
+    .hero-badge-dot {
+      width: 6px; height: 6px;
+      background: #34D399;
+      border-radius: 50%;
+      animation: pulse-dot 2s infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; }
+      50% { opacity: .3; }
+    }
+    .hero-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .hero-name span { background: linear-gradient(135deg, #00D4AA, #34D399); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero-rotate-wrap {
+      height: 2.2rem;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+    .hero-rotate {
+      animation: rotate-words 10s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+    }
+    .hero-rotate-item {
+      display: block;
+      height: 2.2rem;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: #8899AA;
+    }
+    @keyframes rotate-words {
+      0%, 25% { transform: translateY(0); }
+      33%, 58% { transform: translateY(-2.2rem); }
+      66%, 91% { transform: translateY(-4.4rem); }
+      100% { transform: translateY(-6.6rem); }
+    }
+    .hero-text {
+      color: #8899AA;
+      font-size: 1.05rem;
+      max-width: 480px;
+      margin-bottom: 32px;
+    }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: .9rem;
+      transition: all .3s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: #00D4AA;
+      color: #0A0E17;
+    }
+    .btn-primary:hover { background: #00b894; color: #0A0E17; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,212,170,.3); }
+    .btn-secondary {
+      background: transparent;
+      color: #E8EDF2;
+      border: 1px solid #1E293B;
+    }
+    .btn-secondary:hover { border-color: #00D4AA; color: #00D4AA; transform: translateY(-2px); }
+
+    /* Hero right — stat cards */
+    .hero-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .hero-stat-card {
+      background: #141A26;
+      border: 1px solid #1E293B;
+      border-radius: 16px;
+      padding: 24px;
+      transition: all .3s;
+    }
+    .hero-stat-card:hover { border-color: #00D4AA; transform: translateY(-4px); }
+    .hero-stat-card .num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #00D4AA;
+    }
+    .hero-stat-card .label {
+      font-size: .8rem;
+      color: #8899AA;
+      margin-top: 4px;
+    }
+    .hero-stat-card .sub {
+      font-size: .7rem;
+      color: #4A5A6A;
+      margin-top: 2px;
+    }
+    .stat-card-wide { grid-column: span 2; }
+
+    /* Scroll indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 40px; left: 50%;
+      transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center;
+      gap: 8px;
+      color: #8899AA;
+      font-size: .75rem;
+      font-family: 'JetBrains Mono', monospace;
+      animation: float-down 2s ease-in-out infinite;
+    }
+    .scroll-indicator .line {
+      width: 1px; height: 40px;
+      background: linear-gradient(to bottom, #8899AA, transparent);
+    }
+    @keyframes float-down {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* Timeline */
+    .timeline { position: relative; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 24px; top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, #00D4AA, #1E293B, transparent);
+    }
+    .timeline-item {
+      display: flex;
+      gap: 32px;
+      margin-bottom: 48px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all .6s ease-out;
+    }
+    .timeline-item.visible { opacity: 1; transform: translateY(0); }
+    .timeline-year {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .8rem;
+      font-weight: 500;
+      color: #00D4AA;
+      min-width: 50px;
+      padding-top: 4px;
+      position: relative;
+    }
+    .timeline-year::before {
+      content: '';
+      position: absolute;
+      left: -20px; top: 8px;
+      width: 10px; height: 10px;
+      background: #00D4AA;
+      border-radius: 50%;
+      border: 2px solid #0A0E17;
+      box-shadow: 0 0 0 2px #00D4AA;
+    }
+    .timeline-content {
+      flex: 1;
+      background: #141A26;
+      border: 1px solid #1E293B;
+      border-radius: 12px;
+      padding: 24px;
+      transition: all .3s;
+    }
+    .timeline-content:hover { border-color: #00D4AA33; }
+    .timeline-content h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .timeline-content .role {
+      color: #00D4AA;
+      font-size: .85rem;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+    .timeline-content p {
+      color: #8899AA;
+      font-size: .9rem;
+    }
+    .timeline-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .timeline-tags span {
+      padding: 4px 12px;
+      background: rgba(0,212,170,.08);
+      border: 1px solid rgba(0,212,170,.15);
+      border-radius: 100px;
+      font-size: .75rem;
+      color: #34D399;
+    }
+
+    /* Experience */
+    .exp-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 24px;
+    }
+    .exp-card {
+      background: #141A26;
+      border: 1px solid #1E293B;
+      border-radius: 16px;
+      padding: 32px;
+      transition: all .3s;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .exp-card.visible { opacity: 1; transform: translateY(0); }
+    .exp-card:hover { border-color: #00D4AA33; transform: translateY(-4px); }
+    .exp-card .company {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .exp-card .company-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .exp-card .role-title {
+      color: #00D4AA;
+      font-size: .85rem;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+    .exp-card .date {
+      color: #4A5A6A;
+      font-size: .8rem;
+      font-family: 'JetBrains Mono', monospace;
+      margin-bottom: 16px;
+    }
+    .exp-card ul { list-style: none; }
+    .exp-card ul li {
+      color: #8899AA;
+      font-size: .85rem;
+      padding: 4px 0;
+      padding-left: 16px;
+      position: relative;
+    }
+    .exp-card ul li::before {
+      content: '>';
+      position: absolute;
+      left: 0;
+      color: #00D4AA;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Projects */
+    .project-filters {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+    .project-filters button {
+      padding: 8px 20px;
+      background: transparent;
+      border: 1px solid #1E293B;
+      border-radius: 100px;
+      color: #8899AA;
+      font-size: .8rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all .3s;
+    }
+    .project-filters button.active, .project-filters button:hover {
+      background: rgba(0,212,170,.1);
+      border-color: #00D4AA;
+      color: #00D4AA;
+    }
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .project-card {
+      background: #141A26;
+      border: 1px solid #1E293B;
+      border-radius: 14px;
+      padding: 24px;
+      transition: all .3s;
+      opacity: 0;
+      transform: translateY(20px);
+      cursor: default;
+    }
+    .project-card.visible { opacity: 1; transform: translateY(0); }
+    .project-card:hover { border-color: #00D4AA; transform: translateY(-6px); box-shadow: 0 12px 40px rgba(0,212,170,.1); }
+    .project-lang {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: .75rem;
+      font-family: 'JetBrains Mono', monospace;
+      color: #8899AA;
+      margin-bottom: 12px;
+    }
+    .project-lang-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+    }
+    .project-card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .project-card p {
+      color: #8899AA;
+      font-size: .85rem;
+      margin-bottom: 16px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .project-card .why {
+      font-size: .75rem;
+      color: #FF6B6B;
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+    .project-card a {
+      font-size: .8rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .skill-category {
+      background: #141A26;
+      border: 1px solid #1E293B;
+      border-radius: 14px;
+      padding: 24px;
+      transition: all .3s;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .skill-category.visible { opacity: 1; transform: translateY(0); }
+    .skill-category:hover { border-color: #00D4AA33; }
+    .skill-category h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: .9rem;
+      font-weight: 600;
+      color: #00D4AA;
+      margin-bottom: 16px;
+    }
+    .skill-item {
+      margin-bottom: 12px;
+    }
+    .skill-item:last-child { margin-bottom: 0; }
+    .skill-item .skill-name {
+      display: flex;
+      justify-content: space-between;
+      font-size: .85rem;
+      margin-bottom: 4px;
+    }
+    .skill-item .skill-name span:last-child {
+      color: #8899AA;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .75rem;
+    }
+    .skill-bar {
+      height: 4px;
+      background: #1E293B;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .skill-bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      background: linear-gradient(90deg, #00D4AA, #34D399);
+      width: 0;
+      transition: width 1s ease-out;
+    }
+
+    /* LeetCode */
+    .lc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .lc-main {
+      background: #141A26;
+      border: 1px solid #1E293B;
+      border-radius: 16px;
+      padding: 32px;
+    }
+    .lc-main .lc-big {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: #00D4AA;
+    }
+    .lc-main .lc-label {
+      color: #8899AA;
+      font-size: .9rem;
+    }
+    .lc-breakdown {
+      display: flex;
+      gap: 24px;
+      margin: 20px 0;
+    }
+    .lc-breakdown-item { text-align: center; }
+    .lc-breakdown-item .num { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; }
+    .lc-breakdown-item .lbl { font-size: .75rem; color: #8899AA; }
+    .lc-easy .num { color: #34D399; }
+    .lc-medium .num { color: #FFB800; }
+    .lc-hard .num { color: #FF6B6B; }
+    .lc-tags {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .lc-tag-group h5 {
+      font-size: .75rem;
+      color: #8899AA;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .lc-tag-group .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .lc-tag-group .tags span {
+      padding: 4px 10px;
+      background: rgba(0,212,170,.06);
+      border: 1px solid rgba(0,212,170,.12);
+      border-radius: 6px;
+      font-size: .72rem;
+      color: #E8EDF2;
+    }
+    .lc-tag-group .tags span b { color: #00D4AA; }
+    .lc-side {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .lc-side-card {
+      background: #141A26;
+      border: 1px solid #1E293B;
+      border-radius: 14px;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .lc-side-card .lbl { font-size: .8rem; color: #8899AA; }
+    .lc-side-card .val { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 600; }
+
+    /* Certs */
+    .certs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .cert-card {
+      background: #141A26;
+      border: 1px solid #1E293B;
+      border-radius: 14px;
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      transition: all .3s;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .cert-card.visible { opacity: 1; transform: translateY(0); }
+    .cert-card:hover { border-color: #00D4AA33; }
+    .cert-icon {
+      width: 48px; height: 48px;
+      background: rgba(0,212,170,.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+    .cert-card h4 { font-size: .95rem; font-weight: 600; margin-bottom: 2px; }
+    .cert-card .issuer { font-size: .8rem; color: #00D4AA; }
+    .cert-card .date { font-size: .75rem; color: #4A5A6A; font-family: 'JetBrains Mono', monospace; }
+
+    /* Contact */
+    #contact {
+      background: linear-gradient(180deg, #0A0E17 0%, #0D1520 100%);
+      border-top: 1px solid #1E293B;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .contact-info h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .contact-info p { color: #8899AA; margin-bottom: 24px; }
+    .contact-links { display: flex; flex-direction: column; gap: 12px; }
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: .9rem;
+      color: #E8EDF2;
+      transition: all .3s;
+    }
+    .contact-link:hover { color: #00D4AA; transform: translateX(4px); }
+    .contact-link-icon {
+      width: 36px; height: 36px;
+      background: rgba(0,212,170,.08);
+      border: 1px solid rgba(0,212,170,.15);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-form { display: flex; flex-direction: column; gap: 16px; }
+    .contact-form input, .contact-form textarea {
+      padding: 14px 18px;
+      background: #141A26;
+      border: 1px solid #1E293B;
+      border-radius: 10px;
+      color: #E8EDF2;
+      font-family: 'Inter', sans-serif;
+      font-size: .9rem;
+      transition: all .3s;
+      outline: none;
+    }
+    .contact-form input:focus, .contact-form textarea:focus {
+      border-color: #00D4AA;
+      box-shadow: 0 0 0 3px rgba(0,212,170,.1);
+    }
+    .contact-form textarea { resize: vertical; min-height: 120px; }
+    .contact-form input::placeholder, .contact-form textarea::placeholder { color: #4A5A6A; }
+
+    footer {
+      padding: 32px 0;
+      border-top: 1px solid #1E293B;
+      text-align: center;
+      font-size: .8rem;
+      color: #4A5A6A;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+      .hero-stats { grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #0A0E17; flex-direction: column; padding: 24px; gap: 16px; border-bottom: 1px solid #1E293B; }
+      .nav-links.open { display: flex; }
+      .mobile-toggle { display: flex; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .lc-grid { grid-template-columns: 1fr; }
+      .lc-tags { grid-template-columns: 1fr; }
+      .timeline::before { left: 16px; }
+      .timeline-year::before { left: -12px; }
+      .timeline-item { gap: 20px; }
+      .timeline-year { min-width: 36px; font-size: .7rem; }
+      section { padding: 60px 0; }
+    }
+    @media (max-width: 480px) {
+      .hero-stats { grid-template-columns: 1fr; }
+      .stat-card-wide { grid-column: span 1; }
+      .exp-grid { grid-template-columns: 1fr; }
+      .project-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Reveal animation helper */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: all .6s ease-out;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav id="navbar">
+    <div class="container">
+      <span class="nav-logo">omar.</span>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#story">Story</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#leetcode">LeetCode</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <div class="hero-badge">
+            <span class="hero-badge-dot"></span>
+            DevOps Consultant @ MHP – A Porsche Company
+          </div>
+          <h1 class="hero-name"><span>Mirza</span> Omar <span>Baig</span></h1>
+          <div class="hero-rotate-wrap">
+            <div class="hero-rotate">
+              <span class="hero-rotate-item">I build reliable infrastructure.</span>
+              <span class="hero-rotate-item">I ship production code.</span>
+              <span class="hero-rotate-item">I solve hard problems.</span>
+              <span class="hero-rotate-item">I mentor engineers.</span>
+            </div>
+          </div>
+          <p class="hero-text">
+            DevOps &amp; SRE engineer — 4+ years automating infrastructure on AWS/GCP,
+            containerizing Java workloads, and reducing toil. 285 LeetCode problems.
+            48 GitHub repos. One obsession: systems that don't break.
+          </p>
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">View My Work &#8595;</a>
+            <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+          </div>
+        </div>
+        <div>
+          <div class="hero-stats">
+            <div class="hero-stat-card">
+              <div class="num">4+</div>
+              <div class="label">Years Experience</div>
+              <div class="sub">EPAM → MHP (Porsche)</div>
+            </div>
+            <div class="hero-stat-card">
+              <div class="num">48</div>
+              <div class="label">GitHub Repos</div>
+              <div class="sub">Java · JS · Python · Shell</div>
+            </div>
+            <div class="hero-stat-card">
+              <div class="num">285</div>
+              <div class="label">LeetCode Solved</div>
+              <div class="sub">124E · 132M · 29H</div>
+            </div>
+            <div class="hero-stat-card">
+              <div class="num">2</div>
+              <div class="label">Cloud Certs</div>
+              <div class="sub">AWS · Terraform</div>
+            </div>
+            <div class="hero-stat-card stat-card-wide">
+              <div class="num">EKS 1.25 → 1.31</div>
+              <div class="label">Zero-downtime upgrades led</div>
+              <div class="sub">Istio · Graviton · ElastiCache · Terraform</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <span>scroll</span>
+      <div class="line"></div>
+    </div>
+  </section>
+
+  <!-- Story / Timeline -->
+  <section id="story">
+    <div class="container">
+      <div class="section-label">&#9679; The Story</div>
+      <h2 class="section-title">From tinkerer to consultant.</h2>
+      <p class="section-desc">Not a boring chronology. A timeline of growth — every year, a new peak.</p>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-year">2019</div>
+          <div class="timeline-content">
+            <h3>First Commit</h3>
+            <p>Created GitHub account. Started with Python fun projects, brute-force scripts, and hackathons. The builder instinct kicks in.</p>
+            <div class="timeline-tags"><span>Python</span><span>Shell</span><span>Hackathons</span></div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2020</div>
+          <div class="timeline-content">
+            <h3>JP Morgan &amp; Engineering</h3>
+            <p>Student internship at JPMorgan Chase. COVID year — remote learning, AI labs, DBMS projects, Ideathon participation.</p>
+            <div class="timeline-tags"><span>Java</span><span>SQL</span><span>AI/ML</span><span>Remote</span></div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2021</div>
+          <div class="timeline-content">
+            <h3>Engineering @ HKBK</h3>
+            <p>Final year of BE in Computer Science. Building AI lab programs, DBMS projects, and Android experiments alongside coursework.</p>
+            <div class="timeline-tags"><span>Java</span><span>Python</span><span>Android</span><span>DBMS</span></div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2022</div>
+          <div class="timeline-content">
+            <h3>Nagarro → EPAM</h3>
+            <p>Started at Nagarro learning core Java &amp; Jenkins for microservices. Joined EPAM as intern, promoted to Junior System Engineer. Terraform, Docker, Kubernetes — the foundation forms.</p>
+            <div class="timeline-tags"><span>Java</span><span>Jenkins</span><span>Terraform</span><span>Docker</span><span>K8s</span></div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2023</div>
+          <div class="timeline-content">
+            <h3>The Infra Years</h3>
+            <p>EKS 1.25, Istio mTLS for interpod encryption, ElastiCache with TLS, ElasticSearch tuning, CloudFormation at scale. AWS SysOps certified. 50-day LeetCode streak.</p>
+            <div class="timeline-tags"><span>EKS</span><span>Istio</span><span>Redis</span><span>ElasticSearch</span><span>AWS</span></div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2024</div>
+          <div class="timeline-content">
+            <h3>System Engineer</h3>
+            <p>Promoted. Led EKS 1.25→1.31 upgrades, migrated to Graviton (cost -20%), upgraded Java 11→17 across EMR &amp; Docker. Mentored juniors. Terraform Associate certified.</p>
+            <div class="timeline-tags"><span>EKS 1.31</span><span>Graviton</span><span>Java 17</span><span>Terraform</span><span>Mentoring</span></div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2025</div>
+          <div class="timeline-content">
+            <h3>Scale &amp; Optimize</h3>
+            <p>GCP migration (GKE/GCE), Cloud Build pipelines, rollback strategies, SemGrep/SonarQube/Black Duck in CI/CD. Cost optimization across the board.</p>
+            <div class="timeline-tags"><span>GCP</span><span>GKE</span><span>Security</span><span>CI/CD</span><span>Cost-Opt</span></div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2026</div>
+          <div class="timeline-content">
+            <h3>MHP – A Porsche Company</h3>
+            <p>DevOps Consultant. Automotive-grade infrastructure. The journey from intern to consultant is complete — but the learning never stops.</p>
+            <div class="timeline-tags"><span>Consulting</span><span>Automotive</span><span>DevOps</span><span>Leadership</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience">
+    <div class="container">
+      <div class="section-label">&#9679; Experience</div>
+      <h2 class="section-title">Where I've worked.</h2>
+      <p class="section-desc">Four years of growing responsibility — from intern to consultant.</p>
+      <div class="exp-grid">
+        <div class="exp-card">
+          <div class="company">
+            <span class="company-dot" style="background:#E8EDF2;"></span>
+            MHP – A Porsche Company
+          </div>
+          <div class="role-title">DevOps Consultant</div>
+          <div class="date">Feb 2026 — Present</div>
+          <ul>
+            <li>Designing infrastructure for automotive-scale systems</li>
+            <li>Driving cloud-native adoption and reliability practices</li>
+            <li>Consulting across teams on architecture and observability</li>
+          </ul>
+        </div>
+        <div class="exp-card">
+          <div class="company">
+            <span class="company-dot" style="background:#00D4AA;"></span>
+            EPAM Systems
+          </div>
+          <div class="role-title">System Engineer</div>
+          <div class="date">Oct 2024 — Feb 2026</div>
+          <ul>
+            <li>Led EKS 1.25→1.31 upgrades — zero-downtime, deprecated API remediation</li>
+            <li>Istio mTLS for interpod encryption &amp; ElastiCache TLS migration</li>
+            <li>Graviton migration — improved perf, reduced compute costs</li>
+            <li>Java 11→17 upgrade across EMR Spark &amp; Docker workloads</li>
+            <li>Automated AMI/OS image pipelines for EKS nodes &amp; EC2</li>
+          </ul>
+        </div>
+        <div class="exp-card">
+          <div class="company">
+            <span class="company-dot" style="background:#00D4AA;"></span>
+            EPAM Systems
+          </div>
+          <div class="role-title">Junior System Engineer</div>
+          <div class="date">Aug 2022 — Oct 2024</div>
+          <ul>
+            <li>Designed Terraform &amp; CloudFormation modules for consistent provisioning</li>
+            <li>Integrated SemGrep, SonarQube, Black Duck into CI/CD pipelines</li>
+            <li>Implemented distributed tracing &amp; centralized logging for microservices</li>
+            <li>Designed rollback strategies for GitLab CI, CodePipeline, CodeBuild</li>
+            <li>Mentored junior engineers on containerization &amp; GitOps</li>
+          </ul>
+        </div>
+        <div class="exp-card">
+          <div class="company">
+            <span class="company-dot" style="background:#8899AA;"></span>
+            Nagarro
+          </div>
+          <div class="role-title">Project Intern</div>
+          <div class="date">Jan 2022 — Mar 2022</div>
+          <ul>
+            <li>Learned core Java &amp; foundational DevOps in real-world projects</li>
+            <li>Assisted with Jenkins CI/CD setup for Java microservices</li>
+            <li>Worked with Git and scripting for IaC and automation</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-label">&#9679; Projects</div>
+      <h2 class="section-title">Proof of work.</h2>
+      <p class="section-desc">Not just YAML. Real code, real systems, real curiosity.</p>
+      <div class="project-filters">
+        <button class="active" data-filter="all">All</button>
+        <button data-filter="java">Java</button>
+        <button data-filter="js">JavaScript</button>
+        <button data-filter="python">Python</button>
+        <button data-filter="devops">DevOps</button>
+        <button data-filter="fun">Fun</button>
+      </div>
+      <div class="project-grid" id="projectGrid">
+        <div class="project-card" data-tags="java">
+          <div class="project-lang">
+            <span class="project-lang-dot" style="background:#b07219;"></span>
+            Java
+          </div>
+          <h3>error-code-manager1</h3>
+          <p>Active project — error code management system. Currently developing.</p>
+          <div class="why">&#9654; Current focus — shows what I'm building right now</div>
+          <a href="https://github.com/omarbaig007212/error-code-manager1" target="_blank">View on GitHub &rarr;</a>
+        </div>
+        <div class="project-card" data-tags="devops">
+          <div class="project-lang">
+            <span class="project-lang-dot" style="background:#8899AA;"></span>
+            Kubernetes
+          </div>
+          <h3>Mastering-Kubernetes-SAI</h3>
+          <p>Deep dive into Kubernetes — architecture, networking, security, production patterns.</p>
+          <div class="why">&#9654; Passion project — proves deep K8s knowledge beyond work</div>
+          <a href="https://github.com/omarbaig007212/Mastering-Kubernetes-SAI" target="_blank">View on GitHub &rarr;</a>
+        </div>
+        <div class="project-card" data-tags="python">
+          <div class="project-lang">
+            <span class="project-lang-dot" style="background:#3572A5;"></span>
+            Python
+          </div>
+          <h3>SkillMitra-AI</h3>
+          <p>AI-powered skill development platform. ML/AI exploration beyond DevOps.</p>
+          <div class="why">&#9654; AI/ML curiosity — shows range beyond infrastructure</div>
+          <a href="https://github.com/omarbaig007212/SkillMitra-AI" target="_blank">View on GitHub &rarr;</a>
+        </div>
+        <div class="project-card" data-tags="java">
+          <div class="project-lang">
+            <span class="project-lang-dot" style="background:#b07219;"></span>
+            Java
+          </div>
+          <h3>SpringBoot-BlogApplication</h3>
+          <p>Full-stack blog platform using Spring Boot, JPA, and REST APIs.</p>
+          <div class="why">&#9654; Full-stack Java — proves end-to-end development ability</div>
+          <a href="https://github.com/omarbaig007212/SpringBoot-BlogApplication" target="_blank">View on GitHub &rarr;</a>
+        </div>
+        <div class="project-card" data-tags="java">
+          <div class="project-lang">
+            <span class="project-lang-dot" style="background:#b07219;"></span>
+            Java
+          </div>
+          <h3>Apache-Kafka-Demo</h3>
+          <p>Message streaming demo with Apache Kafka — producer/consumer patterns.</p>
+          <div class="why">&#9654; Async systems &amp; event-driven architecture</div>
+          <a href="https://github.com/omarbaig007212/Apache-Kafka-Demo" target="_blank">View on GitHub &rarr;</a>
+        </div>
+        <div class="project-card" data-tags="java">
+          <div class="project-lang">
+            <span class="project-lang-dot" style="background:#b07219;"></span>
+            Java
+          </div>
+          <h3>java-spring-jwt</h3>
+          <p>JWT-based authentication with Spring Security. Token generation, validation, role-based access.</p>
+          <div class="why">&#9654; Security &amp; auth — 1 star, real-world pattern</div>
+          <a href="https://github.com/omarbaig007212/java-spring-jwt" target="_blank">View on GitHub &rarr;</a>
+        </div>
+        <div class="project-card" data-tags="js">
+          <div class="project-lang">
+            <span class="project-lang-dot" style="background:#f1e05a;"></span>
+            JavaScript
+          </div>
+          <h3>socket_chat_app</h3>
+          <p>Real-time chat application using Socket.io and Node.js.</p>
+          <div class="why">&#9654; Real-time systems &amp; WebSocket architecture</div>
+          <a href="https://github.com/omarbaig007212/socket_chat_app" target="_blank">View on GitHub &rarr;</a>
+        </div>
+        <div class="project-card" data-tags="fun">
+          <div class="project-lang">
+            <span class="project-lang-dot" style="background:#8899AA;"></span>
+            Multi
+          </div>
+          <h3>THE_FRICK_BRAIN_2</h3>
+          <p>Playful collaborative project. The name says it all — building is supposed to be fun.</p>
+          <div class="why">&#9654; Personality — 1 star, 1 fork, 100% character</div>
+          <a href="https://github.com/omarbaig007212/THE_FRICK_BRAIN_2" target="_blank">View on GitHub &rarr;</a>
+        </div>
+        <div class="project-card" data-tags="js,python">
+          <div class="project-lang">
+            <span class="project-lang-dot" style="background:#f1e05a;"></span>
+            JavaScript
+          </div>
+          <h3>django-notes-app</h3>
+          <p>Notes application built with Django backend and JavaScript frontend.</p>
+          <div class="why">&#9654; Python web framework versatility</div>
+          <a href="https://github.com/omarbaig007212/django-notes-app" target="_blank">View on GitHub &rarr;</a>
+        </div>
+        <div class="project-card" data-tags="fun,devops">
+          <div class="project-lang">
+            <span class="project-lang-dot" style="background:#89e051;"></span>
+            Shell
+          </div>
+          <h3>Brute_Forcer</h3>
+          <p>Shell-based brute-force utility. Security curiosity and scripting chops.</p>
+          <div class="why">&#9654; Security curiosity &amp; automation scripting</div>
+          <a href="https://github.com/omarbaig007212/Brute_Forcer" target="_blank">View on GitHub &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-label">&#9679; Toolbox</div>
+      <h2 class="section-title">What I work with.</h2>
+      <p class="section-desc">Not just tools — technologies I've built production systems with.</p>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <h4>Cloud &amp; Infrastructure</h4>
+          <div class="skill-item"><div class="skill-name"><span>AWS (EKS, EC2, EMR, S3, Lambda)</span><span>Expert</span></div><div class="skill-bar"><div class="skill-bar-fill" data-width="95"></div></div></div>
+          <div class="skill-item"><div class="skill-name"><span>GCP (GKE, GCE, Cloud Build)</span><span>Intermediate</span></div><div class="skill-bar"><div class="skill-bar-fill" data-width="55"></div></div></div>
+          <div class="skill-item"><div class="skill-name"><span>ElastiCache / Redis</span><span>Advanced</span></div><div class="skill-bar"><div class="skill-bar-fill" data-width="80"></div></div></div>
+        </div>
+        <div class="skill-category">
+          <h4>Containers &amp; Orchestration</h4>
+          <div class="skill-item"><div class="skill-name"><span>Kubernetes</span><span>Expert</span></div><div class="skill-bar"><div class="skill-bar-fill" data-width="92"></div></div></div>
+          <div class="skill-item"><div class="skill-name"><span>Docker</span><span>Expert</span></div><div class="skill-bar"><div class="skill-bar-fill" data-width="92"></div></div></div>
+          <div class="skill-item"><div class="skill-name"><span>Istio</span><span>Advanced</span></div><div class="skill-bar"><div class="skill-bar-fill" data-width="75"></div></div></div>
+          <div class="skill-item"><div class="skill-name"><span>Helm</span><span>Advanced</span></div><div class="skill-bar"><div class="skill-bar-fill" data-width="72"></div></div></div>
+        </div>
+        <div class="skill-category">
+          <h4>CI/CD &amp; Version Control</h4>
+          <div class="skill-item"><div class="skill-name"><span>GitLab CI</span><span>Expert</span></div><div class="skill-bar"><div class="skill-bar-fill" data-width="90"></div></div></div>
+          <div class="skill-item"><div class="skill-name"><span>Jenkins</span><span>Advanced</span></div><div class="skill-bar"><div class="skill-bar-fill" data-width="78"></div></div></div>
+          <div class="skill-item"><div class="skill-name"><span>AWS CodePipeline/CodeBuild</span><span>Advanced</span></div><div class="skill-bar"><div class="skill-bar-fill" data-width="80"></div></div></div>
+          <div class="skill-item"><div class="skill-name"><span>Git / GitHub</span><span>Expert</span></div><div class="skill-bar"><div class="skill-bar-fill" data-width="93"></div></div></div>
+        </div>
+        <div class="skill-category">
+          <h4>IaC &amp; Automation</h4>
+          <div class="skill-item"><div class="skill-name"><span>Terraform</span><span>Expert</span></div><div class="skill-bar"><div class="skill-bar-fill" data-width="94"></div></div></div>
+          <div class="skill-item"><div class="skill-name"><span>AWS CloudFormation</span><span>Advanced</span></div><div class="skill-bar"><div class="skill-bar-fill" data-width="78"></div></div></div>
+          <div class="skill-item"><div class="skill-name"><span>Cloud Build</span><span>Intermediate</span></div><div class="skill-bar"><div class="skill-bar-fill" data-width="55"></div></div></div>
+        </div>
+        <div class="skill-category">
+          <h4>Languages</h4>
+          <div class="skill-item"><div class="skill-name"><span>Java</span><span>Expert</span></div><div class="skill-bar"><div class="skill-bar-fill" data-width="92"></div></div></div>
+          <div class="skill-item"><div class="skill-name"><span>Python</span><span>Advanced</span></div><div class="skill-bar"><div class="skill-bar-fill" data-width="78"></div></div></div>
+          <div class="skill-item"><div class="skill-name"><span>Bash / Shell</span><span>Advanced</span></div><div class="skill-bar"><div class="skill-bar-fill" data-width="80"></div></div></div>
+          <div class="skill-item"><div class="skill-name"><span>JavaScript</span><span>Intermediate</span></div><div class="skill-bar"><div class="skill-bar-fill" data-width="60"></div></div></div>
+        </div>
+        <div class="skill-category">
+          <h4>Monitoring &amp; Observability</h4>
+          <div class="skill-item"><div class="skill-name"><span>CloudWatch</span><span>Advanced</span></div><div class="skill-bar"><div class="skill-bar-fill" data-width="82"></div></div></div>
+          <div class="skill-item"><div class="skill-name"><span>DataDog</span><span>Intermediate</span></div><div class="skill-bar"><div class="skill-bar-fill" data-width="60"></div></div></div>
+          <div class="skill-item"><div class="skill-name"><span>Splunk / Grafana</span><span>Intermediate</span></div><div class="skill-bar"><div class="skill-bar-fill" data-width="65"></div></div></div>
+          <div class="skill-item"><div class="skill-name"><span>Elasticsearch</span><span>Advanced</span></div><div class="skill-bar"><div class="skill-bar-fill" data-width="72"></div></div></div>
+        </div>
+        <div class="skill-category">
+          <h4>Security &amp; Compliance</h4>
+          <div class="skill-item"><div class="skill-name"><span>SonarQube / SemGrep</span><span>Advanced</span></div><div class="skill-bar"><div class="skill-bar-fill" data-width="80"></div></div></div>
+          <div class="skill-item"><div class="skill-name"><span>Istio mTLS</span><span>Advanced</span></div><div class="skill-bar"><div class="skill-bar-fill" data-width="76"></div></div></div>
+          <div class="skill-item"><div class="skill-name"><span>OPA / Black Duck</span><span>Intermediate</span></div><div class="skill-bar"><div class="skill-bar-fill" data-width="65"></div></div></div>
+        </div>
+        <div class="skill-category">
+          <h4>Frameworks &amp; Tools</h4>
+          <div class="skill-item"><div class="skill-name"><span>Spring Boot</span><span>Advanced</span></div><div class="skill-bar"><div class="skill-bar-fill" data-width="80"></div></div></div>
+          <div class="skill-item"><div class="skill-name"><span>Maven</span><span>Advanced</span></div><div class="skill-bar"><div class="skill-bar-fill" data-width="78"></div></div></div>
+          <div class="skill-item"><div class="skill-name"><span>JUnit / pytest</span><span>Advanced</span></div><div class="skill-bar"><div class="skill-bar-fill" data-width="75"></div></div></div>
+          <div class="skill-item"><div class="skill-name"><span>AngularJS</span><span>Intermediate</span></div><div class="skill-bar"><div class="skill-bar-fill" data-width="45"></div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LeetCode -->
+  <section id="leetcode">
+    <div class="container">
+      <div class="section-label">&#9679; Problem Solving</div>
+      <h2 class="section-title">285 problems. One streak at a time.</h2>
+      <p class="section-desc">LeetCode is my gym. Here's the proof.</p>
+      <div class="lc-grid">
+        <div class="lc-main">
+          <div class="lc-big">285</div>
+          <div class="lc-label">problems solved across 3 languages</div>
+          <div class="lc-breakdown">
+            <div class="lc-breakdown-item lc-easy">
+              <div class="num">124</div>
+              <div class="lbl">Easy</div>
+            </div>
+            <div class="lc-breakdown-item lc-medium">
+              <div class="num">132</div>
+              <div class="lbl">Medium</div>
+            </div>
+            <div class="lc-breakdown-item lc-hard">
+              <div class="num">29</div>
+              <div class="lbl">Hard</div>
+            </div>
+          </div>
+          <div class="lc-tags">
+            <div class="lc-tag-group">
+              <h5>Advanced</h5>
+              <div class="tags">
+                <span>DP <b>45</b></span>
+                <span>Backtracking <b>26</b></span>
+                <span>Divide &amp; Conquer <b>8</b></span>
+                <span>Trie <b>4</b></span>
+                <span>Union-Find <b>2</b></span>
+                <span>Monotonic Stack <b>5</b></span>
+              </div>
+            </div>
+            <div class="lc-tag-group">
+              <h5>Intermediate</h5>
+              <div class="tags">
+                <span>Binary Search <b>45</b></span>
+                <span>Hash Table <b>41</b></span>
+                <span>Math <b>44</b></span>
+                <span>DFS <b>19</b></span>
+                <span>BFS <b>14</b></span>
+                <span>Greedy <b>16</b></span>
+                <span>Sliding Window <b>10</b></span>
+                <span>Bit Manip <b>17</b></span>
+              </div>
+            </div>
+            <div class="lc-tag-group" style="grid-column: span 2;">
+              <h5>Fundamental</h5>
+              <div class="tags">
+                <span>Array <b>162</b></span>
+                <span>String <b>68</b></span>
+                <span>Sorting <b>49</b></span>
+                <span>Two Pointers <b>47</b></span>
+                <span>Matrix <b>26</b></span>
+                <span>Stack <b>23</b></span>
+                <span>Linked List <b>18</b></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="lc-side">
+          <div class="lc-side-card">
+            <div>
+              <div class="lbl">Global Rank</div>
+              <div class="val">#510,130</div>
+            </div>
+            <span style="font-size:2rem;">&#127942;</span>
+          </div>
+          <div class="lc-side-card">
+            <div>
+              <div class="lbl">Languages</div>
+              <div class="val">Java &middot; Python &middot; C++</div>
+            </div>
+          </div>
+          <div class="lc-side-card">
+            <div>
+              <div class="lbl">Submissions</div>
+              <div class="val">2,023</div>
+            </div>
+          </div>
+          <div class="lc-side-card">
+            <div>
+              <div class="lbl">Solutions Published</div>
+              <div class="val">29</div>
+            </div>
+          </div>
+          <div class="lc-side-card">
+            <div>
+              <div class="lbl">Profile Views</div>
+              <div class="val">11K</div>
+            </div>
+          </div>
+          <div class="lc-side-card">
+            <div>
+              <div class="lbl">Badge</div>
+              <div class="val" style="font-size:.9rem;">50 Days Badge 2023</div>
+            </div>
+            <span style="font-size:1.5rem;">&#127775;</span>
+          </div>
+          <a href="https://leetcode.com/u/omar_2077" target="_blank" class="btn btn-primary" style="justify-content:center;margin-top:auto;">View LeetCode Profile &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section id="certs">
+    <div class="container">
+      <div class="section-label">&#9679; Credentials</div>
+      <h2 class="section-title">Certifications.</h2>
+      <p class="section-desc">Validated by AWS and HashiCorp.</p>
+      <div class="certs-grid">
+        <div class="cert-card">
+          <div class="cert-icon">&#9729;</div>
+          <div>
+            <h4>AWS Certified SysOps Administrator – Associate</h4>
+            <div class="issuer">Amazon Web Services</div>
+            <div class="date">Dec 2022 — Dec 2025</div>
+          </div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-icon">&#9881;</div>
+          <div>
+            <h4>HashiCorp Certified: Terraform Associate (003)</h4>
+            <div class="issuer">HashiCorp</div>
+            <div class="date">Dec 2024 — Dec 2026</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="section-label">&#9679; Let's Talk</div>
+          <h3>Have a challenge? Let's solve it together.</h3>
+          <p>I'm always open to interesting conversations — whether it's a role, a collaboration, or just tech talk.</p>
+          <div class="contact-links">
+            <a href="mailto:omarbaig1801@gmail.com" class="contact-link">
+              <span class="contact-link-icon">&#9993;</span>
+              omarbaig1801@gmail.com
+            </a>
+            <a href="https://github.com/omarbaig007212" target="_blank" class="contact-link">
+              <span class="contact-link-icon">&lt;/&gt;</span>
+              github.com/omarbaig007212
+            </a>
+            <a href="https://leetcode.com/u/omar_2077" target="_blank" class="contact-link">
+              <span class="contact-link-icon">&#9881;</span>
+              leetcode.com/u/omar_2077
+            </a>
+            <a href="#" class="contact-link">
+              <span class="contact-link-icon">&#9906;</span>
+              Bengaluru, Karnataka, India
+            </a>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:16px;justify-content:center;">
+          <a href="mailto:omarbaig1801@gmail.com" class="btn btn-primary" style="align-self:flex-start;">omarbaig1801@gmail.com</a>
+          <p style="color:#4A5A6A;font-size:.85rem;">Available for opportunities and collaborations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Mirza Omar Baig. Built with &lt;code&gt; and curiosity.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    document.getElementById('mobileToggle').addEventListener('click', function() {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+    });
+
+    // Navbar scroll behavior
+    let lastScroll = 0;
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      const current = window.scrollY;
+      if (current > 80) navbar.classList.add('scrolled');
+      else navbar.classList.remove('scrolled');
+      if (current > lastScroll && current > 200) navbar.classList.add('hidden');
+      else navbar.classList.remove('hidden');
+      lastScroll = current;
+    });
+
+    // Scroll reveal for timeline, exp cards, skill categories, cert cards, project cards
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.timeline-item, .exp-card, .skill-category, .cert-card, .project-card').forEach(el => {
+      revealObserver.observe(el);
+    });
+
+    // Skill bar animation
+    const skillObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const fill = entry.target;
+          fill.style.width = fill.dataset.width + '%';
+        }
+      });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll('.skill-bar-fill').forEach(el => skillObserver.observe(el));
+
+    // Project filters
+    const filterBtns = document.querySelectorAll('.project-filters button');
+    const projectCards = document.querySelectorAll('.project-card');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        projectCards.forEach(card => {
+          if (filter === 'all' || card.dataset.tags.includes(filter)) {
+            card.style.display = 'block';
+            setTimeout(() => card.classList.add('visible'), 50);
+          } else {
+            card.classList.remove('visible');
+            setTimeout(() => card.style.display = 'none', 300);
+          }
+        });
+      });
+    });
+
+    // Smooth reveal for remaining elements on load
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // Trigger initial visibility for visible cards
+    setTimeout(() => {
+      document.querySelectorAll('.project-card').forEach(c => {
+        const rect = c.getBoundingClientRect();
+        if (rect.top < window.innerHeight) c.classList.add('visible');
+      });
+      document.querySelectorAll('.timeline-item').forEach(t => {
+        const rect = t.getBoundingClientRect();
+        if (rect.top < window.innerHeight) t.classList.add('visible');
+      });
+      document.querySelectorAll('.exp-card').forEach(e => {
+        const rect = e.getBoundingClientRect();
+        if (rect.top < window.innerHeight) e.classList.add('visible');
+      });
+    }, 200);
+  </script>
+</body>
+</html>

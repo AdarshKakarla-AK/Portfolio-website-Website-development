@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rajesh Kakarla — 20+ Years Turning Silicon into Solutions</title>
+<meta name="description" content="Portfolio of Rajesh Kakarla — FAE Manager, Embedded Systems, Analog & Power expert with 20+ years in semiconductors.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Instrument+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --p50: #eef2ff; --p100: #e0e7ff; --p200: #c7d2fe; --p300: #a5b4fc;
+  --p400: #818cf8; --p500: #6366f1; --p600: #4f46e5; --p700: #4338ca;
+  --p800: #312e81; --p900: #1e1b4b;
+  --a400: #fbbf24; --a500: #f59e0b; --a600: #d97706; --a700: #b45309;
+  --surface: #fafaf9; --surface-muted: #f5f5f4; --surface-card: #ffffff;
+  --text-primary: #1c1917; --text-secondary: #57534e; --text-muted: #a8a29e;
+  --text-inverse: #f5f5f4;
+  --success: #22c55e; --error: #ef4444; --warning: #eab308;
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-snap: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-fast: 150ms; --duration-normal: 300ms; --duration-slow: 500ms;
+  --max-width: 1200px;
+  --font-serif: 'Fraunces', Georgia, serif;
+  --font-sans: 'Instrument Sans', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:var(--font-sans);color:var(--text-primary);background:var(--surface);line-height:1.6;overflow-x:hidden}
+a{color:var(--p600);text-decoration:none;transition:color var(--duration-fast) ease}
+a:hover{color:var(--p700)}
+img{max-width:100%;display:block}
+::selection{background:var(--p200);color:var(--p900)}
+
+.container{max-width:var(--max-width);margin:0 auto;padding:0 24px}
+.section{padding:120px 0}
+.section-header{text-align:center;margin-bottom:64px}
+.section-header .label{font-family:var(--font-mono);font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--a600);margin-bottom:12px}
+.section-header h2{font-family:var(--font-serif);font-size:clamp(2rem,4vw,3rem);font-weight:900;color:var(--p900);line-height:1.15}
+.section-header p{color:var(--text-secondary);font-size:1.125rem;max-width:600px;margin:16px auto 0}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(30,27,75,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.06);transition:transform var(--duration-normal) ease}
+nav .container{display:flex;align-items:center;justify-content:space-between;height:64px}
+nav .logo{font-family:var(--font-mono);font-size:0.85rem;color:var(--text-inverse);font-weight:600;letter-spacing:0.02em}
+nav .logo span{color:var(--a500)}
+.nav-links{display:flex;gap:4px;list-style:none}
+.nav-links a{padding:8px 14px;border-radius:6px;font-family:var(--font-sans);font-size:0.85rem;font-weight:500;color:rgba(255,255,255,0.7);transition:all var(--duration-fast) ease;position:relative}
+.nav-links a:hover{color:#fff;background:rgba(255,255,255,0.08)}
+.nav-links a.active{color:#fff}
+.nav-toggle{display:none;background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer;padding:8px}
+
+/* HERO */
+.hero{min-height:100vh;background:var(--p900);position:relative;overflow:hidden;display:flex;align-items:center}
+.hero-grid{position:absolute;inset:0;background-image:
+  linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+  linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size:40px 40px;pointer-events:none}
+#oscilloscope-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:0.35}
+.hero-content{position:relative;z-index:2;max-width:800px}
+.hero-content .greeting{font-family:var(--font-mono);font-size:0.875rem;color:var(--a500);letter-spacing:0.1em;margin-bottom:16px}
+.hero-content h1{font-family:var(--font-serif);font-size:clamp(2.8rem,7vw,4.5rem);font-weight:900;color:#fff;line-height:1.05;margin-bottom:16px}
+.hero-content .tagline{font-family:var(--font-sans);font-size:clamp(1.1rem,2vw,1.35rem);font-weight:300;color:rgba(255,255,255,0.6);margin-bottom:32px;line-height:1.5}
+.hero-content .subtitle{font-family:var(--font-mono);font-size:0.8rem;color:rgba(255,255,255,0.35);letter-spacing:0.05em;margin-bottom:40px}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:8px;font-family:var(--font-sans);font-size:0.9rem;font-weight:600;border:none;cursor:pointer;transition:all var(--duration-normal) var(--ease-smooth)}
+.btn:active{transform:scale(0.97)}
+.btn-primary{background:var(--a500);color:var(--p900);box-shadow:0 4px 16px rgba(245,158,11,0.3)}
+.btn-primary:hover{background:var(--a400);transform:translateY(-2px);box-shadow:0 6px 24px rgba(245,158,11,0.4)}
+.btn-outline{background:transparent;border:1.5px solid rgba(255,255,255,0.2);color:#fff}
+.btn-outline:hover{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.4);transform:translateY(-2px)}
+.hero-glow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(245,158,11,0.08),transparent 70%);top:-200px;right:-200px;pointer-events:none;animation:heroPulse 8s ease-in-out infinite}
+@keyframes heroPulse{0%,100%{opacity:0.5}50%{opacity:1}}
+
+/* STATS */
+.stats{background:var(--p800);padding:48px 0}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
+.stat-item .num{font-family:var(--font-serif);font-size:2.5rem;font-weight:900;color:#fff}
+.stat-item .num span{color:var(--a500)}
+.stat-item .label{font-family:var(--font-mono);font-size:0.75rem;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px}
+
+/* ABOUT SNAPSHOT (Home) */
+.about-snapshot{display:grid;grid-template-columns:200px 1fr 220px;gap:48px;align-items:start}
+.avatar-wrap{position:relative;width:200px;height:200px;border-radius:16px;overflow:hidden;background:var(--p100);border:2px solid var(--p200)}
+.avatar-wrap svg{width:100%;height:100%;display:block}
+.avatar-frame{position:absolute;inset:-4px;border:2px solid var(--a500);border-radius:18px;pointer-events:none;opacity:0.5}
+.avatar-frame::after{content:'';position:absolute;inset:-6px;border:1px dashed rgba(245,158,11,0.2);border-radius:20px}
+.bio-text{font-size:1.05rem;color:var(--text-secondary);line-height:1.7}
+.bio-text p+p{margin-top:16px}
+.bio-text .signoff{font-family:var(--font-serif);font-style:italic;font-size:1.1rem;color:var(--p600);margin-top:16px}
+.quick-facts{list-style:none;display:grid;gap:12px}
+.quick-facts li{display:flex;align-items:center;gap:10px;font-size:0.9rem;color:var(--text-secondary)}
+.quick-facts li .icon{width:20px;text-align:center;font-size:1rem}
+
+/* TIMELINE */
+.timeline{position:relative;padding:0}
+.timeline-line{position:absolute;left:50%;top:0;bottom:0;width:2px;background:var(--p200);transform:translateX(-50%)}
+.timeline-item{display:flex;align-items:flex-start;margin-bottom:48px;position:relative}
+.timeline-item:nth-child(odd){flex-direction:row}
+.timeline-item:nth-child(even){flex-direction:row-reverse}
+.timeline-dot{position:absolute;left:50%;top:20px;width:16px;height:16px;background:var(--a500);border:3px solid var(--surface);border-radius:50%;transform:translateX(-50%);z-index:2;box-shadow:0 0 0 3px var(--p200);transition:box-shadow var(--duration-normal) ease}
+.timeline-item:hover .timeline-dot{box-shadow:0 0 0 3px var(--a500),0 0 20px rgba(245,158,11,0.3)}
+.timeline-card{width:calc(50% - 40px);background:var(--surface-card);border-radius:12px;padding:24px;box-shadow:0 1px 3px rgba(0,0,0,0.06),0 1px 2px rgba(0,0,0,0.04);border-bottom:3px solid var(--p200);transition:all var(--duration-normal) var(--ease-smooth);position:relative}
+.timeline-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,0.08);border-bottom-color:var(--a500)}
+.timeline-date{font-family:var(--font-mono);font-size:0.75rem;color:var(--a600);font-weight:600;margin-bottom:6px}
+.timeline-role{font-family:var(--font-serif);font-size:1.15rem;font-weight:700;color:var(--p900);margin-bottom:4px}
+.timeline-company{font-size:0.9rem;color:var(--text-secondary);margin-bottom:8px}
+.timeline-company .loc{color:var(--text-muted);font-size:0.8rem}
+.timeline-desc{font-size:0.85rem;color:var(--text-secondary);line-height:1.5;margin-bottom:10px}
+.timeline-tags{display:flex;flex-wrap:wrap;gap:6px}
+.timeline-tags span{padding:3px 10px;background:var(--p50);color:var(--p700);border-radius:4px;font-size:0.7rem;font-family:var(--font-mono)}
+
+/* WORK / CASE STUDIES */
+.case-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:24px}
+.case-card{background:var(--surface-card);border-radius:12px;padding:24px;box-shadow:0 1px 3px rgba(0,0,0,0.06),0 1px 2px rgba(0,0,0,0.04);border-bottom:3px solid var(--p200);transition:all var(--duration-normal) var(--ease-smooth);cursor:pointer}
+.case-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(0,0,0,0.08);border-bottom-color:var(--a500)}
+.case-card .award-badge{display:inline-block;padding:3px 10px;border-radius:4px;font-family:var(--font-mono);font-size:0.65rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:12px}
+.badge-gold{background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#1e1b4b}
+.badge-bronze{background:linear-gradient(135deg,#d97706,#b45309);color:#fff}
+.badge-silver{background:linear-gradient(135deg,#e2e8f0,#94a3b8);color:#1e293b}
+.badge-default{background:var(--p100);color:var(--p700)}
+.case-card h3{font-family:var(--font-serif);font-size:1.1rem;font-weight:700;color:var(--p900);margin-bottom:4px}
+.case-card .customer{font-size:0.8rem;color:var(--text-muted);margin-bottom:8px;font-family:var(--font-mono)}
+.case-card p{font-size:0.88rem;color:var(--text-secondary);line-height:1.5;margin-bottom:12px}
+.case-card .tech-tags{display:flex;flex-wrap:wrap;gap:4px}
+.case-card .tech-tags span{padding:2px 8px;background:var(--surface-muted);color:var(--text-secondary);border-radius:3px;font-size:0.65rem}
+.case-modal{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:24px}
+.case-modal.open{display:flex}
+.case-modal-content{background:var(--surface-card);border-radius:16px;max-width:640px;width:100%;padding:40px;position:relative;max-height:90vh;overflow-y:auto}
+.case-modal-close{position:absolute;top:16px;right:16px;background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--text-muted);padding:4px;line-height:1}
+.case-modal-content h2{font-family:var(--font-serif);font-size:1.5rem;font-weight:700;color:var(--p900);margin-bottom:4px}
+.case-modal-content .customer{font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted);margin-bottom:16px}
+.case-modal-content .detail-row{display:flex;gap:8px;margin-bottom:12px}
+.case-modal-content .detail-row strong{font-family:var(--font-mono);font-size:0.75rem;color:var(--a600);min-width:80px;text-transform:uppercase;letter-spacing:0.05em}
+.case-modal-content .detail-row span{font-size:0.9rem;color:var(--text-secondary)}
+
+/* GITHUB */
+.github-section{background:var(--surface-muted);border-radius:16px;padding:40px;margin-top:48px;text-align:center}
+.github-section .gh-header{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:16px}
+.github-section .gh-header img{width:56px;height:56px;border-radius:50%;border:2px solid var(--p200)}
+.github-section .gh-header .gh-info{text-align:left}
+.github-section .gh-header .gh-info h4{font-family:var(--font-serif);font-size:1.1rem;font-weight:700;color:var(--p900)}
+.github-section .gh-header .gh-info .gh-stats{font-size:0.8rem;color:var(--text-muted)}
+.github-section .gh-note{font-style:italic;color:var(--text-secondary);font-size:0.88rem;max-width:500px;margin:0 auto 16px}
+.github-section .btn{display:inline-flex}
+
+/* SKILLS - THE WORKBENCH */
+.skills-workbench{display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:32px;align-items:start}
+.bench-column{background:var(--surface-card);border-radius:12px;padding:28px;box-shadow:0 1px 3px rgba(0,0,0,0.06),0 1px 2px rgba(0,0,0,0.04)}
+.bench-column h3{font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--a600);margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--surface-muted)}
+.bench-vendor{margin-bottom:16px}
+.bench-vendor .vendor-name{font-family:var(--font-serif);font-size:0.95rem;font-weight:700;color:var(--p900);margin-bottom:6px}
+.bench-vendor .vendor-fams{display:flex;flex-wrap:wrap;gap:6px}
+.bench-vendor .vendor-fams span{padding:4px 12px;background:var(--p50);color:var(--p700);border-radius:20px;font-size:0.75rem;font-family:var(--font-mono)}
+.bench-list{display:flex;flex-wrap:wrap;gap:8px}
+.bench-list li{list-style:none;padding:6px 14px;background:var(--surface-muted);border-radius:6px;font-size:0.8rem;color:var(--text-secondary);font-family:var(--font-mono)}
+.bench-list li.cat-label{background:transparent;padding:6px 0;width:100%;font-family:var(--font-sans);font-weight:600;color:var(--text-primary);font-size:0.78rem}
+
+/* TAG CLOUD */
+.tag-cloud{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:48px;padding-top:48px;border-top:1px solid var(--surface-muted)}
+.tag-cloud span{padding:6px 16px;border-radius:20px;font-family:var(--font-mono);font-size:0.75rem;transition:all var(--duration-normal) ease;cursor:default}
+.tag-cloud span:hover{transform:scale(1.08)}
+.tag-software{background:#e0e7ff;color:#4338ca}
+.tag-hardware{background:#dcfce7;color:#166534}
+.tag-tools{background:#fef3c7;color:#92400e}
+.tag-softskill{background:#f3e8ff;color:#6b21a8}
+
+/* AWARDS */
+.awards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+.award-card{background:var(--surface-card);border-radius:12px;padding:24px;box-shadow:0 1px 3px rgba(0,0,0,0.06);border-bottom:3px solid var(--p200);transition:all var(--duration-normal) var(--ease-smooth);display:flex;gap:16px;align-items:flex-start}
+.award-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,0.08)}
+.award-medal{flex-shrink:0;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;font-weight:900}
+.medal-gold{background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#1e1b4b}
+.medal-bronze{background:linear-gradient(135deg,#d97706,#b45309);color:#fff}
+.medal-silver{background:linear-gradient(135deg,#e2e8f0,#94a3b8);color:#1e293b}
+.medal-default{background:var(--p100);color:var(--p700)}
+.award-card h4{font-family:var(--font-serif);font-size:0.95rem;font-weight:700;color:var(--p900);margin-bottom:2px}
+.award-card .award-issuer{font-size:0.78rem;color:var(--text-muted)}
+.award-card .award-context{font-size:0.82rem;color:var(--text-secondary);margin-top:4px;line-height:1.4}
+
+/* CONTACT */
+.contact-section{background:var(--p900);color:#fff;text-align:center;padding:80px 0}
+.contact-section h2{font-family:var(--font-serif);font-size:clamp(2rem,4vw,3rem);font-weight:900;color:#fff;margin-bottom:12px}
+.contact-section .sub{color:rgba(255,255,255,0.6);font-size:1.1rem;margin-bottom:40px}
+.contact-links{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:32px}
+.contact-links a{display:flex;align-items:center;gap:8px;padding:12px 24px;border-radius:8px;background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.85);font-size:0.9rem;transition:all var(--duration-normal) ease}
+.contact-links a:hover{background:rgba(255,255,255,0.15);color:#fff;transform:translateY(-2px)}
+.contact-availability{font-size:0.8rem;color:rgba(255,255,255,0.4);font-family:var(--font-mono)}
+.contact-availability span{color:var(--success)}
+
+/* FOOTER */
+footer{background:var(--p900);border-top:1px solid rgba(255,255,255,0.06);padding:24px 0;text-align:center;color:rgba(255,255,255,0.3);font-size:0.8rem}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.6s var(--ease-smooth),transform 0.6s var(--ease-smooth)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:0.1s}
+.reveal-delay-2{transition-delay:0.2s}
+.reveal-delay-3{transition-delay:0.3s}
+.reveal-delay-4{transition-delay:0.4s}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .about-snapshot{grid-template-columns:1fr;text-align:center}
+  .avatar-wrap{margin:0 auto}
+  .quick-facts{justify-items:center}
+  .skills-workbench{grid-template-columns:1fr}
+  .timeline-card{width:calc(50% - 24px)}
+}
+@media(max-width:700px){
+  .section{padding:80px 0}
+  .nav-links{display:none;position:absolute;top:64px;left:0;right:0;background:var(--p900);flex-direction:column;padding:12px;border-bottom:1px solid rgba(255,255,255,0.06)}
+  .nav-links.open{display:flex}
+  .nav-toggle{display:block}
+  .stats-grid{grid-template-columns:repeat(2,1fr);gap:16px}
+  .timeline-line{left:20px}
+  .timeline-item,.timeline-item:nth-child(even){flex-direction:row!important}
+  .timeline-dot{left:20px}
+  .timeline-card{width:calc(100% - 48px);margin-left:48px}
+  .case-grid{grid-template-columns:1fr}
+  .awards-grid{grid-template-columns:1fr}
+  .contact-links{flex-direction:column;align-items:center}
+}
+@media(max-width:480px){
+  .hero-content h1{font-size:2.2rem}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .stat-item .num{font-size:1.8rem}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="container">
+    <a href="#hero" class="logo">RK<span>.</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">&#9776;</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about" class="active">About</a></li>
+      <li><a href="#career">Career</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#awards">Awards</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-grid"></div>
+  <canvas id="oscilloscope-canvas"></canvas>
+  <div class="hero-glow"></div>
+  <div class="container hero-content">
+    <div class="greeting">&#9664; HELLO, I'M</div>
+    <h1>Rajesh<br>Kakarla</h1>
+    <p class="tagline">20+ Years Turning Silicon into Solutions &mdash; FAE Manager, Embedded Systems &amp; Analog &amp; Power</p>
+    <p class="subtitle">FAE Manager | Embedded C | RL78 &bull; RX &bull; STM32 &bull; PIC | Bangalore, India</p>
+    <div class="hero-btns">
+      <a href="#work" class="btn btn-primary">View My Work</a>
+      <a href="#contact" class="btn btn-outline">Get in Touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item reveal"><div class="num"><span data-count="20">0</span>+</div><div class="label">Years Experience</div></div>
+      <div class="stat-item reveal reveal-delay-1"><div class="num"><span data-count="50">0</span>+</div><div class="label">Customers Supported</div></div>
+      <div class="stat-item reveal reveal-delay-2"><div class="num"><span data-count="7">0</span></div><div class="label">Corporate Awards</div></div>
+      <div class="stat-item reveal reveal-delay-3"><div class="num"><span data-count="10">0</span>+</div><div class="label">MCU Platforms</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="label">About</div>
+      <h2>The Person Behind the Silicon</h2>
+      <p>Two decades of solving hard problems with microcontrollers, one customer at a time.</p>
+    </div>
+    <div class="about-snapshot reveal">
+      <div class="avatar-wrap">
+        <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="80" r="40" fill="#c7d2fe"/>
+          <ellipse cx="100" cy="170" rx="58" ry="50" fill="#e0e7ff"/>
+          <circle cx="100" cy="80" r="38" fill="#eef2ff"/>
+          <circle cx="85" cy="72" r="4" fill="#4338ca"/>
+          <circle cx="115" cy="72" r="4" fill="#4338ca"/>
+          <path d="M88 88c4 6 20 6 24 0" stroke="#4338ca" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <path d="M60 155c0-20 80-20 80 0" stroke="#a5b4fc" stroke-width="1.5" fill="none"/>
+          <rect x="72" y="130" rx="6" width="56" height="34" fill="#6366f1" opacity="0.15"/>
+          <line x1="80" y1="144" x2="120" y2="144" stroke="#6366f1" stroke-width="1.5" opacity="0.3"/>
+          <line x1="80" y1="150" x2="110" y2="150" stroke="#6366f1" stroke-width="1.5" opacity="0.3"/>
+          <circle cx="100" cy="80" r="40" stroke="#f59e0b" stroke-width="1" fill="none" opacity="0.3"/>
+        </svg>
+        <div class="avatar-frame"></div>
+      </div>
+      <div class="bio-text">
+        <p>I was born in a small town in Andhra Pradesh, where the nearest electronics store was a bus ride away. But I knew by the time I was 16 &mdash; I wanted to build things that run on code and current.</p>
+        <p>From my first job at Dragon Technology in Hyderabad supporting GE and Whirlpool, through nearly a decade at Renesas winning corporate Gold Awards, to leading FAE teams across all of India &mdash; every step has been about one thing: understanding a customer's problem and finding the right silicon + software to solve it.</p>
+        <p class="signoff">&ldquo;I still get excited when I see a waveform come to life on a scope.&rdquo;</p>
+      </div>
+      <ul class="quick-facts">
+        <li><span class="icon">&#x1F4CD;</span> Bangalore, India</li>
+        <li><span class="icon">&#x1F5E3;&#xFE0F;</span> English &bull; Telugu &bull; Hindi &bull; Kannada</li>
+        <li><span class="icon">&#x1F393;</span> BE, ECE &mdash; Hindustan College</li>
+        <li><span class="icon">&#x1F6E0;&#xFE0F;</span> Embedded C, RL78, RX, STM32, PIC</li>
+        <li><span class="icon">&#x1F4C5;</span> 20+ years in Semiconductors</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CAREER TIMELINE -->
+<section class="section" id="career" style="background:var(--surface-muted)">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="label">Career</div>
+      <h2>The Journey</h2>
+      <p>From field application engineer to leading teams across India.</p>
+    </div>
+    <div class="timeline" id="timeline">
+      <div class="timeline-line"></div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-date">Jan 2003 &mdash; Mar 2005</div>
+          <div class="timeline-role">Field Application Engineer</div>
+          <div class="timeline-company">Dragon Technology Distribution Pvt. Ltd <span class="loc">&bull; Hyderabad</span></div>
+          <div class="timeline-desc">Handled key global accounts including GE, Satyam-GE, Whirlpool, Symbol, and KPIT. Designed starter kits based on Hitachi MCU/MPU. Developed hardware &amp; embedded software APIs on Renesas MCU.</div>
+          <div class="timeline-tags"><span>Renesas MCU</span><span>Hitachi</span><span>SMPS</span><span>AC/DC</span><span>DC/DC</span></div>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-date">Apr 2005 &mdash; Dec 2014 &bull; 9yr 9mo</div>
+          <div class="timeline-role">Asst. Manager &ndash; Field Application Engineer</div>
+          <div class="timeline-company">Renesas Electronics India Pvt. Ltd <span class="loc">&bull; Bangalore</span></div>
+          <div class="timeline-desc">Member of Global Support Team. Supported MNCs across regions. Won multiple Gold &amp; Bronze corporate awards. Executed university programs. Developed reference solutions and APIs used by clients pan-India.</div>
+          <div class="timeline-tags"><span>RL78</span><span>RX</span><span>RZ</span><span>CS+</span><span>HEW</span><span>e2Studio</span></div>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-date">Dec 2015 &mdash; Jun 2019 &bull; 3yr 7mo</div>
+          <div class="timeline-role">Design Manager</div>
+          <div class="timeline-company">J P Electronics India Pvt. Ltd <span class="loc">&bull; Bangalore</span></div>
+          <div class="timeline-desc">Technical backbone for Sales &amp; Marketing division. Involved in product designs to capture customers and increase revenue. Technical training to internal teams and customers.</div>
+          <div class="timeline-tags"><span>Product Design</span><span>Customer Support</span><span>Training</span></div>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-date">Jun 2019 &mdash; Jun 2023 &bull; 4yr</div>
+          <div class="timeline-role">FAE Manager</div>
+          <div class="timeline-company">WT Microelectronics India / Morrihan Singapore <span class="loc">&bull; Bangalore</span></div>
+          <div class="timeline-desc">Led FAE team across all of India. Strategic alignment with principals to grow customer base. Full project development cycle &mdash; coding, programming, debugging &amp; testing. Managed design activity tracking through DTS tool.</div>
+          <div class="timeline-tags"><span>STM32</span><span>Renesas</span><span>Nuvoton</span><span>Mediatek</span><span>Realtek</span><span>Broadcom</span><span>Avago</span></div>
+        </div>
+      </div>
+
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-date">Jun 2023 &mdash; Mar 2025 &bull; 1yr 11mo</div>
+          <div class="timeline-role">FAE Manager</div>
+          <div class="timeline-company">Rabyte Technologies LLP <span class="loc">&bull; Bangalore</span></div>
+          <div class="timeline-desc">Bootloader implementation on various platforms. Value-add by optimizing e-BOM across embedded hardware platforms. Technical training across product lines. Customer support for hardware &amp; software debugging.</div>
+          <div class="timeline-tags"><span>Renesas</span><span>ams OSRAM</span><span>Neoway</span><span>SK Hynix</span><span>GigaDevice</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK / CASE STUDIES -->
+<section class="section" id="work">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="label">Work</div>
+      <h2>Design Wins &amp; Case Studies</h2>
+      <p>Real projects, real customers, real impact.</p>
+    </div>
+    <div class="case-grid">
+      <div class="case-card reveal" onclick='openCase(this)'>
+        <span class="award-badge badge-gold">&#9733; Gold Award</span>
+        <h3>Schneider 600VA&ndash;1200VA Vamana UPS</h3>
+        <div class="customer">Schneider Electric</div>
+        <p>Bootloader implementation and peripheral coding support for backup UPS product line.</p>
+        <div class="tech-tags"><span>Bootloader</span><span>Renesas MCU</span><span>Firmware</span></div>
+        <div style="display:none" class="case-detail">
+          <div class="detail-row"><strong>Customer</strong><span>Schneider Electric</span></div>
+          <div class="detail-row"><strong>Problem</strong><span>Need reliable bootloader and peripheral firmware for 600VA&ndash;1200VA UPS product line (Vamana project).</span></div>
+          <div class="detail-row"><strong>Approach</strong><span>Full-cycle support from requirement analysis through coding, testing, and production handoff.</span></div>
+          <div class="detail-row"><strong>Outcome</strong><span>Gold Award from Renesas Corporate for outstanding project development support.</span></div>
+          <div class="detail-row"><strong>Tags</strong><span>Renesas MCU, Bootloader, Embedded C</span></div>
+        </div>
+      </div>
+
+      <div class="case-card reveal reveal-delay-1" onclick='openCase(this)'>
+        <span class="award-badge badge-gold">&#9733; Gold Award</span>
+        <h3>LED Driver Promotion</h3>
+        <div class="customer">Renesas Electronics</div>
+        <p>Technical marketing and customer adoption campaign for LED driver solutions across India.</p>
+        <div class="tech-tags"><span>LED Driver</span><span>Analog</span><span>Power</span><span>Technical Marketing</span></div>
+        <div style="display:none" class="case-detail">
+          <div class="detail-row"><strong>Problem</strong><span>Need to drive adoption of LED driver ICs across Indian lighting market.</span></div>
+          <div class="detail-row"><strong>Approach</strong><span>Technical marketing, customer training, reference design support, and design-win tracking.</span></div>
+          <div class="detail-row"><strong>Outcome</strong><span>Gold Award from Renesas Corporate for LED Driver promotion activity.</span></div>
+          <div class="detail-row"><strong>Tags</strong><span>LED Driver, Analog, Power Electronics, Technical Marketing</span></div>
+        </div>
+      </div>
+
+      <div class="case-card reveal reveal-delay-2" onclick='openCase(this)'>
+        <span class="award-badge badge-bronze">&#9733; Bronze Award</span>
+        <h3>L&amp;T EBG Electric Trip Meter</h3>
+        <div class="customer">L&amp;T (Larsen &amp; Toubro)</div>
+        <p>Project development support for electric trip meter unit with embedded control.</p>
+        <div class="tech-tags"><span>Metering</span><span>Renesas</span><span>Firmware</span></div>
+        <div style="display:none" class="case-detail">
+          <div class="detail-row"><strong>Customer</strong><span>L&amp;T EBG (Electrical &amp; Automation)</span></div>
+          <div class="detail-row"><strong>Problem</strong><span>Design and development support for electric trip unit metering project.</span></div>
+          <div class="detail-row"><strong>Approach</strong><span>End-to-end project development support including coding, debugging, and customer handholding.</span></div>
+          <div class="detail-row"><strong>Outcome</strong><span>Bronze Commendation from Renesas Corporate.</span></div>
+          <div class="detail-row"><strong>Tags</strong><span>Renesas MCU, Metering, Embedded C</span></div>
+        </div>
+      </div>
+
+      <div class="case-card reveal" onclick='openCase(this)'>
+        <span class="award-badge badge-bronze">&#9733; Bronze Award</span>
+        <h3>Landis+Gyr E230 Smart Meter</h3>
+        <div class="customer">Landis+Gyr</div>
+        <p>Smart meter project development support for the E230 energy metering platform.</p>
+        <div class="tech-tags"><span>Smart Meter</span><span>Energy</span><span>Renesas</span></div>
+        <div style="display:none" class="case-detail">
+          <div class="detail-row"><strong>Customer</strong><span>Landis+Gyr</span></div>
+          <div class="detail-row"><strong>Problem</strong><span>RLC-TOU-E230 Smart Meter project requiring comprehensive embedded support.</span></div>
+          <div class="detail-row"><strong>Approach</strong><span>Full project development support from architecture to testing.</span></div>
+          <div class="detail-row"><strong>Outcome</strong><span>Bronze Commendation from Renesas Corporate.</span></div>
+          <div class="detail-row"><strong>Tags</strong><span>Smart Meter, Energy, Renesas MCU</span></div>
+        </div>
+      </div>
+
+      <div class="case-card reveal reveal-delay-1" onclick='openCase(this)'>
+        <span class="award-badge badge-silver">&#9733; M1E Award</span>
+        <h3>Hitachi ACE Follow-me Split-AC</h3>
+        <div class="customer">Hitachi</div>
+        <p>Complete project cycle for split air conditioner indoor unit with Follow-me control.</p>
+        <div class="tech-tags"><span>AC Control</span><span>Renesas</span><span>Full Project Cycle</span></div>
+        <div style="display:none" class="case-detail">
+          <div class="detail-row"><strong>Customer</strong><span>Hitachi (ACE Project)</span></div>
+          <div class="detail-row"><strong>Problem</strong><span>Full project cycle development for Split-AC Indoor Unit with Follow-me feature.</span></div>
+          <div class="detail-row"><strong>Approach</strong><span>Complete ownership from concept through coding, programming, debugging, and testing.</span></div>
+          <div class="detail-row"><strong>Outcome</strong><span>M1E Award from Renesas Corporate for outstanding project delivery.</span></div>
+          <div class="detail-row"><strong>Tags</strong><span>AC, Renesas MCU, Embedded C, Full Project Lifecycle</span></div>
+        </div>
+      </div>
+
+      <div class="case-card reveal reveal-delay-2" onclick='openCase(this)'>
+        <span class="award-badge badge-default">&#9733; Project</span>
+        <h3>2W ECU Development</h3>
+        <div class="customer">Automotive (Cognizant team collaboration)</div>
+        <p>Two-wheeler ECU development based on Renesas MCU, in collaboration with Koustubh Tilak's team.</p>
+        <div class="tech-tags"><span>Automotive</span><span>ECU</span><span>Renesas</span><span>2-Wheeler</span></div>
+        <div style="display:none" class="case-detail">
+          <div class="detail-row"><strong>Problem</strong><span>2-Wheeler ECU development requiring Renesas MCU expertise.</span></div>
+          <div class="detail-row"><strong>Approach</strong><span>Collaborated with Koustubh Tilak's team at Cognizant, providing MCU architecture consultation and development support.</span></div>
+          <div class="detail-row"><strong>Outcome</strong><span>Successful ECU development; Koustubh still recalls the work 10+ years later.</span></div>
+          <div class="detail-row"><strong>Tags</strong><span>Automotive, ECU, Renesas, 2-Wheeler</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GITHUB -->
+    <div class="github-section reveal">
+      <div class="gh-header">
+        <img src="https://avatars.githubusercontent.com/u/57514802?v=4" alt="GitHub avatar">
+        <div class="gh-info">
+          <h4>KakarlaRajesh</h4>
+          <div class="gh-stats">1 public repo &bull; Joined Nov 2019</div>
+        </div>
+      </div>
+      <p class="gh-note">Most of my 20+ years of code lives in customer NDA-protected repos and internal company systems &mdash; but my public profile is slowly growing.</p>
+      <a href="https://github.com/KakarlaRajesh" target="_blank" rel="noopener" class="btn btn-primary">View GitHub Profile</a>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS - THE WORKBENCH -->
+<section class="section" id="skills" style="background:var(--surface-muted)">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="label">Skills</div>
+      <h2>The Workbench</h2>
+      <p>Every tool, architecture, and platform I've worked with across 20+ years.</p>
+    </div>
+    <div class="skills-workbench">
+      <div class="bench-column reveal">
+        <h3>Software &amp; IDEs</h3>
+        <ul class="bench-list">
+          <li class="cat-label">Languages</li>
+          <li>Embedded C</li>
+          <li>Assembly Language</li>
+          <li class="cat-label">IDEs</li>
+          <li>CS+ (CubeSuite)</li>
+          <li>HEW</li>
+          <li>IAR</li>
+          <li>e2Studio</li>
+          <li>MPLAB</li>
+          <li>Atmel Studio</li>
+          <li>STM32Cube IDE</li>
+          <li class="cat-label">Compilers</li>
+          <li>RA-ARM</li>
+          <li>EWRL78</li>
+          <li>RX</li>
+          <li>KPIT GNU GCC</li>
+        </ul>
+      </div>
+      <div class="bench-column reveal reveal-delay-1">
+        <h3>MCU Architectures</h3>
+        <div class="bench-vendor">
+          <div class="vendor-name">Renesas</div>
+          <div class="vendor-fams">
+            <span>RL78</span><span>RX</span><span>RA-ARM</span><span>RZ-ARM</span>
+          </div>
+        </div>
+        <div class="bench-vendor">
+          <div class="vendor-name">ST Microelectronics</div>
+          <div class="vendor-fams">
+            <span>STM32-ARM</span><span>STM8S</span>
+          </div>
+        </div>
+        <div class="bench-vendor">
+          <div class="vendor-name">Microchip</div>
+          <div class="vendor-fams">
+            <span>PIC16F/18F</span><span>dsPIC3x</span><span>PIC32MM</span><span>ATSAM-ARM</span>
+          </div>
+        </div>
+      </div>
+      <div class="bench-column reveal reveal-delay-2">
+        <h3>Tools &amp; Platforms</h3>
+        <ul class="bench-list">
+          <li class="cat-label">Emulators / Debuggers</li>
+          <li>ICD3</li><li>E1</li><li>E2</li><li>E2 Lite</li><li>IECUBE</li><li>QBMini2</li><li>ST-Link</li>
+          <li class="cat-label">EDA Tools</li>
+          <li>Orcad Capture</li><li>DipTrace</li><li>Multisim</li><li>PI Expert</li>
+          <li class="cat-label">Lab Equipment</li>
+          <li>DSO / Oscilloscopes</li><li>LCR Meter</li><li>Multi-meter</li><li>Function Generator</li>
+          <li class="cat-label">CRM / Sales</li>
+          <li>ModelN</li><li>Bamboo/Compass</li><li>DTS</li><li>Odoo</li>
+        </ul>
+      </div>
+    </div>
+    <!-- Tag Cloud -->
+    <div class="tag-cloud reveal">
+      <span class="tag-software" style="font-size:1.15rem">Embedded C</span>
+      <span class="tag-hardware" style="font-size:1rem">Microcontrollers</span>
+      <span class="tag-software" style="font-size:1rem">Firmware</span>
+      <span class="tag-hardware" style="font-size:0.9rem">Analog</span>
+      <span class="tag-hardware" style="font-size:0.9rem">Power Electronics</span>
+      <span class="tag-tools" style="font-size:0.85rem">Debugging</span>
+      <span class="tag-softskill" style="font-size:0.95rem">Customer Support</span>
+      <span class="tag-software" style="font-size:0.8rem">Linux</span>
+      <span class="tag-tools" style="font-size:0.8rem">Oscilloscope</span>
+      <span class="tag-softskill" style="font-size:0.85rem">Technical Training</span>
+      <span class="tag-softskill" style="font-size:0.75rem">Team Leadership</span>
+      <span class="tag-hardware" style="font-size:0.8rem">Sensors</span>
+      <span class="tag-tools" style="font-size:0.75rem">I2C</span>
+      <span class="tag-tools" style="font-size:0.75rem">SPI</span>
+      <span class="tag-tools" style="font-size:0.75rem">UART</span>
+      <span class="tag-softskill" style="font-size:0.75rem">Technical Marketing</span>
+      <span class="tag-software" style="font-size:0.7rem">Assembly</span>
+      <span class="tag-tools" style="font-size:0.7rem">Orcad</span>
+      <span class="tag-tools" style="font-size:0.7rem">Multisim</span>
+      <span class="tag-hardware" style="font-size:0.7rem">SMPS</span>
+      <span class="tag-software" style="font-size:0.7rem">RTOS</span>
+    </div>
+  </div>
+</section>
+
+<!-- AWARDS / TROPHY WALL -->
+<section class="section" id="awards">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="label">Awards</div>
+      <h2>The Trophy Wall</h2>
+      <p>Awards and recognition from a career of delivering excellence.</p>
+    </div>
+    <div class="awards-grid">
+      <div class="award-card reveal">
+        <div class="award-medal medal-gold">G</div>
+        <div>
+          <h4>Gold Award &mdash; Schneider UPS Project</h4>
+          <div class="award-issuer">Renesas Corporate &bull; 2012</div>
+          <div class="award-context">600VA&ndash;1200VA Vamana UPS project development support.</div>
+        </div>
+      </div>
+      <div class="award-card reveal reveal-delay-1">
+        <div class="award-medal medal-gold">G</div>
+        <div>
+          <h4>Gold Award &mdash; LED Driver Promotion</h4>
+          <div class="award-issuer">Renesas Corporate &bull; 2012</div>
+          <div class="award-context">Outstanding achievement in LED driver promotion and customer adoption.</div>
+        </div>
+      </div>
+      <div class="award-card reveal reveal-delay-2">
+        <div class="award-medal medal-bronze">B</div>
+        <div>
+          <h4>Bronze Award &mdash; L&amp;T EBG Trip Meter</h4>
+          <div class="award-issuer">Renesas Corporate &bull; 2011</div>
+          <div class="award-context">Project development support for electric trip unit.</div>
+        </div>
+      </div>
+      <div class="award-card reveal">
+        <div class="award-medal medal-bronze">B</div>
+        <div>
+          <h4>Bronze Award &mdash; Landis+Gyr Smart Meter</h4>
+          <div class="award-issuer">Renesas Corporate &bull; 2011</div>
+          <div class="award-context">E230 energy meter project development support.</div>
+        </div>
+      </div>
+      <div class="award-card reveal reveal-delay-1">
+        <div class="award-medal medal-silver">M</div>
+        <div>
+          <h4>M1E Award &mdash; Hitachi ACE Split-AC</h4>
+          <div class="award-issuer">Renesas Corporate &bull; 2009</div>
+          <div class="award-context">Full project cycle for Follow-me Split-AC Indoor Unit.</div>
+        </div>
+      </div>
+      <div class="award-card reveal reveal-delay-2">
+        <div class="award-medal medal-default">S</div>
+        <div>
+          <h4>Splush Award &mdash; Analog &amp; Power Promotion</h4>
+          <div class="award-issuer">Renesas Corporate</div>
+          <div class="award-context">Excellence in Analog and Power product promotion.</div>
+        </div>
+      </div>
+      <div class="award-card reveal">
+        <div class="award-medal medal-default">C</div>
+        <div>
+          <h4>Master Certification</h4>
+          <div class="award-issuer">Microchip</div>
+          <div class="award-context">Embedded Systems Master Certification.</div>
+        </div>
+      </div>
+      <div class="award-card reveal reveal-delay-1">
+        <div class="award-medal medal-gold">R</div>
+        <div>
+          <h4>Gold &amp; Silver Medals</h4>
+          <div class="award-issuer">ROHM Semiconductor</div>
+          <div class="award-context">Analog and Power excellence awards.</div>
+        </div>
+      </div>
+      <div class="award-card reveal reveal-delay-2">
+        <div class="award-medal medal-default">A</div>
+        <div>
+          <h4>AI Tools Workshop</h4>
+          <div class="award-issuer">Be10x &bull; 2026</div>
+          <div class="award-context">Certification in AI tools and workshop completion.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="container">
+    <h2 class="reveal">Let's build something.</h2>
+    <p class="sub reveal">Open to FAE, Application Management, and Technical Marketing roles in Bangalore/Hyderabad.</p>
+    <div class="contact-links reveal">
+      <a href="mailto:kakarlarajesh@gmail.com">&#9993; kakarlarajesh@gmail.com</a>
+      <a href="tel:+919845493963">&#9742; +91-9845493963</a>
+      <a href="https://github.com/KakarlaRajesh" target="_blank" rel="noopener">&#x1F5A5; GitHub</a>
+      <a href="https://linkedin.com/in/kakarla-rajesh-5997b332" target="_blank" rel="noopener">&#x1F465; LinkedIn</a>
+    </div>
+    <div class="contact-availability reveal">&#9679; <span>Open to Work</span> &mdash; Immediately available</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    &copy; 2026 Rajesh Kakarla. Built from silicon, one waveform at a time.
+  </div>
+</footer>
+
+<!-- CASE STUDY MODAL -->
+<div class="case-modal" id="caseModal">
+  <div class="case-modal-content">
+    <button class="case-modal-close" onclick="closeCase()">&times;</button>
+    <div id="caseModalBody"></div>
+  </div>
+</div>
+
+<script>
+// OSCILLOSCOPE CANVAS
+(function() {
+  const canvas = document.getElementById('oscilloscope-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H;
+  function resize() {
+    W = canvas.width = canvas.parentElement.offsetWidth;
+    H = canvas.height = canvas.parentElement.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  let t = 0;
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    ctx.strokeStyle = 'rgba(245, 158, 11, 0.35)';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    const amplitude = H * 0.08;
+    const yCenter = H * 0.55;
+    const spacing = 60;
+    for (let x = 0; x < W; x += 1) {
+      const y = yCenter + Math.sin((x + t) * 0.02) * amplitude * 0.8
+        + Math.sin((x + t) * 0.035) * amplitude * 0.4
+        + Math.sin((x + t) * 0.007) * amplitude * 0.2;
+      x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+
+    ctx.strokeStyle = 'rgba(245, 158, 11, 0.12)';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    for (let x = 0; x < W; x += 1) {
+      const y = yCenter + 40 + Math.sin((x + t * 0.7) * 0.015) * amplitude * 0.6
+        + Math.sin((x + t * 1.3) * 0.04) * amplitude * 0.3;
+      x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+    t += 0.5;
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// NAV HIGHLIGHT
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+function highlightNav() {
+  let current = '';
+  sections.forEach(s => {
+    const top = s.offsetTop - 150;
+    if (window.scrollY >= top) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+}
+window.addEventListener('scroll', highlightNav);
+
+// MOBILE NAV
+document.getElementById('navToggle').addEventListener('click', () => {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+document.querySelectorAll('.nav-links a').forEach(a => {
+  a.addEventListener('click', () => {
+    document.getElementById('navLinks').classList.remove('open');
+  });
+});
+
+// SCROLL REVEAL
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// STAT COUNTER
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const spans = entry.target.querySelectorAll('[data-count]');
+      spans.forEach(span => {
+        const target = parseInt(span.dataset.count);
+        let current = 0;
+        const step = Math.ceil(target / 60);
+        const interval = setInterval(() => {
+          current += step;
+          if (current >= target) {
+            span.textContent = target;
+            clearInterval(interval);
+          } else {
+            span.textContent = current;
+          }
+        }, 25);
+      });
+      counterObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.stats-grid').forEach(el => counterObserver.observe(el));
+
+// CASE STUDY MODAL
+function openCase(card) {
+  const modal = document.getElementById('caseModal');
+  const body = document.getElementById('caseModalBody');
+  const title = card.querySelector('h3').textContent;
+  const customer = card.querySelector('.customer').textContent;
+  const badge = card.querySelector('.award-badge')?.textContent || '';
+  const detail = card.querySelector('.case-detail');
+  let detailHTML = '';
+  if (detail) {
+    detailHTML = detail.innerHTML;
+  }
+  body.innerHTML = `<h2>${title}</h2><div class="customer">${customer}</div><div style="margin-bottom:16px">${detailHTML}</div>`;
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeCase() {
+  document.getElementById('caseModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('caseModal').addEventListener('click', (e) => {
+  if (e.target === e.currentTarget) closeCase();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeCase();
+});
+</script>
+</body>
+</html>

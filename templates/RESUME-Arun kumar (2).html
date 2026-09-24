@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arun Aravapalli — Solution Architect, SAP Analytics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ===== TOKENS ===== */
+:root {
+  --bg: #0A0A0A;
+  --surface: #161616;
+  --surface2: #1E1E1E;
+  --surface3: #282828;
+  --border: #333;
+  --text: #E0E0E0;
+  --text-dim: #888;
+  --text-bright: #FAFAFA;
+  --yellow: #FFD700;
+  --yellow-bright: #FFED4A;
+  --yellow-dim: rgba(255,215,0,0.1);
+  --yellow-glow: rgba(255,215,0,0.05);
+  --radius: 8px;
+  --max-w: 1100px;
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-serif: 'Source Serif 4', Georgia, serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-serif);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+::selection { background: var(--yellow); color: var(--bg); }
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+a { color: var(--yellow); text-decoration: none; transition: opacity .2s; }
+a:hover { opacity: .7; }
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 28px; }
+
+/* ===== MATRIX BG (very subtle) ===== */
+#matrix-canvas {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 0; pointer-events: none; opacity: 0.12;
+}
+
+/* ===== NAV ===== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 16px 28px;
+  display: flex; align-items: center; justify-content: space-between;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  background: rgba(10,10,10,0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid transparent;
+  transition: border-color .3s;
+}
+nav.scrolled { border-color: var(--border); }
+.nav-logo {
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-bright);
+}
+.nav-logo span { color: var(--yellow); }
+.nav-links { display: flex; gap: 24px; }
+.nav-links a { color: var(--text-dim); font-size: 0.75rem; letter-spacing: 0.04em; transition: color .2s; text-transform: uppercase; }
+.nav-links a:hover { color: var(--yellow); }
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; z-index: 2;
+  padding: 100px 28px 60px;
+  background: var(--bg);
+  overflow: hidden;
+}
+.hero-ambient {
+  position: absolute; inset: 0;
+  pointer-events: none;
+}
+.hero-ambient-glow {
+  position: absolute;
+  width: 60vw; height: 60vw;
+  border-radius: 50%;
+  top: 20%; left: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(circle at center, rgba(255,215,0,0.04) 0%, transparent 70%);
+}
+.hero-ambient-line {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--yellow-dim), transparent);
+}
+.hero-content {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+}
+.hero-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--yellow);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+.hero-name {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: clamp(3rem, 8vw, 6rem);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.1;
+  color: var(--text-bright);
+  margin-bottom: 0.75rem;
+}
+.hero-name .hl { color: var(--yellow); }
+.hero-title {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.15rem, 2.5vw, 1.5rem);
+  color: var(--text-dim);
+  margin-bottom: 1.5rem;
+}
+.hero-title .accent { color: var(--yellow); }
+.hero-tagline {
+  font-size: clamp(1rem, 1.6vw, 1.15rem);
+  color: var(--text-dim);
+  max-width: 520px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.7;
+}
+.hero-cta {
+  display: inline-flex;
+  align-items: center; gap: 8px;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--yellow);
+  padding: 14px 32px;
+  border-radius: 40px;
+  transition: background .2s, transform .2s;
+  border: none;
+  cursor: pointer;
+}
+.hero-cta:hover { background: var(--yellow-bright); transform: translateY(-2px); opacity: 1; }
+.hero-scroll {
+  position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  color: var(--text-dim); font-size: 0.55rem; letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+  animation: pulse-y 2.4s ease-in-out infinite;
+}
+.hero-scroll-line {
+  width: 1px; height: 36px;
+  background: linear-gradient(to bottom, var(--text-dim), transparent);
+}
+@keyframes pulse-y {
+  0%,100% { opacity: 0.3; transform: translateX(-50%) translateY(0); }
+  50% { opacity: 0.7; transform: translateX(-50%) translateY(4px); }
+}
+
+/* ===== SECTION HEADERS ===== */
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--yellow);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+.section-title {
+  font-family: var(--font-sans);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+  color: var(--text-bright);
+  margin-bottom: 0.5rem;
+}
+.section-sub {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  color: var(--text-dim);
+  max-width: 600px;
+  margin-bottom: 2.5rem;
+  line-height: 1.7;
+}
+section {
+  padding: 80px 0;
+  border-bottom: 1px solid var(--border);
+  position: relative; z-index: 2;
+}
+section:last-of-type { border-bottom: none; }
+
+/* ===== THE ARC ===== */
+.arc-grid { display: grid; gap: 16px; }
+.arc-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--yellow);
+  padding: 28px 32px;
+  border-radius: var(--radius);
+  transition: background .2s, border-color .2s;
+}
+.arc-card:hover { background: var(--surface3); border-color: var(--yellow); }
+.arc-year { font-family: var(--font-mono); font-size: 0.65rem; color: var(--yellow); letter-spacing: 0.05em; margin-bottom: 4px; }
+.arc-role { font-family: var(--font-sans); font-size: 0.95rem; color: var(--text-bright); font-weight: 600; }
+.arc-company { font-size: 0.8rem; color: var(--text-dim); margin-bottom: 10px; font-style: italic; }
+.arc-text { font-size: 0.88rem; color: var(--text-dim); line-height: 1.7; }
+
+/* ===== NUMBERS ===== */
+.nums-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 16px;
+}
+.num-item { text-align: center; padding: 24px 12px; }
+.num-val {
+  font-family: var(--font-sans);
+  font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+  font-weight: 700;
+  color: var(--yellow);
+  line-height: 1;
+}
+.num-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--text-dim);
+  margin-top: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* ===== TIMELINE ===== */
+.timeline { position: relative; }
+.timeline::before {
+  content: '';
+  position: absolute; left: 50%; transform: translateX(-50%);
+  top: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--yellow), var(--border), transparent);
+}
+.tl-item {
+  display: flex; align-items: flex-start;
+  margin-bottom: 48px; position: relative;
+}
+.tl-item:nth-child(odd) { flex-direction: row; }
+.tl-item:nth-child(even) { flex-direction: row-reverse; }
+.tl-content {
+  width: calc(50% - 44px);
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px 28px;
+  transition: background .2s, border-color .2s;
+}
+.tl-content:hover { background: var(--surface3); border-color: var(--yellow-dim); }
+.tl-dot {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  width: 14px; height: 14px;
+  background: var(--yellow);
+  border-radius: 50%;
+  border: 3px solid var(--bg);
+  z-index: 2; top: 26px;
+}
+.tl-date { font-family: var(--font-mono); font-size: 0.6rem; color: var(--yellow); letter-spacing: 0.05em; }
+.tl-role { font-family: var(--font-sans); font-size: 0.9rem; color: var(--text-bright); font-weight: 600; }
+.tl-company { font-size: 0.78rem; color: var(--text-dim); margin-bottom: 8px; font-style: italic; }
+.tl-desc { font-size: 0.82rem; color: var(--text-dim); line-height: 1.7; }
+
+/* ===== SKILLS ===== */
+.skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.skill-cluster { margin-bottom: 28px; }
+.cluster-title {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--yellow);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
+}
+.skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.skill-tag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  padding: 5px 14px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text);
+  transition: background .2s, border-color .2s;
+}
+.skill-tag:hover { border-color: var(--yellow); background: var(--surface3); }
+.skill-tag .badge { color: var(--yellow); font-size: 0.55rem; margin-left: 2px; }
+.lead-list { display: grid; gap: 8px; }
+.lead-item {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 0.82rem; color: var(--text-dim);
+  padding: 10px 16px;
+  background: var(--surface2);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  line-height: 1.5;
+}
+.lead-item::before { content: '→'; color: var(--yellow); font-weight: 600; }
+
+/* ===== PROJECTS ===== */
+.proj-filters { display: flex; gap: 6px; margin-bottom: 24px; flex-wrap: wrap; }
+.proj-filter {
+  font-family: var(--font-mono);
+  font-size: 0.6rem; padding: 5px 16px;
+  background: var(--surface2); border: 1px solid var(--border);
+  color: var(--text-dim); border-radius: 4px;
+  cursor: pointer; transition: all .2s;
+}
+.proj-filter:hover { border-color: var(--yellow); color: var(--yellow); }
+.proj-filter.active { background: var(--yellow); color: var(--bg); border-color: var(--yellow); font-weight: 500; }
+.proj-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; }
+.proj-card {
+  background: var(--surface2); border: 1px solid var(--border);
+  padding: 20px 22px; border-radius: var(--radius);
+  cursor: pointer; transition: all .2s;
+}
+.proj-card:hover { border-color: var(--yellow); background: var(--surface3); }
+.proj-card.hidden { display: none; }
+.proj-industry { font-family: var(--font-mono); font-size: 0.55rem; color: var(--yellow); letter-spacing: 0.05em; }
+.proj-client { font-family: var(--font-sans); font-size: 0.9rem; color: var(--text-bright); font-weight: 600; margin-top: 2px; }
+.proj-meta { font-family: var(--font-mono); font-size: 0.6rem; color: var(--text-dim); margin-top: 3px; }
+.proj-desc { font-size: 0.8rem; color: var(--text-dim); margin-top: 8px; line-height: 1.6; }
+
+/* ===== CERTS ===== */
+.cert-group { margin-bottom: 28px; }
+.cert-group-title {
+  font-family: var(--font-mono);
+  font-size: 0.65rem; color: var(--yellow);
+  text-transform: uppercase; letter-spacing: 0.08em;
+  margin-bottom: 10px;
+}
+.cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 6px; }
+.cert-item {
+  font-size: 0.74rem; padding: 10px 14px;
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-dim); line-height: 1.5;
+}
+.cert-item strong { color: var(--text); font-weight: 500; }
+.cert-item .issuer { color: var(--yellow); font-size: 0.6rem; font-family: var(--font-mono); }
+
+/* ===== BEYOND ===== */
+.beyond-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.bynd-card {
+  background: var(--surface2); border: 1px solid var(--border);
+  padding: 28px; border-radius: var(--radius);
+}
+.bynd-card:last-child { grid-column: 1 / -1; }
+.bynd-title {
+  font-family: var(--font-mono);
+  font-size: 0.65rem; color: var(--yellow);
+  text-transform: uppercase; letter-spacing: 0.08em;
+  margin-bottom: 14px;
+}
+.lang-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.lang-row:last-child { margin-bottom: 0; }
+.lang-name { font-family: var(--font-sans); font-size: 0.78rem; min-width: 65px; color: var(--text); }
+.lang-bar { flex: 1; height: 5px; background: var(--surface3); border-radius: 3px; overflow: hidden; }
+.lang-fill { height: 100%; background: var(--yellow); border-radius: 3px; width: 0; transition: width 1.2s ease; }
+.lang-fill.show { width: var(--pct); }
+.lang-lvl { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-dim); min-width: 80px; text-align: right; }
+.interest-grid { display: flex; flex-wrap: wrap; gap: 6px; }
+.interest-tag {
+  font-family: var(--font-mono);
+  font-size: 0.6rem; padding: 4px 12px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 4px; color: var(--text-dim);
+}
+.bynd-text { font-size: 0.82rem; color: var(--text-dim); line-height: 1.7; }
+.bynd-text strong { color: var(--text-bright); }
+.quote-text {
+  font-size: 0.9rem; color: var(--text-dim);
+  font-style: italic;
+  border-left: 3px solid var(--yellow);
+  padding-left: 20px;
+  line-height: 1.7;
+}
+
+/* ===== CONTACT ===== */
+.contact-wrap {
+  display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center;
+}
+.contact-email {
+  font-family: var(--font-sans);
+  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+  font-weight: 500;
+  color: var(--yellow);
+  letter-spacing: 0.02em;
+}
+.contact-links { display: flex; gap: 24px; }
+.contact-links a {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.contact-links a:hover { color: var(--yellow); }
+.contact-loc { font-size: 0.78rem; color: var(--text-dim); font-style: italic; }
+.footer-note { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-dim); margin: 28px 0 0; }
+
+/* ===== MODAL ===== */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+  opacity: 0; pointer-events: none;
+  transition: opacity .3s;
+}
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+.modal-box {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius);
+  max-width: 580px; width: 100%;
+  max-height: 80vh; overflow-y: auto;
+  padding: 32px; position: relative;
+}
+.modal-box .close {
+  position: absolute; top: 12px; right: 16px;
+  background: none; border: none;
+  color: var(--text-dim); font-size: 1.2rem;
+  cursor: pointer; transition: color .2s;
+}
+.modal-box .close:hover { color: var(--yellow); }
+.modal-body { font-size: 0.82rem; color: var(--text-dim); line-height: 1.7; }
+.modal-body h4 { font-family: var(--font-sans); color: var(--text-bright); font-weight: 600; margin: 0 0 12px; font-size: 0.95rem; }
+.modal-body ul { list-style: none; padding: 0; }
+.modal-body ul li::before { content: '> '; color: var(--yellow); font-family: var(--font-mono); }
+.modal-body ul li { margin-bottom: 6px; }
+
+/* ===== SCROLL REVEAL ===== */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-d1 { transition-delay: 0.1s; }
+.reveal-d2 { transition-delay: 0.2s; }
+.reveal-d3 { transition-delay: 0.3s; }
+.reveal-d4 { transition-delay: 0.4s; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .tl-item, .tl-item:nth-child(even) { flex-direction: row; padding-left: 36px; }
+  .tl-content { width: 100%; }
+  .tl-dot { left: 18px; }
+  .timeline::before { left: 18px; }
+}
+@media (max-width: 640px) {
+  .skills-grid { grid-template-columns: 1fr; }
+  .nums-grid { grid-template-columns: repeat(2, 1fr); }
+  .cert-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<canvas id="matrix-canvas"></canvas>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo"><span>✦</span> ARAVAPALLI</div>
+  <div class="nav-links">
+    <a href="#arc">Story</a>
+    <a href="#nums">Impact</a>
+    <a href="#timeline">Career</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Work</a>
+    <a href="#contact">Connect</a>
+  </div>
+</nav>
+
+<!-- HERO (first-trial layout) -->
+<section class="hero" id="hero">
+  <div class="hero-ambient">
+    <div class="hero-ambient-glow"></div>
+    <div class="hero-ambient-line"></div>
+  </div>
+  <div class="hero-content">
+    <p class="hero-label">Solution Architect</p>
+    <h1 class="hero-name"><span class="hl">ARUN</span> ARAVAPALLI</h1>
+    <p class="hero-title"><span class="accent">✧</span> SAP Analytics <span class="accent">✧</span></p>
+    <p class="hero-tagline">From electrical circuits to enterprise data ecosystems — two decades of building, leading, and architecting with precision.</p>
+    <a href="#arc" class="hero-cta">Explore my work ↓</a>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- THE ARC -->
+<section id="arc">
+  <div class="container">
+    <p class="section-label reveal">// the arc</p>
+    <h2 class="section-title reveal reveal-d1">The Journey</h2>
+    <p class="section-sub reveal reveal-d2">From power circuits to data pipelines — a career shaped by discipline, curiosity, and scale.</p>
+    <div class="arc-grid">
+      <div class="arc-card reveal reveal-d1">
+        <div class="arc-year">2004 – 2007 · Foundation</div>
+        <div class="arc-role">Electrical Engineer</div>
+        <div class="arc-company">INEL Power System Engineers</div>
+        <div class="arc-text">Before SAP, before analytics, there were motors, meters, and control panels. Commissioning variable frequency drives and testing power centers taught me that precision isn't optional — it's safety-critical. That discipline carried with me when I moved from power to data.</div>
+      </div>
+      <div class="arc-card reveal reveal-d2">
+        <div class="arc-year">2007 – 2014 · Transition</div>
+        <div class="arc-role">SAP BI Consultant</div>
+        <div class="arc-company">Bristlecone · Deloitte</div>
+        <div class="arc-text">A leap from power systems to data systems. At Bristlecone and Deloitte, I built CRM-BW implementations and enterprise BI solutions. I built data pipelines the same way I built circuits: methodically, with deep attention to what flows through them.</div>
+      </div>
+      <div class="arc-card reveal reveal-d3">
+        <div class="arc-year">2014 – Present · Architecture</div>
+        <div class="arc-role">Solution Architect — Analytics</div>
+        <div class="arc-company">Itelligence · Accenture (via Navisite)</div>
+        <div class="arc-text">Today I architect SAP analytics for Fortune 500s — Disney, John Deere, Barry Callebaut. I lead teams across continents, design embedded analytics in S/4HANA, and build SAC dashboards that drive business decisions. The engineer never left; he just works at a different scale.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BY THE NUMBERS -->
+<section id="nums">
+  <div class="container">
+    <p class="section-label reveal">// metrics</p>
+    <h2 class="section-title reveal reveal-d1">By The Numbers</h2>
+    <p class="section-sub reveal reveal-d2">The data speaks for itself.</p>
+    <div class="nums-grid">
+      <div class="num-item reveal reveal-d1"><div class="num-val" data-n="22">0</div><div class="num-label">Years Total</div></div>
+      <div class="num-item reveal reveal-d1"><div class="num-val" data-n="19">0</div><div class="num-label">Years SAP</div></div>
+      <div class="num-item reveal reveal-d2"><div class="num-val" data-n="12">0</div><div class="num-label">Implementations</div></div>
+      <div class="num-item reveal reveal-d2"><div class="num-val" data-n="6">0</div><div class="num-label">Major Upgrades</div></div>
+      <div class="num-item reveal reveal-d3"><div class="num-val" data-n="17">0<span style="font-size:0.55em;">+</span></div><div class="num-label">Support Engagements</div></div>
+      <div class="num-item reveal reveal-d3"><div class="num-val" data-n="5">0</div><div class="num-label">Languages</div></div>
+      <div class="num-item reveal reveal-d4"><div class="num-val" data-n="500">0<span style="font-size:0.55em;">+</span></div><div class="num-label">Connections</div></div>
+      <div class="num-item reveal reveal-d4"><div class="num-val" data-n="22">0</div><div class="num-label">Certifications</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section id="timeline">
+  <div class="container">
+    <p class="section-label reveal">// career</p>
+    <h2 class="section-title reveal reveal-d1">Career Timeline</h2>
+    <p class="section-sub reveal reveal-d2">Five roles, two decades, one throughline — making data work for the people who need it.</p>
+    <div class="timeline">
+      <div class="tl-item reveal">
+        <div class="tl-content">
+          <div class="tl-date">Dec 2019 — Present</div>
+          <div class="tl-role">Solution Architect — Analytics</div>
+          <div class="tl-company">Accenture (Navisite · Dickinson + Associates)</div>
+          <div class="tl-desc">Architecting SAP analytics for Fortune 500 clients. Leading SAC implementations, embedded analytics in S/4HANA, HANA modeling, and BO migrations. Clients include Disney Parks, John Deere, Barry Callebaut, Heartland Dental, and more.</div>
+        </div>
+        <div class="tl-dot"></div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-content">
+          <div class="tl-date">Jul 2014 — Dec 2019</div>
+          <div class="tl-role">Senior Manager — Analytics</div>
+          <div class="tl-company">Itelligence India Software Solutions</div>
+          <div class="tl-desc">Managed US and APAC delivery across SAP BI, BW/4HANA, SAC, and Fiori. Led offshore teams, drove BW platform upgrades and HANA migrations. Clients: Rudolph Technologies, WC Bradley, Lincoln Electric, Mead Johnson.</div>
+        </div>
+        <div class="tl-dot"></div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-content">
+          <div class="tl-date">Jul 2011 — Jul 2014</div>
+          <div class="tl-role">SAP BI Consultant</div>
+          <div class="tl-company">Deloitte Consulting</div>
+          <div class="tl-desc">Production support and development for Glazer's (US beverage distributor) and Deloitte's internal systems. Worked across BI 7.3, BW 3.5, and ECC 6.0 spanning SD, FI, HCM, PS, and COPA modules.</div>
+        </div>
+        <div class="tl-dot"></div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-content">
+          <div class="tl-date">Sep 2007 — Jun 2011</div>
+          <div class="tl-role">SAP BI/BW Consultant</div>
+          <div class="tl-company">Bristlecone India Ltd (Mahindra Group)</div>
+          <div class="tl-desc">Implemented and supported SAP BI and CRM solutions for ABB, Asian Paints, Mahindra, Eureka Forbes, and United Phosphorous. Built deep expertise in BW 3.5, CRM analytics, and data extraction.</div>
+        </div>
+        <div class="tl-dot"></div>
+      </div>
+      <div class="tl-item reveal">
+        <div class="tl-content">
+          <div class="tl-date">Jul 2004 — Jul 2007</div>
+          <div class="tl-role">Electrical Engineer</div>
+          <div class="tl-company">INEL Power System Engineers</div>
+          <div class="tl-desc">Commissioned variable frequency drives, AC induction motors, and power control centers. Inspected relay panels, prepared cable schedules, managed breakdown escalations. The foundation of precision for a career in data.</div>
+        </div>
+        <div class="tl-dot"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" style="background:var(--surface);">
+  <div class="container">
+    <p class="section-label reveal">// expertise</p>
+    <h2 class="section-title reveal reveal-d1">Skills & Capabilities</h2>
+    <p class="section-sub reveal reveal-d2">What I work with and how I lead.</p>
+    <div class="skills-grid">
+      <div>
+        <div class="skill-cluster reveal reveal-d1">
+          <div class="cluster-title">SAP Analytics</div>
+          <div class="skill-tags">
+            <span class="skill-tag">SAP BW <span class="badge">·54</span></span>
+            <span class="skill-tag">BW/4HANA</span>
+            <span class="skill-tag">BW on HANA</span>
+            <span class="skill-tag">SAP Analytics Cloud</span>
+            <span class="skill-tag">Embedded Analytics</span>
+            <span class="skill-tag">HANA Modeling</span>
+          </div>
+        </div>
+        <div class="skill-cluster reveal reveal-d2">
+          <div class="cluster-title">Reporting & Frontend</div>
+          <div class="skill-tags">
+            <span class="skill-tag">BO Web Intelligence</span>
+            <span class="skill-tag">Lumira</span>
+            <span class="skill-tag">Analysis for Office</span>
+            <span class="skill-tag">BEx Analyzer</span>
+            <span class="skill-tag">SAP Fiori</span>
+          </div>
+        </div>
+        <div class="skill-cluster reveal reveal-d3">
+          <div class="cluster-title">ERP & Modules</div>
+          <div class="skill-tags">
+            <span class="skill-tag">SAP R/3 · ECC 6.0</span>
+            <span class="skill-tag">S/4HANA</span>
+            <span class="skill-tag">SFIN</span>
+            <span class="skill-tag">FI/CO · SD · MM</span>
+            <span class="skill-tag">CRM · HCM</span>
+          </div>
+        </div>
+        <div class="skill-cluster reveal reveal-d4">
+          <div class="cluster-title">Languages & Tools</div>
+          <div class="skill-tags">
+            <span class="skill-tag">ABAP <span class="badge">·56</span></span>
+            <span class="skill-tag">C / C++</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">SAP HANA</span>
+            <span class="skill-tag">Oracle 9i</span>
+            <span class="skill-tag">Solution Manager</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="skill-cluster reveal reveal-d1">
+          <div class="cluster-title">Leadership & Delivery</div>
+          <div class="lead-list">
+            <div class="lead-item">End-to-end project management across 12 implementations</div>
+            <div class="lead-item">Offshore team leadership spanning US and APAC time zones</div>
+            <div class="lead-item">Multi-vendor coordination and delivery management</div>
+            <div class="lead-item">Pre-sales, estimation, and solution design</div>
+            <div class="lead-item">Mentoring and team capability building</div>
+            <div class="lead-item">SLA-driven global support delivery</div>
+            <div class="lead-item">Stakeholder communication and requirement gathering</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <p class="section-label reveal">// selected work</p>
+    <h2 class="section-title reveal reveal-d1">Projects</h2>
+    <p class="section-sub reveal reveal-d2">Across industries and continents — from Disney to John Deere, from SAC dashboards to HANA migrations.</p>
+    <div class="proj-filters reveal">
+      <button class="proj-filter active" data-f="all">All</button>
+      <button class="proj-filter" data-f="sac">SAC</button>
+      <button class="proj-filter" data-f="embedded">Embedded</button>
+      <button class="proj-filter" data-f="upgrade">Upgrade</button>
+      <button class="proj-filter" data-f="hana">HANA</button>
+      <button class="proj-filter" data-f="ams">Support</button>
+    </div>
+    <div class="proj-grid" id="projGrid">
+      <div class="proj-card reveal" data-c="sac">
+        <div class="proj-industry">Entertainment</div>
+        <div class="proj-client">Disney Parks</div>
+        <div class="proj-meta">BO 4.2 → 4.3 Migration</div>
+        <div class="proj-desc">End-to-end migration, impact analysis, regression testing, and user training for one of the world's most beloved brands.</div>
+      </div>
+      <div class="proj-card reveal" data-c="embedded">
+        <div class="proj-industry">Manufacturing</div>
+        <div class="proj-client">John Deere</div>
+        <div class="proj-meta">Embedded Analytics</div>
+        <div class="proj-desc">Embedded SAP BW activation, analytical Fiori app issue resolution, and Plan/Actual variance reporting.</div>
+      </div>
+      <div class="proj-card reveal" data-c="embedded">
+        <div class="proj-industry">Consumer Goods</div>
+        <div class="proj-client">BestCo Inc</div>
+        <div class="proj-meta">Embedded · S/4HANA</div>
+        <div class="proj-desc">Full embedded analytics implementation within S/4HANA — from BW client activation to UAT sign-off.</div>
+      </div>
+      <div class="proj-card reveal" data-c="sac">
+        <div class="proj-industry">Food & Beverage</div>
+        <div class="proj-client">PIM Brands</div>
+        <div class="proj-meta">SAC Implementation</div>
+        <div class="proj-desc">SAC with content network transport, accelerated finance content, and step-by-step cookbook documentation.</div>
+      </div>
+      <div class="proj-card reveal" data-c="sac">
+        <div class="proj-industry">Publishing</div>
+        <div class="proj-client">Dotdash Meredith</div>
+        <div class="proj-meta">SAC Implementation</div>
+        <div class="proj-desc">Canvas and Responsive stories, live S/4HANA connection, CDS views, and full security setup.</div>
+      </div>
+      <div class="proj-card reveal" data-c="hana">
+        <div class="proj-industry">Construction</div>
+        <div class="proj-client">Barton Malow</div>
+        <div class="proj-meta">HANA Remediation</div>
+        <div class="proj-desc">Post-S/4 migration — obsolete table replacement in HANA models and view consistency validation.</div>
+      </div>
+      <div class="proj-card reveal" data-c="sac">
+        <div class="proj-industry">Healthcare</div>
+        <div class="proj-client">Heartland Dental</div>
+        <div class="proj-meta">SAC Development</div>
+        <div class="proj-desc">Analytical applications with live and import connections, mobile-ready stories, and Digital Boardroom.</div>
+      </div>
+      <div class="proj-card reveal" data-c="upgrade">
+        <div class="proj-industry">Travel</div>
+        <div class="proj-client">Travel Centers</div>
+        <div class="proj-meta">BW 3.x → 7.5</div>
+        <div class="proj-desc">Full BW platform upgrade, pre/post task execution, regression testing, and SAP Note remediation.</div>
+      </div>
+      <div class="proj-card reveal" data-c="upgrade">
+        <div class="proj-industry">Manufacturing</div>
+        <div class="proj-client">Spartech LLC</div>
+        <div class="proj-meta">BW 7.1 → 7.5</div>
+        <div class="proj-desc">SAP BI roadmap, BW 7.3 to 7.5 SP20 upgrade, RSRV consistency checks, end-to-end delivery.</div>
+      </div>
+      <div class="proj-card reveal" data-c="ams">
+        <div class="proj-industry">Food</div>
+        <div class="proj-client">Barry Callebaut</div>
+        <div class="proj-meta">BW/4HANA AMS</div>
+        <div class="proj-desc">L1-L3 support for the global chocolate leader — transport management, SLA-driven incident resolution.</div>
+      </div>
+      <div class="proj-card reveal" data-c="upgrade">
+        <div class="proj-industry">Manufacturing</div>
+        <div class="proj-client">Lincoln Electric</div>
+        <div class="proj-meta">BW 7.3 → 7.5 HANA</div>
+        <div class="proj-desc">Offshore lead for full upgrade — impact analysis, test plans, and BOBJ/BW test scripts.</div>
+      </div>
+      <div class="proj-card reveal" data-c="sac">
+        <div class="proj-industry">Semiconductor</div>
+        <div class="proj-client">Rudolph Technologies</div>
+        <div class="proj-meta">SAC · CDS Views</div>
+        <div class="proj-desc">Production order planning logic in HANA via ABAP CDS views, SAC dashboards, and user training.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTS -->
+<section id="certs" style="background:var(--surface);">
+  <div class="container">
+    <p class="section-label reveal">// credentials</p>
+    <h2 class="section-title reveal reveal-d1">Certifications</h2>
+    <p class="section-sub reveal reveal-d2">Twenty-two certifications spanning SAP, project management, and emerging technology.</p>
+    <div class="cert-group reveal">
+      <div class="cert-group-title">SAP Core</div>
+      <div class="cert-grid">
+        <div class="cert-item"><strong>Data Engineer — SAP HANA</strong> <span class="issuer">SAP 2025</span></div>
+        <div class="cert-item"><strong>Data Engineer — Data Fabric</strong> <span class="issuer">SAP 2021</span></div>
+        <div class="cert-item"><strong>Application Associate — SAC</strong> <span class="issuer">SAP 2023</span></div>
+        <div class="cert-item"><strong>SAC: Planning</strong> <span class="issuer">SAP 2021</span></div>
+        <div class="cert-item"><strong>BW/4HANA 2.x</strong> <span class="issuer">SAP 2021</span></div>
+        <div class="cert-item"><strong>SAP Activate PM</strong> <span class="issuer">SAP 2021</span></div>
+        <div class="cert-item"><strong>Application Associate — SAC</strong> <span class="issuer">SAP 2020</span></div>
+        <div class="cert-item"><strong>HANA 1.0 SP5</strong> <span class="issuer">SAP 2013</span></div>
+      </div>
+    </div>
+    <div class="cert-group reveal reveal-d2">
+      <div class="cert-group-title">Project Management</div>
+      <div class="cert-grid">
+        <div class="cert-item"><strong>PRINCE2 Practitioner</strong> <span class="issuer">PeopleCert 2018</span></div>
+        <div class="cert-item"><strong>PRINCE2 Foundation</strong> <span class="issuer">PeopleCert 2018</span></div>
+        <div class="cert-item"><strong>MBA — Project Management</strong> <span class="issuer">SMU 2012</span></div>
+        <div class="cert-item"><strong>CAPM Key Concepts</strong> <span class="issuer">Skillsoft 2025</span></div>
+        <div class="cert-item"><strong>Agile / SAP Activate</strong> <span class="issuer">SAP</span></div>
+      </div>
+    </div>
+    <div class="cert-group reveal reveal-d3">
+      <div class="cert-group-title">AI & Emerging</div>
+      <div class="cert-grid">
+        <div class="cert-item"><strong>AI & Machine Learning</strong> <span class="issuer">Skillsoft 2025</span></div>
+        <div class="cert-item"><strong>Systems Engineering</strong> <span class="issuer">Skillsoft 2025</span></div>
+        <div class="cert-item"><strong>Technical Product Mgmt</strong> <span class="issuer">Skillsoft 2025</span></div>
+        <div class="cert-item"><strong>SAP Intelligent RPA</strong> <span class="issuer">SAP</span></div>
+      </div>
+    </div>
+    <div class="cert-group reveal reveal-d4">
+      <div class="cert-group-title">openSAP</div>
+      <div class="cert-grid">
+        <div class="cert-item"><strong>SAP Datasphere</strong></div>
+        <div class="cert-item"><strong>SAC Add-in for Excel</strong></div>
+        <div class="cert-item"><strong>BW/4HANA in a Nutshell</strong></div>
+        <div class="cert-item"><strong>SAP BusinessObjects Cloud</strong></div>
+        <div class="cert-item"><strong>HANA Cloud Platform</strong></div>
+        <div class="cert-item"><strong>HA & DR with HANA</strong></div>
+        <div class="cert-item"><strong>BW Powered by HANA</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEYOND -->
+<section id="beyond">
+  <div class="container">
+    <p class="section-label reveal">// beyond work</p>
+    <h2 class="section-title reveal reveal-d1">The Other Side</h2>
+    <p class="section-sub reveal reveal-d2">Languages, community, interests, and what drives me — because no one should be defined by their title alone.</p>
+    <div class="beyond-grid">
+      <div class="bynd-card reveal reveal-d1">
+        <div class="bynd-title">Languages</div>
+        <div class="lang-row"><span class="lang-name">English</span><div class="lang-bar"><div class="lang-fill" data-p="95"></div></div><span class="lang-lvl">Full Professional</span></div>
+        <div class="lang-row"><span class="lang-name">Hindi</span><div class="lang-bar"><div class="lang-fill" data-p="80"></div></div><span class="lang-lvl">Professional Working</span></div>
+        <div class="lang-row"><span class="lang-name">Kannada</span><div class="lang-bar"><div class="lang-fill" data-p="90"></div></div><span class="lang-lvl">Native / Bilingual</span></div>
+        <div class="lang-row"><span class="lang-name">Tamil</span><div class="lang-bar"><div class="lang-fill" data-p="90"></div></div><span class="lang-lvl">Native / Bilingual</span></div>
+        <div class="lang-row"><span class="lang-name">Telugu</span><div class="lang-bar"><div class="lang-fill" data-p="95"></div></div><span class="lang-lvl">Native / Bilingual</span></div>
+      </div>
+      <div class="bynd-card reveal reveal-d2">
+        <div class="bynd-title">Community</div>
+        <div class="bynd-text">
+          <strong>Impact Day</strong> — Team incharge for social service, Deloitte (2013)<br><br>
+          <strong>CMMI Level 3</strong> — Certificate of Appreciation for process improvement, Itelligence (2015)<br><br>
+          <strong>Mentorship</strong> — Guided teams across geographies; built onboarding documentation and high-performance culture<br><br>
+          <strong>OpenSAP</strong> — 7 Records of Achievement
+        </div>
+      </div>
+      <div class="bynd-card reveal reveal-d3">
+        <div class="bynd-title">Interests</div>
+        <div class="interest-grid">
+          <span class="interest-tag">Enterprise AI & Data</span>
+          <span class="interest-tag">Big Data & Analytics</span>
+          <span class="interest-tag">AI / ML</span>
+          <span class="interest-tag">Sachin Tendulkar</span>
+          <span class="interest-tag">Aman Gupta · boAt</span>
+          <span class="interest-tag">SAP Joule & Claude AI</span>
+          <span class="interest-tag">Startups & Building</span>
+        </div>
+      </div>
+      <div class="bynd-card reveal">
+        <div class="bynd-title">Philosophy</div>
+        <div class="quote-text">"Built on precision, powered by curiosity. I believe in making complex things simple and leading by enabling others. Whether it's a power circuit or a data pipeline, the principle is the same: understand the flow, respect the components, and design for reliability."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <p class="section-label reveal">// connect</p>
+    <h2 class="section-title reveal reveal-d1">Get In Touch</h2>
+    <div class="contact-wrap reveal reveal-d2">
+      <a href="mailto:arunbw07@gmail.com" class="contact-email">arunbw07@gmail.com</a>
+      <div class="contact-links">
+        <a href="https://www.linkedin.com/in/arun-aravapalli" target="_blank">LinkedIn</a>
+        <a href="mailto:arunbw07@gmail.com">Email</a>
+      </div>
+      <div class="contact-loc">Hyderabad, Telangana, India · US B1 Visa holder</div>
+      <div class="footer-note">© 2025 Arun Aravapalli · Built with clarity and purpose</div>
+    </div>
+  </div>
+</section>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal-box">
+    <button class="close" onclick="closeModal()">✕</button>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+// ===== MATRIX RAIN (very subtle) =====
+const canvas = document.getElementById('matrix-canvas');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+const chars = '10SAPBW4HANA_SAC_FIORI_ABAP_HANA_SQL<>[]{}()';
+const cols = Math.floor(canvas.width / 14);
+const drops = Array(cols).fill(1);
+function drawMatrix() {
+  ctx.fillStyle = 'rgba(10,10,10,0.05)';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.font = '11px monospace';
+  for (let i = 0; i < drops.length; i++) {
+    const text = chars[Math.floor(Math.random() * chars.length)];
+    ctx.fillStyle = Math.random() > 0.97 ? '#FFD700' : 'rgba(255,215,0,0.35)';
+    ctx.fillText(text, i * 14, drops[i] * 14);
+    if (drops[i] * 14 > canvas.height && Math.random() > 0.975) drops[i] = 0;
+    drops[i]++;
+  }
+}
+let matrixInterval = setInterval(drawMatrix, 55);
+window.addEventListener('resize', () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+
+// ===== COUNTERS =====
+const counters = document.querySelectorAll('.num-val[data-n]');
+const counterObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const target = parseInt(el.dataset.n);
+      const hasPlus = el.querySelector('span');
+      const dur = 1400;
+      const start = performance.now();
+      function tick(now) {
+        const t = Math.min((now - start) / dur, 1);
+        const e = 1 - Math.pow(1 - t, 3);
+        el.textContent = Math.floor(e * target) + (hasPlus ? '+' : '');
+        if (t < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+      counterObs.unobserve(el);
+    }
+  });
+}, { threshold: 0.3 });
+counters.forEach(c => counterObs.observe(c));
+
+// ===== LANGUAGE BARS =====
+const langBars = document.querySelectorAll('.lang-fill');
+const langObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.setProperty('--pct', entry.target.dataset.p + '%');
+      entry.target.classList.add('show');
+      langObs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+langBars.forEach(b => langObs.observe(b));
+
+// ===== PROJECT FILTER =====
+const filters = document.querySelectorAll('.proj-filter');
+const cards = document.querySelectorAll('.proj-card');
+const projDetails = {
+  'Disney Parks': `<h4>BO 4.2 → 4.3 Migration — Disney Parks</h4><ul><li>End-to-end migration with minimal business disruption</li><li>Impact analysis of reports, Universes (UNX/UNV), and dashboards</li><li>Regression testing and UAT for functionality and calculations</li><li>Security and rights model updates for compliance</li><li>Post-migration training and support for end users</li></ul>`,
+  'John Deere': `<h4>Embedded Analytics — John Deere</h4><ul><li>Embedded SAP BW Client activation</li><li>Analytical Fiori app issue resolution</li><li>Plan/Actual variance reporting via RSPLAN</li></ul>`,
+  'BestCo Inc': `<h4>Embedded Analytics — BestCo Inc</h4><ul><li>Full embedded analytics implementation within S/4HANA</li><li>BW client activation, namespace configuration, content bundles</li><li>Cutover activities, transport, and UAT sign-off</li></ul>`,
+  'PIM Brands': `<h4>SAC Implementation — PIM Brands</h4><ul><li>Full SAC implementation with content network storage transport</li><li>FI Accelerated content import from internal to client tenant</li><li>Step-by-step finance accelerated content cookbook</li></ul>`,
+  'Dotdash Meredith': `<h4>SAC Implementation — Dotdash Meredith</h4><ul><li>Stories built with Canvas and Responsive pages</li><li>Live connection to S/4HANA for real-time data</li><li>CDS Views imported into SAC; full security and role setup</li></ul>`,
+  'Barton Malow': `<h4>HANA Remediation — Barton Malow</h4><ul><li>Post-S/4HANA migration HANA remediation for SAC reporting</li><li>Replaced obsolete tables with latest S/4HANA tables</li><li>Cross-validation of HANA View consistency</li></ul>`,
+  'Heartland Dental': `<h4>SAC Development — Heartland Dental</h4><ul><li>Analytical applications using SAP Analytics Cloud</li><li>Live and Import connections to source systems</li><li>Canvas, Responsive pages, and Digital Boardroom stories</li><li>Mobile-ready stories via SAC Responsive pages</li></ul>`,
+  'Travel Centers': `<h4>BW 3.x to 7.5 — Travel Centers</h4><ul><li>Full BW platform migration from 3.x to 7.x</li><li>Pre and post upgrade task execution</li><li>Technical upgrade with functional regression testing</li><li>SAP Note remediation for all upgrade-related issues</li></ul>`,
+  'Spartech LLC': `<h4>BW 7.1 to 7.5 — Spartech LLC</h4><ul><li>SAP BI roadmap preparation for the organization</li><li>BW 7.3 to 7.5 SP20 upgrade</li><li>RSRV consistency checks for BW objects</li><li>Complete upgrade project management</li></ul>`,
+  'Barry Callebaut': `<h4>BW/4HANA AMS — Barry Callebaut</h4><ul><li>L1-L3 support for BW/4HANA systems with SLA adherence</li><li>Transport request and release cycle management</li><li>Business user support for reporting and analytics</li></ul>`,
+  'Lincoln Electric': `<h4>BW 7.3 → 7.5 HANA — Lincoln Electric</h4><ul><li>Offshore lead for upgrade preparation and execution</li><li>Impact analysis of post-upgrade objects</li><li>Test plans for backend and frontend testing</li><li>Functional and technical test scripts for BOBJ 4.2 and BW 7.5</li></ul>`,
+  'Rudolph Technologies': `<h4>SAC + CDS Views — Rudolph Technologies</h4><ul><li>Production Order Planning logic in HANA via ABAP CDS views</li><li>SAP Analytics Cloud dashboard development</li><li>Live and Import connections; end-user training</li></ul>`
+};
+filters.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filters.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.f;
+    cards.forEach(c => c.classList.toggle('hidden', f !== 'all' && c.dataset.c !== f));
+  });
+});
+cards.forEach(c => {
+  c.addEventListener('click', () => {
+    const name = c.querySelector('.proj-client').textContent;
+    const detail = projDetails[name];
+    if (detail) {
+      document.getElementById('modalBody').innerHTML = detail;
+      document.getElementById('modal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+  });
+});
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+document.getElementById('modal').addEventListener('click', e => { if (e.target.id === 'modal') closeModal(); });
+
+// ===== SCROLL REVEAL =====
+const revealEls = document.querySelectorAll('.reveal');
+const rObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      rObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -30px 0px' });
+revealEls.forEach(el => rObs.observe(el));
+
+// ===== NAV SCROLL =====
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 80);
+});
+</script>
+</body>
+</html>

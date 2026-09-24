@@ -1,0 +1,1313 @@
+﻿<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apex Learning Hub - Where Excellence Meets Education</title>
+<meta name="description" content="Apex Learning Hub: Premium competitive exam prep and professional skill development. Join 50,000+ students who transformed their careers.">
+<meta name="keywords" content="coaching, exam prep, competitive exams, JEE, NEET, SAT, GRE, coding, professional skills">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apexlearninghub.com">
+<meta property="og:title" content="Apex Learning Hub - Where Excellence Meets Education">
+<meta property="og:description" content="Premium competitive exam prep and professional skill development.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+tailwind.config={darkMode:'class',theme:{extend:{colors:{navy:{50:'#f0f4ff',100:'#dbe4ff',200:'#bac8ff',300:'#91a7ff',400:'#748ffc',500:'#5c7cfa',600:'#4c6ef5',700:'#3b5bdb',800:'#1e3a5f',900:'#0a1628',950:'#060e1a'},lavender:{400:'#a78bfa',500:'#8b5cf6',600:'#7c3aed'},rose2:{100:'#ffe4e6',200:'#fecdd3',300:'#fda4af',400:'#fb7185'},accent:'#8b5cf6'},fontFamily:{heading:['Space Grotesk','sans-serif'],body:['Inter','sans-serif']}}}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"EducationalOrganization","name":"Apex Learning Hub","description":"Premium competitive exam prep and professional skill development","url":"https://apexlearninghub.com","contactPoint":{"@type":"ContactPoint","telephone":"+1-800-APEX-EDU","contactType":"customer service"}}
+</script>
+</head>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{overflow-x:hidden}
+body{font-family:'Inter',sans-serif;background:#060e1a;color:#e2e8f0;overflow-x:hidden}
+body.light{background:#f8fafc;color:#1e293b}
+.cursor-dot{width:8px;height:8px;background:#8b5cf6;border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:99999;transition:transform .1s}
+.cursor-ring{width:40px;height:40px;border:2px solid rgba(167,139,250,.4);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:99998;transition:width .3s,height .3s,border-color .3s}
+.cursor-ring.hover{width:60px;height:60px;border-color:rgba(252,211,185,.5)}
+@media(pointer:coarse){.cursor-dot,.cursor-ring{display:none!important}}
+#loader{position:fixed;inset:0;background:#060e1a;z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s,visibility .6s}
+#loader.hidden{opacity:0;visibility:hidden;pointer-events:none}
+#loader .ring{width:80px;height:80px;border:3px solid rgba(167,139,250,.1);border-top-color:#8b5cf6;border-radius:50%;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.glass{background:rgba(255,255,255,.04);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.08);border-radius:1.25rem}
+.light .glass{background:rgba(255,255,255,.7);border-color:rgba(0,0,0,.08)}
+.glow-lavender{box-shadow:0 0 30px rgba(167,139,250,.15),0 0 60px rgba(167,139,250,.05)}
+.glow-gold{box-shadow:0 0 30px rgba(252,211,185,.12),0 0 60px rgba(252,211,185,.05)}
+.gradient-text{background:linear-gradient(135deg,#a78bfa,#8b5cf6,#e11d48);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.gradient-text-gold{background:linear-gradient(135deg,#a78bfa,#c4b5fd,#e11d48);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.aurora{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.aurora::before,.aurora::after{content:'';position:absolute;width:600px;height:600px;border-radius:50%;filter:blur(120px);opacity:.15;animation:aurora-float 8s ease-in-out infinite}
+.aurora::before{background:radial-gradient(circle,#8b5cf6,#7c3aed);top:-200px;left:-100px}
+.aurora::after{background:radial-gradient(circle,#e11d48,#be123c);bottom:-200px;right:-100px;animation-delay:-4s}
+@keyframes aurora-float{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(40px,30px) scale(1.1)}}
+.noise::after{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");pointer-events:none;z-index:1}
+@keyframes borderGlow{0%,100%{border-color:rgba(167,139,250,.3)}50%{border-color:rgba(167,139,250,.3)}}
+.border-glow{animation:borderGlow 3s ease-in-out infinite}
+#scroll-progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#8b5cf6,#7c3aed,#e11d48);z-index:9999;transition:width .1s}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
+.reveal.active{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-60px);transition:opacity .8s ease,transform .8s ease}
+.reveal-left.active{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(60px);transition:opacity .8s ease,transform .8s ease}
+.reveal-right.active{opacity:1;transform:translateX(0)}
+.reveal-scale{opacity:0;transform:scale(.9);transition:opacity .8s ease,transform .8s ease}
+.reveal-scale.active{opacity:1;transform:scale(1)}
+.tilt-card{transition:transform .3s ease,box-shadow .3s ease;transform-style:preserve-3d}
+.mag-btn{transition:transform .3s cubic-bezier(.25,.46,.45,.94)}
+.marquee-track{display:flex;animation:marquee 30s linear infinite;width:max-content}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes floatSlow{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.float-slow{animation:floatSlow 4s ease-in-out infinite}
+.float-slow-delay{animation:floatSlow 4s ease-in-out infinite;animation-delay:-2s}
+.page{display:none;opacity:0;transition:opacity .4s ease}
+.page.active{display:block;opacity:1}
+.mobile-menu{transform:translateX(100%);transition:transform .4s cubic-bezier(.4,0,.2,1)}
+.mobile-menu.open{transform:translateX(0)}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s}
+.faq-answer.open{max-height:300px;padding-top:1rem}
+::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar-track{background:#0a1628}
+::-webkit-scrollbar-thumb{background:linear-gradient(#8b5cf6,#e11d48);border-radius:4px}
+.toast{transform:translateX(120%);transition:transform .4s cubic-bezier(.4,0,.2,1);position:relative}
+.toast.show{transform:translateX(0)}
+.page-hero{min-height:60vh;display:flex;align-items:center;justify-content:center;position:relative}
+@keyframes pulse-ring{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.5);opacity:0}}
+.pulse-ring{animation:pulse-ring 1.5s ease-out infinite}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+#back-to-top{opacity:0;transform:translateY(20px);transition:all .3s}
+#back-to-top.visible{opacity:1;transform:translateY(0)}
+</style>
+<body class="dark">
+<div id="loader"><div class="ring"></div><p class="mt-6 text-violet-400 font-heading text-lg tracking-wider">APEX LEARNING HUB</p></div>
+<div class="cursor-dot hidden md:block"></div>
+<div class="cursor-ring hidden md:block"></div>
+<div id="scroll-progress" style="width:0%"></div>
+<div id="toast-container" class="fixed top-6 right-6 z-[9998] flex flex-col gap-3"></div>
+<div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-[9997] p-4 hidden">
+  <div class="glass max-w-5xl mx-auto p-6 rounded-2xl flex flex-col md:flex-row items-center gap-4">
+    <p class="text-sm text-gray-300 flex-1">We use cookies to enhance your experience. By continuing, you agree to our <a href="#/privacy" class="text-violet-400 underline">Privacy Policy</a>.</p>
+    <div class="flex gap-3">
+      <button onclick="acceptCookies()" class="px-6 py-2 bg-gradient-to-r from-violet-500 to-rose-700 text-white rounded-xl text-sm font-semibold hover:opacity-90 transition">Accept All</button>
+      <button onclick="declineCookies()" class="px-6 py-2 border border-white/20 rounded-xl text-sm hover:bg-white/5 transition">Decline</button>
+    </div>
+  </div>
+</div>
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" class="fixed bottom-8 right-8 z-[9996] w-12 h-12 rounded-full bg-gradient-to-r from-violet-500 to-rose-700 text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
+  <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+<div id="search-overlay" class="fixed inset-0 z-[9990] bg-black/80 backdrop-blur-xl flex items-start justify-center pt-32 opacity-0 pointer-events-none transition-opacity duration-300">
+  <div class="w-full max-w-2xl px-4">
+    <div class="relative">
+      <input type="text" id="search-input" placeholder="Search courses, topics, pages..." class="w-full bg-white/10 border border-white/20 rounded-2xl px-6 py-4 text-lg text-white placeholder-gray-400 focus:outline-none focus:border-violet-400 transition" aria-label="Search">
+      <button onclick="toggleSearch()" class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white transition" aria-label="Close search"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+    </div>
+  </div>
+</div>
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-[9990] transition-all duration-500">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      <a href="#/" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-400 to-rose-700 flex items-center justify-center font-heading font-bold text-white text-lg shadow-lg shadow-violet-500/20 group-hover:shadow-violet-500/40 transition-shadow">A</div>
+        <span class="font-heading font-bold text-lg tracking-tight hidden sm:block">APEX<span class="text-violet-400">.</span></span>
+      </a>
+      <div class="hidden lg:flex items-center gap-1">
+        <a href="#/" class="nav-link px-4 py-2 rounded-xl text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 transition-all">Home</a>
+        <div class="relative group">
+          <button class="px-4 py-2 rounded-xl text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 transition-all flex items-center gap-1">
+            Programs
+            <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5l3 3 3-3"/></svg>
+          </button>
+          <div class="absolute top-full left-0 mt-2 w-[500px] glass rounded-2xl p-6 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+            <div class="grid grid-cols-2 gap-4">
+              <a href="#/features" class="flex items-start gap-3 p-3 rounded-xl hover:bg-white/5 transition">
+                <div class="w-10 h-10 rounded-lg bg-violet-500/10 flex items-center justify-center text-violet-400 flex-shrink-0">&#x1F3AF;</div>
+                <div><p class="font-semibold text-sm">Competitive Exam Prep</p><p class="text-xs text-gray-400 mt-0.5">JEE, NEET, SAT, GRE, GMAT</p></div>
+              </a>
+              <a href="#/features" class="flex items-start gap-3 p-3 rounded-xl hover:bg-white/5 transition">
+                <div class="w-10 h-10 rounded-lg bg-violet-400/10 flex items-center justify-center text-violet-300 flex-shrink-0">&#x26A1;</div>
+                <div><p class="font-semibold text-sm">Professional Skills</p><p class="text-xs text-gray-400 mt-0.5">Coding, Business, Design</p></div>
+              </a>
+              <a href="#/features" class="flex items-start gap-3 p-3 rounded-xl hover:bg-white/5 transition">
+                <div class="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400 flex-shrink-0">&#x1F4CA;</div>
+                <div><p class="font-semibold text-sm">Data &amp; Analytics</p><p class="text-xs text-gray-400 mt-0.5">Python, ML, Analytics</p></div>
+              </a>
+              <a href="#/features" class="flex items-start gap-3 p-3 rounded-xl hover:bg-white/5 transition">
+                <div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400 flex-shrink-0">&#x1F30D;</div>
+                <div><p class="font-semibold text-sm">Study Abroad</p><p class="text-xs text-gray-400 mt-0.5">Visa, SOP, University</p></div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <a href="#/pricing" class="nav-link px-4 py-2 rounded-xl text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 transition-all">Pricing</a>
+        <a href="#/about" class="nav-link px-4 py-2 rounded-xl text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 transition-all">About</a>
+        <a href="#/contact" class="nav-link px-4 py-2 rounded-xl text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 transition-all">Contact</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <button onclick="toggleSearch()" class="w-10 h-10 rounded-xl flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/5 transition-all" aria-label="Search">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="6"/><path d="M17 17l-4.35-4.35"/></svg>
+        </button>
+        <button onclick="toggleTheme()" class="w-10 h-10 rounded-xl flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/5 transition-all" aria-label="Toggle theme" id="theme-toggle">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/></svg>
+        </button>
+        <a href="#/login" class="hidden md:inline-flex px-4 py-2 rounded-xl text-sm font-medium text-gray-300 hover:text-white hover:bg-white/5 transition-all">Log In</a>
+        <a href="#/register" class="hidden md:inline-flex px-5 py-2.5 rounded-xl bg-gradient-to-r from-violet-500 to-rose-700 text-white text-sm font-semibold hover:shadow-lg hover:shadow-violet-500/25 transition-all">Get Started</a>
+        <button onclick="toggleMobileMenu()" class="lg:hidden w-10 h-10 rounded-xl flex items-center justify-center text-gray-300 hover:bg-white/5 transition" aria-label="Menu">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div id="mobile-menu" class="mobile-menu fixed inset-y-0 right-0 w-80 max-w-[85vw] z-[9995] bg-navy-950/95 backdrop-blur-2xl border-l border-white/5 p-8 pt-24 overflow-y-auto">
+  <button onclick="toggleMobileMenu()" class="absolute top-6 right-6 text-gray-400 hover:text-white transition" aria-label="Close menu"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+  <div class="space-y-1">
+    <a href="#/" onclick="toggleMobileMenu()" class="block px-4 py-3 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 transition font-medium">Home</a>
+    <a href="#/features" onclick="toggleMobileMenu()" class="block px-4 py-3 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 transition font-medium">Features</a>
+    <a href="#/pricing" onclick="toggleMobileMenu()" class="block px-4 py-3 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 transition font-medium">Pricing</a>
+    <a href="#/about" onclick="toggleMobileMenu()" class="block px-4 py-3 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 transition font-medium">About</a>
+    <a href="#/contact" onclick="toggleMobileMenu()" class="block px-4 py-3 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 transition font-medium">Contact</a>
+  </div>
+  <hr class="border-white/10 my-6">
+  <div class="space-y-3">
+    <a href="#/login" onclick="toggleMobileMenu()" class="block w-full text-center px-5 py-3 rounded-xl border border-white/20 text-white font-medium hover:bg-white/5 transition">Log In</a>
+    <a href="#/register" onclick="toggleMobileMenu()" class="block w-full text-center px-5 py-3 rounded-xl bg-gradient-to-r from-violet-500 to-rose-700 text-white font-semibold transition">Get Started</a>
+  </div>
+</div>
+<div id="mobile-overlay" class="fixed inset-0 bg-black/50 z-[9994] opacity-0 pointer-events-none transition-opacity" onclick="toggleMobileMenu()"></div>
+<main id="main-content">
+<div id="page-home" class="page active">
+<section id="hero" class="relative min-h-screen flex items-center overflow-hidden noise">
+  <div class="aurora"></div>
+  <canvas id="hero-canvas" class="absolute inset-0 z-0"></canvas>
+  <div class="absolute inset-0 z-[1]">
+    <div class="absolute top-1/4 left-1/4 w-72 h-72 bg-violet-500/10 rounded-full blur-[100px] float-slow"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-rose-500/10 rounded-full blur-[120px] float-slow-delay"></div>
+    <div class="absolute top-1/3 right-1/3 w-64 h-64 bg-fuchsia-500/8 rounded-full blur-[80px] float-slow"></div>
+  </div>
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 w-full">
+    <div class="flex flex-col lg:flex-row items-center gap-16">
+      <div class="flex-1 text-center lg:text-left">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border-glow text-xs font-semibold text-violet-400 mb-8 reveal">
+          <span class="w-2 h-2 rounded-full bg-violet-400 animate-pulse"></span>
+          Admissions Open for 2026-27
+        </div>
+        <h1 class="font-heading text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.05] tracking-tight reveal">
+          Unlock Your
+          <span class="block gradient-text mt-2">True Potential</span>
+        </h1>
+        <p class="mt-8 text-lg sm:text-xl text-gray-400 max-w-xl mx-auto lg:mx-0 leading-relaxed reveal">
+          World-class coaching for competitive exams and professional skills. Join 50,000+ students who transformed their careers with Apex Learning Hub.
+        </p>
+        <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start reveal">
+          <a href="#/register" class="mag-btn group px-8 py-4 rounded-2xl bg-gradient-to-r from-violet-500 to-rose-700 text-white font-bold text-lg shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 transition-all relative overflow-hidden inline-flex items-center justify-center gap-2">
+            Start Learning
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" class="group-hover:translate-x-1 transition-transform"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#/features" class="mag-btn px-8 py-4 rounded-2xl border border-white/15 text-white font-bold text-lg hover:bg-white/5 transition-all inline-flex items-center justify-center gap-2">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5,3 19,12 5,21"/></svg>
+            Explore Programs
+          </a>
+        </div>
+        <div class="mt-12 flex items-center gap-8 justify-center lg:justify-start reveal">
+          <div class="text-center">
+            <p class="font-heading text-2xl font-bold text-white counter" data-target="50000">0</p>
+            <p class="text-xs text-gray-500 mt-1">Students</p>
+          </div>
+          <div class="w-px h-10 bg-white/10"></div>
+          <div class="text-center">
+            <p class="font-heading text-2xl font-bold text-white counter" data-target="98">0</p>
+            <p class="text-xs text-gray-500 mt-1">% Success Rate</p>
+          </div>
+          <div class="w-px h-10 bg-white/10"></div>
+          <div class="text-center">
+            <p class="font-heading text-2xl font-bold text-white counter" data-target="500">0</p>
+            <p class="text-xs text-gray-500 mt-1">Expert Faculty</p>
+          </div>
+        </div>
+      </div>
+      <div class="flex-1 relative reveal-scale">
+        <div class="relative w-full aspect-square max-w-lg mx-auto">
+          <canvas id="hero-3d" class="w-full h-full rounded-3xl"></canvas>
+          <div class="absolute -top-4 -right-4 glass p-4 rounded-2xl float-slow glow-lavender">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-gradient-to-br from-violet-400 to-rose-700 flex items-center justify-center text-white font-bold">&#x1F3AF;</div>
+              <div><p class="text-sm font-semibold">Top Rankers</p><p class="text-xs text-violet-400">AIR 1-100 in JEE 2025</p></div>
+            </div>
+          </div>
+          <div class="absolute -bottom-4 -left-4 glass p-4 rounded-2xl float-slow-delay glow-gold">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-gradient-to-br from-violet-300 to-violet-600 flex items-center justify-center text-white font-bold">&#x26A1;</div>
+              <div><p class="text-sm font-semibold">Live Classes</p><p class="text-xs text-violet-300">500+ Daily Sessions</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-gray-500">
+    <span class="text-xs tracking-widest uppercase">Scroll</span>
+    <div class="w-5 h-8 border-2 border-gray-500 rounded-full flex justify-center pt-1.5">
+      <div class="w-1 h-2 bg-violet-400 rounded-full animate-bounce"></div>
+    </div>
+  </div>
+</section>
+<section class="py-20 relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <p class="text-sm text-gray-500 uppercase tracking-widest mb-10 reveal">Trusted by leading institutions</p>
+    <div class="overflow-hidden relative">
+      <div class="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-navy-950 to-transparent z-10"></div>
+      <div class="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-navy-950 to-transparent z-10"></div>
+      <div class="marquee-track opacity-40 hover:opacity-70 transition-opacity">
+        <div class="flex items-center gap-16 px-8">
+          <span class="font-heading font-bold text-2xl text-gray-400 whitespace-nowrap">IIT Bombay</span>
+          <span class="font-heading font-bold text-2xl text-gray-400 whitespace-nowrap">Stanford</span>
+          <span class="font-heading font-bold text-2xl text-gray-400 whitespace-nowrap">Google</span>
+          <span class="font-heading font-bold text-2xl text-gray-400 whitespace-nowrap">Microsoft</span>
+          <span class="font-heading font-bold text-2xl text-gray-400 whitespace-nowrap">Harvard</span>
+          <span class="font-heading font-bold text-2xl text-gray-400 whitespace-nowrap">MIT</span>
+          <span class="font-heading font-bold text-2xl text-gray-400 whitespace-nowrap">Amazon</span>
+          <span class="font-heading font-bold text-2xl text-gray-400 whitespace-nowrap">Infosys</span>
+          <span class="font-heading font-bold text-2xl text-gray-400 whitespace-nowrap">TCS</span>
+          <span class="font-heading font-bold text-2xl text-gray-400 whitespace-nowrap">Wipro</span>
+        </div>
+        <div class="flex items-center gap-16 px-8">
+          <span class="font-heading font-bold text-2xl text-gray-400 whitespace-nowrap">IIT Bombay</span>
+          <span class="font-heading font-bold text-2xl text-gray-400 whitespace-nowrap">Stanford</span>
+          <span class="font-heading font-bold text-2xl text-gray-400 whitespace-nowrap">Google</span>
+          <span class="font-heading font-bold text-2xl text-gray-400 whitespace-nowrap">Microsoft</span>
+          <span class="font-heading font-bold text-2xl text-gray-400 whitespace-nowrap">Harvard</span>
+          <span class="font-heading font-bold text-2xl text-gray-400 whitespace-nowrap">MIT</span>
+          <span class="font-heading font-bold text-2xl text-gray-400 whitespace-nowrap">Amazon</span>
+          <span class="font-heading font-bold text-2xl text-gray-400 whitespace-nowrap">Infosys</span>
+          <span class="font-heading font-bold text-2xl text-gray-400 whitespace-nowrap">TCS</span>
+          <span class="font-heading font-bold text-2xl text-gray-400 whitespace-nowrap">Wipro</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="features-section" class="py-24 relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-20">
+      <span class="text-violet-400 font-semibold text-sm uppercase tracking-widest reveal">Why Apex</span>
+      <h2 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold mt-4 reveal">Everything you need to <span class="gradient-text">excel</span></h2>
+      <p class="mt-6 text-gray-400 text-lg max-w-2xl mx-auto reveal">Our comprehensive ecosystem ensures every student gets personalized attention, cutting-edge resources, and proven strategies for success.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="tilt-card glass p-8 rounded-3xl hover:border-violet-500/30 transition-all duration-300 reveal group">
+        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-400/20 to-rose-700/20 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">&#x1F3AF;</div>
+        <h3 class="font-heading text-xl font-bold mb-3">Expert Faculty</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">Learn from IIT/IIM alumni and industry veterans with 15+ years of teaching experience.</p>
+      </div>
+      <div class="tilt-card glass p-8 rounded-3xl hover:border-purple-500/30 transition-all duration-300 reveal group">
+        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-400/20 to-pink-600/20 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">&#x1F4CA;</div>
+        <h3 class="font-heading text-xl font-bold mb-3">AI-Powered Analytics</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">Track your progress with real-time performance dashboards and personalized study plans.</p>
+      </div>
+      <div class="tilt-card glass p-8 rounded-3xl hover:border-violet-300/30 transition-all duration-300 reveal group">
+        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-300/20 to-violet-600/20 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">&#x26A1;</div>
+        <h3 class="font-heading text-xl font-bold mb-3">Live Interactive Classes</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">Real-time doubt resolution with screen sharing, polls, and breakout rooms.</p>
+      </div>
+      <div class="tilt-card glass p-8 rounded-3xl hover:border-emerald-500/30 transition-all duration-300 reveal group">
+        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-400/20 to-teal-600/20 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">&#x1F6E1;&#xFE0F;</div>
+        <h3 class="font-heading text-xl font-bold mb-3">Proven Methodology</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">Our 98% success rate comes from a battle-tested, structured approach to learning.</p>
+      </div>
+      <div class="tilt-card glass p-8 rounded-3xl hover:border-rose-500/30 transition-all duration-300 reveal group">
+        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-rose-600/20 to-indigo-600/20 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">&#x1F4A1;</div>
+        <h3 class="font-heading text-xl font-bold mb-3">Smart Study Material</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">Curated notes, video lectures, practice tests, and adaptive quizzes at your fingertips.</p>
+      </div>
+      <div class="tilt-card glass p-8 rounded-3xl hover:border-pink-500/30 transition-all duration-300 reveal group">
+        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-pink-400/20 to-rose-600/20 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">&#x1F91D;</div>
+        <h3 class="font-heading text-xl font-bold mb-3">1-on-1 Mentorship</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">Personal mentors guide you through every phase of your preparation journey.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="py-24 relative overflow-hidden">
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-gradient-to-b from-violet-500/5 to-transparent rounded-full blur-[120px] pointer-events-none"></div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+    <div class="text-center mb-20">
+      <span class="text-violet-400 font-semibold text-sm uppercase tracking-widest reveal">How It Works</span>
+      <h2 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold mt-4 reveal">Your path to <span class="gradient-text-gold">success</span></h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="relative text-center reveal">
+        <div class="w-20 h-20 rounded-3xl bg-gradient-to-br from-violet-500 to-rose-700 flex items-center justify-center text-white font-heading font-bold text-2xl mx-auto mb-6 shadow-lg shadow-violet-500/20">01</div>
+        <h3 class="font-heading text-lg font-bold mb-2">Sign Up</h3>
+        <p class="text-gray-400 text-sm">Create your free account in 30 seconds</p>
+        <div class="hidden lg:block absolute top-10 left-[60%] w-[80%] border-t border-dashed border-violet-500/20"></div>
+      </div>
+      <div class="relative text-center reveal">
+        <div class="w-20 h-20 rounded-3xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center text-white font-heading font-bold text-2xl mx-auto mb-6 shadow-lg shadow-purple-500/20">02</div>
+        <h3 class="font-heading text-lg font-bold mb-2">Choose Program</h3>
+        <p class="text-gray-400 text-sm">Select from 50+ specialized courses</p>
+        <div class="hidden lg:block absolute top-10 left-[60%] w-[80%] border-t border-dashed border-purple-500/20"></div>
+      </div>
+      <div class="relative text-center reveal">
+        <div class="w-20 h-20 rounded-3xl bg-gradient-to-br from-violet-300 to-violet-600 flex items-center justify-center text-white font-heading font-bold text-2xl mx-auto mb-6 shadow-lg shadow-violet-400/20">03</div>
+        <h3 class="font-heading text-lg font-bold mb-2">Learn &amp; Practice</h3>
+        <p class="text-gray-400 text-sm">Attend live classes and solve problems</p>
+        <div class="hidden lg:block absolute top-10 left-[60%] w-[80%] border-t border-dashed border-violet-500/20"></div>
+      </div>
+      <div class="text-center reveal">
+        <div class="w-20 h-20 rounded-3xl bg-gradient-to-br from-emerald-400 to-teal-600 flex items-center justify-center text-white font-heading font-bold text-2xl mx-auto mb-6 shadow-lg shadow-emerald-500/20">04</div>
+        <h3 class="font-heading text-lg font-bold mb-2">Crack It!</h3>
+        <p class="text-gray-400 text-sm">Achieve your dream rank or certification</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="py-24 relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="relative rounded-3xl overflow-hidden group reveal-scale">
+      <div class="aspect-video bg-gradient-to-br from-navy-900 to-navy-950 flex items-center justify-center relative">
+        <div class="aurora opacity-50"></div>
+        <div class="relative z-10 text-center">
+          <div class="relative inline-block cursor-pointer" onclick="showToast('Video would play here in production','info')">
+            <div class="w-24 h-24 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center hover:scale-110 transition-transform">
+              <svg width="32" height="32" fill="white" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+            </div>
+            <div class="absolute inset-0 rounded-full border-2 border-white/20 pulse-ring"></div>
+          </div>
+          <p class="text-white font-heading text-2xl mt-6 font-bold">See How We Transform Careers</p>
+          <p class="text-gray-400 mt-2">2 min that will change your perspective on education</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="py-24 relative overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-r from-violet-600/5 via-rose-500/5 to-purple-600/5"></div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="text-center p-8 reveal"><p class="font-heading text-4xl sm:text-5xl font-bold gradient-text counter" data-target="50000">0</p><p class="text-gray-400 mt-2 text-sm uppercase tracking-wider">Students Enrolled</p></div>
+      <div class="text-center p-8 reveal"><p class="font-heading text-4xl sm:text-5xl font-bold gradient-text-gold counter" data-target="98">0</p><p class="text-gray-400 mt-2 text-sm uppercase tracking-wider">% Success Rate</p></div>
+      <div class="text-center p-8 reveal"><p class="font-heading text-4xl sm:text-5xl font-bold gradient-text counter" data-target="500">0</p><p class="text-gray-400 mt-2 text-sm uppercase tracking-wider">Expert Faculty</p></div>
+      <div class="text-center p-8 reveal"><p class="font-heading text-4xl sm:text-5xl font-bold gradient-text-gold counter" data-target="15">0</p><p class="text-gray-400 mt-2 text-sm uppercase tracking-wider">Years Legacy</p></div>
+    </div>
+  </div>
+</section>
+<section class="py-24 relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-20">
+      <span class="text-violet-400 font-semibold text-sm uppercase tracking-widest reveal">Testimonials</span>
+      <h2 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold mt-4 reveal">Loved by <span class="gradient-text">thousands</span></h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="glass p-8 rounded-3xl reveal hover:border-violet-500/20 transition-all">
+        <div class="flex items-center gap-1 mb-4"><svg width="16" height="16" fill="#a78bfa" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="16" height="16" fill="#a78bfa" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="16" height="16" fill="#a78bfa" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="16" height="16" fill="#a78bfa" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="16" height="16" fill="#a78bfa" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <p class="text-gray-300 text-sm leading-relaxed mb-6">"Apex Learning Hub completely transformed my approach to JEE preparation. The AI analytics helped me focus on weak areas and I secured AIR 47!"</p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-violet-400 to-rose-700 flex items-center justify-center text-white font-bold text-sm">AK</div>
+          <div><p class="font-semibold text-sm">Arjun Kapoor</p><p class="text-xs text-gray-500">JEE 2025 - AIR 47</p></div>
+        </div>
+      </div>
+      <div class="glass p-8 rounded-3xl reveal hover:border-purple-500/20 transition-all">
+        <div class="flex items-center gap-1 mb-4"><svg width="16" height="16" fill="#a78bfa" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="16" height="16" fill="#a78bfa" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="16" height="16" fill="#a78bfa" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="16" height="16" fill="#a78bfa" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="16" height="16" fill="#a78bfa" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <p class="text-gray-300 text-sm leading-relaxed mb-6">"The professional skills courses are top-notch. I landed a 18 LPA job at a FAANG company within 3 months of completing the Full Stack Development program."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-400 to-pink-600 flex items-center justify-center text-white font-bold text-sm">PS</div>
+          <div><p class="font-semibold text-sm">Priya Sharma</p><p class="text-xs text-gray-500">Full Stack Developer @ Amazon</p></div>
+        </div>
+      </div>
+      <div class="glass p-8 rounded-3xl reveal hover:border-violet-300/20 transition-all">
+        <div class="flex items-center gap-1 mb-4"><svg width="16" height="16" fill="#a78bfa" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="16" height="16" fill="#a78bfa" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="16" height="16" fill="#a78bfa" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="16" height="16" fill="#a78bfa" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg width="16" height="16" fill="#a78bfa" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <p class="text-gray-300 text-sm leading-relaxed mb-6">"The 1-on-1 mentorship program is what sets Apex apart. My mentor guided me through every challenge and helped me crack GRE with 335/340."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-violet-300 to-violet-600 flex items-center justify-center text-white font-bold text-sm">RG</div>
+          <div><p class="font-semibold text-sm">Rahul Gupta</p><p class="text-xs text-gray-500">GRE Score: 335/340</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="pricing-section" class="py-24 relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <span class="text-violet-400 font-semibold text-sm uppercase tracking-widest reveal">Pricing</span>
+      <h2 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold mt-4 reveal">Invest in your <span class="gradient-text-gold">future</span></h2>
+      <p class="mt-6 text-gray-400 text-lg max-w-2xl mx-auto reveal">Flexible plans designed for every student.</p>
+      <div class="mt-8 inline-flex items-center gap-3 glass rounded-2xl p-2 reveal">
+        <button onclick="togglePricing(false)" id="monthly-btn" class="px-6 py-2.5 rounded-xl text-sm font-semibold bg-gradient-to-r from-violet-500 to-rose-700 text-white transition-all">Monthly</button>
+        <button onclick="togglePricing(true)" id="yearly-btn" class="px-6 py-2.5 rounded-xl text-sm font-semibold text-gray-400 transition-all">Yearly <span class="text-violet-400 text-xs">Save 30%</span></button>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+      <div class="glass p-8 rounded-3xl reveal hover:border-white/10 transition-all">
+        <h3 class="font-heading text-lg font-bold">Starter</h3>
+        <p class="text-gray-500 text-sm mt-1">Perfect for beginners</p>
+        <div class="mt-6 mb-8"><span class="font-heading text-5xl font-bold price-amount" data-monthly="999" data-yearly="699">&#x20B9;999</span><span class="text-gray-500 text-sm">/month</span></div>
+        <ul class="space-y-3 mb-8">
+          <li class="flex items-center gap-3 text-sm text-gray-300"><svg width="16" height="16" fill="none" stroke="#8b5cf6" stroke-width="2"><path d="M3 8l3 3 7-7"/></svg> Access to recorded lectures</li>
+          <li class="flex items-center gap-3 text-sm text-gray-300"><svg width="16" height="16" fill="none" stroke="#8b5cf6" stroke-width="2"><path d="M3 8l3 3 7-7"/></svg> Practice tests (limited)</li>
+          <li class="flex items-center gap-3 text-sm text-gray-300"><svg width="16" height="16" fill="none" stroke="#8b5cf6" stroke-width="2"><path d="M3 8l3 3 7-7"/></svg> Basic analytics</li>
+          <li class="flex items-center gap-3 text-sm text-gray-500"><svg width="16" height="16" fill="none" stroke="#666" stroke-width="2"><path d="M4 4l8 8M12 4l-8 8"/></svg> Live classes</li>
+          <li class="flex items-center gap-3 text-sm text-gray-500"><svg width="16" height="16" fill="none" stroke="#666" stroke-width="2"><path d="M4 4l8 8M12 4l-8 8"/></svg> 1-on-1 mentorship</li>
+        </ul>
+        <button class="w-full py-3.5 rounded-xl border border-white/15 text-white font-semibold hover:bg-white/5 transition-all" onclick="showToast('Redirecting to checkout...','info')">Get Started</button>
+      </div>
+      <div class="relative glass p-8 rounded-3xl border-violet-500/30 reveal glow-lavender">
+        <div class="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-violet-500 to-rose-700 text-xs font-bold text-white">Most Popular</div>
+        <h3 class="font-heading text-lg font-bold">Professional</h3>
+        <p class="text-gray-500 text-sm mt-1">For serious aspirants</p>
+        <div class="mt-6 mb-8"><span class="font-heading text-5xl font-bold price-amount" data-monthly="2999" data-yearly="1999">&#x20B9;2,999</span><span class="text-gray-500 text-sm">/month</span></div>
+        <ul class="space-y-3 mb-8">
+          <li class="flex items-center gap-3 text-sm text-gray-300"><svg width="16" height="16" fill="none" stroke="#8b5cf6" stroke-width="2"><path d="M3 8l3 3 7-7"/></svg> Everything in Starter</li>
+          <li class="flex items-center gap-3 text-sm text-gray-300"><svg width="16" height="16" fill="none" stroke="#8b5cf6" stroke-width="2"><path d="M3 8l3 3 7-7"/></svg> Unlimited live classes</li>
+          <li class="flex items-center gap-3 text-sm text-gray-300"><svg width="16" height="16" fill="none" stroke="#8b5cf6" stroke-width="2"><path d="M3 8l3 3 7-7"/></svg> AI-powered analytics</li>
+          <li class="flex items-center gap-3 text-sm text-gray-300"><svg width="16" height="16" fill="none" stroke="#8b5cf6" stroke-width="2"><path d="M3 8l3 3 7-7"/></svg> Group doubt sessions</li>
+          <li class="flex items-center gap-3 text-sm text-gray-500"><svg width="16" height="16" fill="none" stroke="#666" stroke-width="2"><path d="M4 4l8 8M12 4l-8 8"/></svg> 1-on-1 mentorship</li>
+        </ul>
+        <button class="w-full py-3.5 rounded-xl bg-gradient-to-r from-violet-500 to-rose-700 text-white font-semibold hover:shadow-lg hover:shadow-violet-500/25 transition-all" onclick="showToast('Redirecting to checkout...','info')">Get Started</button>
+      </div>
+      <div class="glass p-8 rounded-3xl reveal hover:border-violet-300/10 transition-all">
+        <h3 class="font-heading text-lg font-bold">Elite</h3>
+        <p class="text-gray-500 text-sm mt-1">Maximum personalization</p>
+        <div class="mt-6 mb-8"><span class="font-heading text-5xl font-bold price-amount" data-monthly="5999" data-yearly="3999">&#x20B9;5,999</span><span class="text-gray-500 text-sm">/month</span></div>
+        <ul class="space-y-3 mb-8">
+          <li class="flex items-center gap-3 text-sm text-gray-300"><svg width="16" height="16" fill="none" stroke="#8b5cf6" stroke-width="2"><path d="M3 8l3 3 7-7"/></svg> Everything in Professional</li>
+          <li class="flex items-center gap-3 text-sm text-gray-300"><svg width="16" height="16" fill="none" stroke="#8b5cf6" stroke-width="2"><path d="M3 8l3 3 7-7"/></svg> 1-on-1 mentorship</li>
+          <li class="flex items-center gap-3 text-sm text-gray-300"><svg width="16" height="16" fill="none" stroke="#8b5cf6" stroke-width="2"><path d="M3 8l3 3 7-7"/></svg> Personalized study plan</li>
+          <li class="flex items-center gap-3 text-sm text-gray-300"><svg width="16" height="16" fill="none" stroke="#8b5cf6" stroke-width="2"><path d="M3 8l3 3 7-7"/></svg> Priority support 24/7</li>
+          <li class="flex items-center gap-3 text-sm text-gray-300"><svg width="16" height="16" fill="none" stroke="#8b5cf6" stroke-width="2"><path d="M3 8l3 3 7-7"/></svg> Guaranteed improvement</li>
+        </ul>
+        <button class="w-full py-3.5 rounded-xl border border-violet-300/30 text-violet-300 font-semibold hover:bg-violet-300/5 transition-all" onclick="showToast('Redirecting to checkout...','info')">Go Elite</button>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="py-24 relative">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <span class="text-violet-400 font-semibold text-sm uppercase tracking-widest reveal">FAQ</span>
+      <h2 class="font-heading text-4xl sm:text-5xl font-bold mt-4 reveal">Got questions?</h2>
+    </div>
+    <div class="space-y-4">
+      <div class="glass rounded-2xl overflow-hidden reveal">
+        <button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between">
+          <span class="font-semibold text-sm">What exams do you prepare students for?</span>
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" class="faq-icon transition-transform"><path d="M6 9l4 4 4-4"/></svg>
+        </button>
+        <div class="faq-answer px-6 pb-5 text-sm text-gray-400">We cover JEE Main &amp; Advanced, NEET, BITSAT, VITEEE, SAT, GRE, GMAT, CAT, UPSC, GATE, and 20+ other competitive exams.</div>
+      </div>
+      <div class="glass rounded-2xl overflow-hidden reveal">
+        <button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between">
+          <span class="font-semibold text-sm">Do you offer refund policies?</span>
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" class="faq-icon transition-transform"><path d="M6 9l4 4 4-4"/></svg>
+        </button>
+        <div class="faq-answer px-6 pb-5 text-sm text-gray-400">Yes! We offer a 7-day money-back guarantee on all plans. If you're not satisfied, we'll refund your payment in full.</div>
+      </div>
+      <div class="glass rounded-2xl overflow-hidden reveal">
+        <button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between">
+          <span class="font-semibold text-sm">How does the AI analytics work?</span>
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" class="faq-icon transition-transform"><path d="M6 9l4 4 4-4"/></svg>
+        </button>
+        <div class="faq-answer px-6 pb-5 text-sm text-gray-400">Our AI analyzes your test performance, study patterns, and time management to create a personalized improvement plan.</div>
+      </div>
+      <div class="glass rounded-2xl overflow-hidden reveal">
+        <button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between">
+          <span class="font-semibold text-sm">Are classes live or recorded?</span>
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" class="faq-icon transition-transform"><path d="M6 9l4 4 4-4"/></svg>
+        </button>
+        <div class="faq-answer px-6 pb-5 text-sm text-gray-400">We offer both. Professional and Elite plans include unlimited live interactive classes. All classes are recorded and available for replay.</div>
+      </div>
+      <div class="glass rounded-2xl overflow-hidden reveal">
+        <button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between">
+          <span class="font-semibold text-sm">Can I switch plans after enrollment?</span>
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" class="faq-icon transition-transform"><path d="M6 9l4 4 4-4"/></svg>
+        </button>
+        <div class="faq-answer px-6 pb-5 text-sm text-gray-400">Absolutely. You can upgrade or downgrade your plan at any time. The price difference is adjusted in your next billing cycle.</div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="py-24 relative overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-r from-violet-600/10 via-rose-500/10 to-purple-600/10"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-violet-500/10 rounded-full blur-[150px] pointer-events-none"></div>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative reveal-scale">
+    <h2 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold">Ready to <span class="gradient-text">transform</span> your future?</h2>
+    <p class="mt-6 text-xl text-gray-400">Join 50,000+ students who chose Apex and achieved the extraordinary.</p>
+    <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="#/register" class="mag-btn px-10 py-5 rounded-2xl bg-gradient-to-r from-violet-500 to-rose-700 text-white font-bold text-lg shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 transition-all inline-flex items-center justify-center gap-2">Start Free Trial <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <a href="#/contact" class="mag-btn px-10 py-5 rounded-2xl border border-white/15 text-white font-bold text-lg hover:bg-white/5 transition-all inline-flex items-center justify-center gap-2">Talk to a Counselor</a>
+    </div>
+  </div>
+</section>
+<section class="py-20 border-t border-white/5">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="glass p-10 sm:p-16 rounded-3xl text-center relative overflow-hidden reveal">
+      <div class="aurora opacity-30"></div>
+      <div class="relative z-10">
+        <h3 class="font-heading text-3xl sm:text-4xl font-bold">Stay in the loop</h3>
+        <p class="text-gray-400 mt-3 mb-8">Get study tips, exam updates, and exclusive offers straight to your inbox.</p>
+        <form onsubmit="event.preventDefault();showToast('Subscribed successfully! Welcome aboard.','success')" class="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto">
+          <input type="email" required placeholder="Enter your email" class="flex-1 px-6 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-violet-400 transition" aria-label="Email address">
+          <button type="submit" class="px-8 py-3.5 rounded-xl bg-gradient-to-r from-violet-500 to-rose-700 text-white font-semibold hover:shadow-lg hover:shadow-violet-500/25 transition-all whitespace-nowrap">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+<div id="page-about" class="page">
+<section class="page-hero relative noise">
+  <div class="aurora"></div>
+  <div class="relative z-10 text-center px-4 py-32">
+    <h1 class="font-heading text-5xl sm:text-6xl lg:text-7xl font-bold reveal">About <span class="gradient-text">Apex</span></h1>
+    <p class="mt-6 text-xl text-gray-400 max-w-2xl mx-auto reveal">Empowering students since 2011 to achieve their dreams through innovation, technology, and unwavering commitment.</p>
+  </div>
+</section>
+<section class="py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div class="reveal-left">
+        <span class="text-violet-400 font-semibold text-sm uppercase tracking-widest">Our Story</span>
+        <h2 class="font-heading text-4xl font-bold mt-4">Born from a passion for education</h2>
+        <p class="text-gray-400 mt-6 leading-relaxed">Founded in 2011 by a group of IIT alumni, Apex Learning Hub started with a simple mission: make world-class education accessible to every student, regardless of their location or background.</p>
+        <p class="text-gray-400 mt-4 leading-relaxed">Today, we have grown into one of India's leading edtech platforms, serving 50,000+ students across 200+ cities. Our blend of cutting-edge technology and human mentorship has produced consistent top rankers.</p>
+        <div class="mt-8 grid grid-cols-3 gap-6">
+          <div class="text-center p-4 glass rounded-2xl"><p class="font-heading text-3xl font-bold gradient-text counter" data-target="15">0</p><p class="text-xs text-gray-500 mt-1">Years</p></div>
+          <div class="text-center p-4 glass rounded-2xl"><p class="font-heading text-3xl font-bold gradient-text-gold counter" data-target="50000">0</p><p class="text-xs text-gray-500 mt-1">Students</p></div>
+          <div class="text-center p-4 glass rounded-2xl"><p class="font-heading text-3xl font-bold gradient-text counter" data-target="98">0</p><p class="text-xs text-gray-500 mt-1">% Success</p></div>
+        </div>
+      </div>
+      <div class="reveal-right">
+        <div class="glass p-2 rounded-3xl">
+          <div class="aspect-[4/3] rounded-2xl bg-gradient-to-br from-violet-500/20 to-rose-700/20 flex items-center justify-center">
+            <div class="text-center p-8"><div class="text-6xl mb-4">&#x1F393;</div><p class="font-heading text-2xl font-bold">15+ Years</p><p class="text-gray-400 mt-2">Of Transforming Lives</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="py-24 bg-gradient-to-b from-transparent to-navy-900/50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="font-heading text-4xl font-bold text-center mb-16 reveal">Our <span class="gradient-text">Values</span></h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="glass p-8 rounded-3xl text-center reveal"><div class="text-4xl mb-4">&#x1F3AF;</div><h3 class="font-heading text-xl font-bold">Excellence</h3><p class="text-gray-400 text-sm mt-3">We never settle for mediocrity. Every course, every session is designed to be the best.</p></div>
+      <div class="glass p-8 rounded-3xl text-center reveal"><div class="text-4xl mb-4">&#x1F4A1;</div><h3 class="font-heading text-xl font-bold">Innovation</h3><p class="text-gray-400 text-sm mt-3">We leverage AI, data analytics, and modern pedagogy to create learning that works.</p></div>
+      <div class="glass p-8 rounded-3xl text-center reveal"><div class="text-4xl mb-4">&#x1F91D;</div><h3 class="font-heading text-xl font-bold">Empathy</h3><p class="text-gray-400 text-sm mt-3">We understand the pressure students face and build systems that support wellbeing.</p></div>
+    </div>
+  </div>
+</section>
+</div>
+<div id="page-features" class="page">
+<section class="page-hero relative noise">
+  <div class="aurora"></div>
+  <div class="relative z-10 text-center px-4 py-32">
+    <h1 class="font-heading text-5xl sm:text-6xl lg:text-7xl font-bold reveal">Our <span class="gradient-text">Programs</span></h1>
+    <p class="mt-6 text-xl text-gray-400 max-w-2xl mx-auto reveal">Comprehensive programs for competitive exam aspirants and professionals.</p>
+  </div>
+</section>
+<section class="py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="glass p-8 sm:p-10 rounded-3xl reveal hover:border-violet-500/20 transition-all">
+        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-400/20 to-rose-700/20 flex items-center justify-center text-2xl mb-6">&#x1F3AF;</div>
+        <h3 class="font-heading text-2xl font-bold">JEE Main &amp; Advanced</h3>
+        <p class="text-gray-400 mt-3 text-sm leading-relaxed">Comprehensive preparation for IIT-JEE with 500+ hours of live classes, 10,000+ practice problems, and AI-driven study plans.</p>
+        <div class="mt-6 flex flex-wrap gap-2"><span class="px-3 py-1 rounded-full bg-violet-500/10 text-violet-400 text-xs font-medium">Physics</span><span class="px-3 py-1 rounded-full bg-rose-500/10 text-rose-400 text-xs font-medium">Chemistry</span><span class="px-3 py-1 rounded-full bg-purple-500/10 text-purple-400 text-xs font-medium">Mathematics</span></div>
+      </div>
+      <div class="glass p-8 sm:p-10 rounded-3xl reveal hover:border-emerald-500/20 transition-all">
+        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-400/20 to-teal-600/20 flex items-center justify-center text-2xl mb-6">&#x1F9EC;</div>
+        <h3 class="font-heading text-2xl font-bold">NEET</h3>
+        <p class="text-gray-400 mt-3 text-sm leading-relaxed">Complete medical entrance preparation with biology-focused curriculum, lab simulations, and expert faculty.</p>
+        <div class="mt-6 flex flex-wrap gap-2"><span class="px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-medium">Biology</span><span class="px-3 py-1 rounded-full bg-teal-500/10 text-teal-400 text-xs font-medium">Physics</span><span class="px-3 py-1 rounded-full bg-violet-500/10 text-violet-400 text-xs font-medium">Chemistry</span></div>
+      </div>
+      <div class="glass p-8 sm:p-10 rounded-3xl reveal hover:border-purple-500/20 transition-all">
+        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-400/20 to-pink-600/20 flex items-center justify-center text-2xl mb-6">&#x1F4BB;</div>
+        <h3 class="font-heading text-2xl font-bold">Full Stack Development</h3>
+        <p class="text-gray-400 mt-3 text-sm leading-relaxed">Master React, Node.js, Python, and cloud deployment. Build 10+ real projects and get placed at top companies.</p>
+        <div class="mt-6 flex flex-wrap gap-2"><span class="px-3 py-1 rounded-full bg-purple-500/10 text-purple-400 text-xs font-medium">React</span><span class="px-3 py-1 rounded-full bg-pink-500/10 text-pink-400 text-xs font-medium">Node.js</span><span class="px-3 py-1 rounded-full bg-rose-500/10 text-rose-400 text-xs font-medium">Python</span></div>
+      </div>
+      <div class="glass p-8 sm:p-10 rounded-3xl reveal hover:border-violet-300/20 transition-all">
+        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-300/20 to-violet-600/20 flex items-center justify-center text-2xl mb-6">&#x1F4CA;</div>
+        <h3 class="font-heading text-2xl font-bold">GRE &amp; GMAT</h3>
+        <p class="text-gray-400 mt-3 text-sm leading-relaxed">Target 330+ GRE or 750+ GMAT with our proven strategies. Includes university application guidance.</p>
+        <div class="mt-6 flex flex-wrap gap-2"><span class="px-3 py-1 rounded-full bg-violet-400/10 text-violet-300 text-xs font-medium">Verbal</span><span class="px-3 py-1 rounded-full bg-violet-500/10 text-violet-400 text-xs font-medium">Quant</span><span class="px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 text-xs font-medium">AWA</span></div>
+      </div>
+      <div class="glass p-8 sm:p-10 rounded-3xl reveal hover:border-pink-500/20 transition-all">
+        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-pink-400/20 to-rose-600/20 flex items-center justify-center text-2xl mb-6">&#x1F916;</div>
+        <h3 class="font-heading text-2xl font-bold">Data Science &amp; ML</h3>
+        <p class="text-gray-400 mt-3 text-sm leading-relaxed">Learn Python, TensorFlow, NLP, and computer vision. Build ML models and deploy them to production.</p>
+        <div class="mt-6 flex flex-wrap gap-2"><span class="px-3 py-1 rounded-full bg-pink-500/10 text-pink-400 text-xs font-medium">Python</span><span class="px-3 py-1 rounded-full bg-rose-500/10 text-rose-400 text-xs font-medium">TensorFlow</span><span class="px-3 py-1 rounded-full bg-red-500/10 text-red-400 text-xs font-medium">NLP</span></div>
+      </div>
+      <div class="glass p-8 sm:p-10 rounded-3xl reveal hover:border-rose-500/20 transition-all">
+        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-rose-600/20 to-indigo-600/20 flex items-center justify-center text-2xl mb-6">&#x1F4D0;</div>
+        <h3 class="font-heading text-2xl font-bold">UPSC Civil Services</h3>
+        <p class="text-gray-400 mt-3 text-sm leading-relaxed">Complete prelims, mains, and interview preparation with current affairs, answer writing, and mock interviews.</p>
+        <div class="mt-6 flex flex-wrap gap-2"><span class="px-3 py-1 rounded-full bg-rose-500/10 text-rose-400 text-xs font-medium">GS Paper I-IV</span><span class="px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-400 text-xs font-medium">Optional</span><span class="px-3 py-1 rounded-full bg-violet-500/10 text-violet-400 text-xs font-medium">Interview</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+<div id="page-pricing" class="page">
+<section class="page-hero relative noise">
+  <div class="aurora"></div>
+  <div class="relative z-10 text-center px-4 py-32">
+    <h1 class="font-heading text-5xl sm:text-6xl lg:text-7xl font-bold reveal">Simple <span class="gradient-text-gold">Pricing</span></h1>
+    <p class="mt-6 text-xl text-gray-400 max-w-2xl mx-auto reveal">No hidden fees. No surprises. Just pure value.</p>
+  </div>
+</section>
+<section class="py-24">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="glass p-8 rounded-3xl reveal">
+        <h3 class="font-heading text-lg font-bold">Starter</h3>
+        <div class="mt-4 mb-6"><span class="font-heading text-5xl font-bold">&#x20B9;999</span><span class="text-gray-500 text-sm">/mo</span></div>
+        <ul class="space-y-3 mb-8 text-sm text-gray-400">
+          <li class="flex items-center gap-2"><svg width="14" height="14" fill="none" stroke="#8b5cf6" stroke-width="2"><path d="M2 7l3 3 6-6"/></svg> Recorded lectures</li>
+          <li class="flex items-center gap-2"><svg width="14" height="14" fill="none" stroke="#8b5cf6" stroke-width="2"><path d="M2 7l3 3 6-6"/></svg> Limited practice tests</li>
+          <li class="flex items-center gap-2"><svg width="14" height="14" fill="none" stroke="#8b5cf6" stroke-width="2"><path d="M2 7l3 3 6-6"/></svg> Basic analytics</li>
+        </ul>
+        <button class="w-full py-3 rounded-xl border border-white/15 font-semibold hover:bg-white/5 transition" onclick="showToast('Redirecting to checkout...','info')">Get Started</button>
+      </div>
+      <div class="glass p-8 rounded-3xl border-violet-500/30 glow-lavender relative reveal">
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-violet-500 to-rose-700 rounded-full text-xs font-bold text-white">Best Value</div>
+        <h3 class="font-heading text-lg font-bold">Professional</h3>
+        <div class="mt-4 mb-6"><span class="font-heading text-5xl font-bold">&#x20B9;2,999</span><span class="text-gray-500 text-sm">/mo</span></div>
+        <ul class="space-y-3 mb-8 text-sm text-gray-400">
+          <li class="flex items-center gap-2"><svg width="14" height="14" fill="none" stroke="#8b5cf6" stroke-width="2"><path d="M2 7l3 3 6-6"/></svg> Everything in Starter</li>
+          <li class="flex items-center gap-2"><svg width="14" height="14" fill="none" stroke="#8b5cf6" stroke-width="2"><path d="M2 7l3 3 6-6"/></svg> Unlimited live classes</li>
+          <li class="flex items-center gap-2"><svg width="14" height="14" fill="none" stroke="#8b5cf6" stroke-width="2"><path d="M2 7l3 3 6-6"/></svg> AI analytics</li>
+          <li class="flex items-center gap-2"><svg width="14" height="14" fill="none" stroke="#8b5cf6" stroke-width="2"><path d="M2 7l3 3 6-6"/></svg> Group doubts</li>
+        </ul>
+        <button class="w-full py-3 rounded-xl bg-gradient-to-r from-violet-500 to-rose-700 text-white font-semibold hover:shadow-lg hover:shadow-violet-500/25 transition" onclick="showToast('Redirecting to checkout...','info')">Get Started</button>
+      </div>
+      <div class="glass p-8 rounded-3xl reveal">
+        <h3 class="font-heading text-lg font-bold">Elite</h3>
+        <div class="mt-4 mb-6"><span class="font-heading text-5xl font-bold">&#x20B9;5,999</span><span class="text-gray-500 text-sm">/mo</span></div>
+        <ul class="space-y-3 mb-8 text-sm text-gray-400">
+          <li class="flex items-center gap-2"><svg width="14" height="14" fill="none" stroke="#8b5cf6" stroke-width="2"><path d="M2 7l3 3 6-6"/></svg> Everything in Pro</li>
+          <li class="flex items-center gap-2"><svg width="14" height="14" fill="none" stroke="#8b5cf6" stroke-width="2"><path d="M2 7l3 3 6-6"/></svg> 1-on-1 mentorship</li>
+          <li class="flex items-center gap-2"><svg width="14" height="14" fill="none" stroke="#8b5cf6" stroke-width="2"><path d="M2 7l3 3 6-6"/></svg> Personalized plan</li>
+          <li class="flex items-center gap-2"><svg width="14" height="14" fill="none" stroke="#8b5cf6" stroke-width="2"><path d="M2 7l3 3 6-6"/></svg> 24/7 support</li>
+        </ul>
+        <button class="w-full py-3 rounded-xl border border-violet-300/30 text-violet-300 font-semibold hover:bg-violet-300/5 transition" onclick="showToast('Redirecting to checkout...','info')">Go Elite</button>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+<div id="page-contact" class="page">
+<section class="page-hero relative noise">
+  <div class="aurora"></div>
+  <div class="relative z-10 text-center px-4 py-32">
+    <h1 class="font-heading text-5xl sm:text-6xl lg:text-7xl font-bold reveal">Get in <span class="gradient-text">Touch</span></h1>
+    <p class="mt-6 text-xl text-gray-400 max-w-2xl mx-auto reveal">Have a question? We would love to hear from you.</p>
+  </div>
+</section>
+<section class="py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <div class="reveal-left">
+        <h2 class="font-heading text-3xl font-bold mb-8">Send us a message</h2>
+        <form onsubmit="event.preventDefault();showToast('Message sent! We will reply within 24 hours.','success')" class="space-y-5">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <input type="text" placeholder="First Name" required class="w-full px-5 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-violet-400 transition" aria-label="First Name">
+            <input type="text" placeholder="Last Name" class="w-full px-5 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-violet-400 transition" aria-label="Last Name">
+          </div>
+          <input type="email" placeholder="Email" required class="w-full px-5 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-violet-400 transition" aria-label="Email">
+          <select class="w-full px-5 py-3.5 rounded-xl bg-white/5 border border-white/10 text-gray-400 focus:outline-none focus:border-violet-400 transition appearance-none" aria-label="Subject">
+            <option value="">Select Subject</option>
+            <option value="admissions">Admissions</option>
+            <option value="courses">Course Inquiry</option>
+            <option value="support">Technical Support</option>
+            <option value="billing">Billing</option>
+          </select>
+          <textarea rows="5" placeholder="Your message..." required class="w-full px-5 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-violet-400 transition resize-none" aria-label="Message"></textarea>
+          <button type="submit" class="px-8 py-3.5 rounded-xl bg-gradient-to-r from-violet-500 to-rose-700 text-white font-semibold hover:shadow-lg hover:shadow-violet-500/25 transition-all">Send Message</button>
+        </form>
+      </div>
+      <div class="reveal-right">
+        <h2 class="font-heading text-3xl font-bold mb-8">Contact Info</h2>
+        <div class="space-y-6">
+          <div class="glass p-6 rounded-2xl flex items-start gap-4"><div class="w-12 h-12 rounded-xl bg-violet-500/10 flex items-center justify-center text-violet-400 flex-shrink-0">&#x1F4CD;</div><div><p class="font-semibold">Address</p><p class="text-gray-400 text-sm mt-1">42 Knowledge Park, Sector 15, Bangalore, India 560078</p></div></div>
+          <div class="glass p-6 rounded-2xl flex items-start gap-4"><div class="w-12 h-12 rounded-xl bg-rose-500/10 flex items-center justify-center text-rose-400 flex-shrink-0">&#x1F4E7;</div><div><p class="font-semibold">Email</p><p class="text-gray-400 text-sm mt-1">hello@apexlearninghub.com</p></div></div>
+          <div class="glass p-6 rounded-2xl flex items-start gap-4"><div class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400 flex-shrink-0">&#x1F4DE;</div><div><p class="font-semibold">Phone</p><p class="text-gray-400 text-sm mt-1">+91 800-APEX-EDU (273-933)</p></div></div>
+          <div class="glass p-6 rounded-2xl flex items-start gap-4"><div class="w-12 h-12 rounded-xl bg-violet-400/10 flex items-center justify-center text-violet-300 flex-shrink-0">&#x23F0;</div><div><p class="font-semibold">Hours</p><p class="text-gray-400 text-sm mt-1">Mon-Sat: 8AM - 10PM IST<br>Sun: 9AM - 6PM IST</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+<div id="page-login" class="page">
+<section class="min-h-screen flex items-center justify-center relative noise px-4">
+  <div class="aurora opacity-40"></div>
+  <div class="w-full max-w-md relative z-10">
+    <div class="glass p-10 rounded-3xl reveal-scale">
+      <div class="text-center mb-8">
+        <a href="#/" class="inline-flex items-center gap-2 mb-6">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-400 to-rose-700 flex items-center justify-center font-heading font-bold text-white text-lg">A</div>
+          <span class="font-heading font-bold text-lg">APEX<span class="text-violet-400">.</span></span>
+        </a>
+        <h2 class="font-heading text-2xl font-bold">Welcome Back</h2>
+        <p class="text-gray-400 text-sm mt-2">Sign in to continue learning</p>
+      </div>
+      <form onsubmit="event.preventDefault();showToast('Login successful! Redirecting...','success');setTimeout(function(){location.hash='/';},1500)" class="space-y-4">
+        <input type="email" placeholder="Email address" required class="w-full px-5 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-violet-400 transition" aria-label="Email">
+        <div class="relative">
+          <input type="password" id="login-pass" placeholder="Password" required class="w-full px-5 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-violet-400 transition pr-12" aria-label="Password">
+          <button type="button" onclick="togglePassVisibility('login-pass',this)" class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white transition" aria-label="Show password">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 9s4-7 8-7 8 7 8 7-4 7-8 7-8-7-8-7z"/><circle cx="9" cy="9" r="3"/></svg>
+          </button>
+        </div>
+        <div class="flex items-center justify-between text-sm">
+          <label class="flex items-center gap-2 text-gray-400 cursor-pointer"><input type="checkbox" class="rounded border-gray-600 bg-white/5 accent-violet-500"> Remember me</label>
+          <a href="#/forgot" class="text-violet-400 hover:text-violet-300 transition">Forgot password?</a>
+        </div>
+        <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-violet-500 to-rose-700 text-white font-bold hover:shadow-lg hover:shadow-violet-500/25 transition-all">Sign In</button>
+      </form>
+      <div class="mt-6">
+        <div class="relative"><hr class="border-white/10"><span class="absolute left-1/2 -translate-x-1/2 -top-3 bg-navy-950 px-3 text-xs text-gray-500">or continue with</span></div>
+        <div class="grid grid-cols-3 gap-3 mt-6">
+          <button class="py-3 rounded-xl border border-white/10 hover:bg-white/5 transition flex items-center justify-center gap-2 text-sm" onclick="showToast('Google login coming soon','info')">
+            <svg width="18" height="18" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          </button>
+          <button class="py-3 rounded-xl border border-white/10 hover:bg-white/5 transition flex items-center justify-center gap-2 text-sm" onclick="showToast('GitHub login coming soon','info')">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          </button>
+          <button class="py-3 rounded-xl border border-white/10 hover:bg-white/5 transition flex items-center justify-center gap-2 text-sm" onclick="showToast('Apple login coming soon','info')">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M17.05 20.28c-.98.95-2.05.88-3.08.4-1.09-.5-2.08-.48-3.24 0-1.44.62-2.2.44-3.06-.4C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+          </button>
+        </div>
+      </div>
+      <p class="text-center text-sm text-gray-400 mt-8">Don't have an account? <a href="#/register" class="text-violet-400 hover:text-violet-300 transition font-semibold">Sign up</a></p>
+    </div>
+  </div>
+</section>
+</div>
+<div id="page-register" class="page">
+<section class="min-h-screen flex items-center justify-center relative noise px-4 py-32">
+  <div class="aurora opacity-40"></div>
+  <div class="w-full max-w-md relative z-10">
+    <div class="glass p-10 rounded-3xl reveal-scale">
+      <div class="text-center mb-8">
+        <a href="#/" class="inline-flex items-center gap-2 mb-6">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-400 to-rose-700 flex items-center justify-center font-heading font-bold text-white text-lg">A</div>
+          <span class="font-heading font-bold text-lg">APEX<span class="text-violet-400">.</span></span>
+        </a>
+        <h2 class="font-heading text-2xl font-bold">Create Account</h2>
+        <p class="text-gray-400 text-sm mt-2">Start your learning journey today</p>
+      </div>
+      <form onsubmit="event.preventDefault();showToast('Account created! Welcome to Apex.','success');setTimeout(function(){location.hash='/';},1500)" class="space-y-4">
+        <input type="text" placeholder="Full Name" required class="w-full px-5 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-violet-400 transition" aria-label="Full Name">
+        <input type="email" placeholder="Email address" required class="w-full px-5 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-violet-400 transition" aria-label="Email">
+        <input type="tel" placeholder="Phone Number" class="w-full px-5 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-violet-400 transition" aria-label="Phone">
+        <div class="relative">
+          <input type="password" id="reg-pass" placeholder="Password" required minlength="8" class="w-full px-5 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-violet-400 transition pr-12" aria-label="Password">
+          <button type="button" onclick="togglePassVisibility('reg-pass',this)" class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white transition" aria-label="Show password">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 9s4-7 8-7 8 7 8 7-4 7-8 7-8-7-8-7z"/><circle cx="9" cy="9" r="3"/></svg>
+          </button>
+        </div>
+        <select class="w-full px-5 py-3.5 rounded-xl bg-white/5 border border-white/10 text-gray-400 focus:outline-none focus:border-violet-400 transition appearance-none" aria-label="Program Interest">
+          <option value="">What are you interested in?</option>
+          <option value="jee">JEE Preparation</option>
+          <option value="neet">NEET Preparation</option>
+          <option value="gre">GRE / GMAT</option>
+          <option value="coding">Full Stack Development</option>
+          <option value="data">Data Science &amp; ML</option>
+          <option value="upsc">UPSC Preparation</option>
+        </select>
+        <label class="flex items-start gap-2 text-sm text-gray-400 cursor-pointer">
+          <input type="checkbox" required class="rounded border-gray-600 bg-white/5 accent-violet-500 mt-0.5">
+          I agree to the <a href="#/terms" class="text-violet-400 underline">Terms</a> and <a href="#/privacy" class="text-violet-400 underline">Privacy Policy</a>
+        </label>
+        <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-violet-500 to-rose-700 text-white font-bold hover:shadow-lg hover:shadow-violet-500/25 transition-all">Create Account</button>
+      </form>
+      <p class="text-center text-sm text-gray-400 mt-8">Already have an account? <a href="#/login" class="text-violet-400 hover:text-violet-300 transition font-semibold">Sign in</a></p>
+    </div>
+  </div>
+</section>
+</div>
+<div id="page-404" class="page">
+<section class="min-h-screen flex items-center justify-center relative noise px-4">
+  <div class="aurora opacity-40"></div>
+  <div class="text-center relative z-10">
+    <p class="font-heading text-[10rem] sm:text-[14rem] font-bold leading-none gradient-text opacity-20">404</p>
+    <h2 class="font-heading text-3xl sm:text-4xl font-bold mt-8">Page Not Found</h2>
+    <p class="text-gray-400 mt-4 max-w-md mx-auto">The page you are looking for does not exist or has been moved.</p>
+    <a href="#/" class="mt-8 inline-flex px-8 py-3.5 rounded-xl bg-gradient-to-r from-violet-500 to-rose-700 text-white font-semibold hover:shadow-lg hover:shadow-violet-500/25 transition-all">Back to Home</a>
+  </div>
+</section>
+</div>
+<div id="page-terms" class="page">
+<section class="page-hero relative noise">
+  <div class="aurora"></div>
+  <div class="relative z-10 text-center px-4 py-32">
+    <h1 class="font-heading text-5xl font-bold reveal">Terms of <span class="gradient-text">Service</span></h1>
+  </div>
+</section>
+<section class="py-24">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-gray-400 text-sm leading-relaxed space-y-6">
+    <p><strong class="text-white">Last updated:</strong> January 1, 2026</p>
+    <h3 class="font-heading text-xl font-bold text-white">1. Acceptance of Terms</h3>
+    <p>By accessing Apex Learning Hub, you accept these Terms of Service. If you do not agree, please do not use the Platform.</p>
+    <h3 class="font-heading text-xl font-bold text-white">2. User Accounts</h3>
+    <p>You are responsible for maintaining the confidentiality of your account credentials.</p>
+    <h3 class="font-heading text-xl font-bold text-white">3. Refund Policy</h3>
+    <p>We offer a 7-day money-back guarantee from the date of enrollment.</p>
+    <h3 class="font-heading text-xl font-bold text-white">4. Contact</h3>
+    <p>For questions, contact us at <a href="mailto:legal@apexlearninghub.com" class="text-violet-400">legal@apexlearninghub.com</a>.</p>
+  </div>
+</section>
+</div>
+<div id="page-privacy" class="page">
+<section class="page-hero relative noise">
+  <div class="aurora"></div>
+  <div class="relative z-10 text-center px-4 py-32">
+    <h1 class="font-heading text-5xl font-bold reveal">Privacy <span class="gradient-text">Policy</span></h1>
+  </div>
+</section>
+<section class="py-24">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-gray-400 text-sm leading-relaxed space-y-6">
+    <p><strong class="text-white">Last updated:</strong> January 1, 2026</p>
+    <h3 class="font-heading text-xl font-bold text-white">1. Information We Collect</h3>
+    <p>We collect personal information such as name, email, phone number, and payment details when you register.</p>
+    <h3 class="font-heading text-xl font-bold text-white">2. Data Security</h3>
+    <p>We implement industry-standard encryption and security measures to protect your information.</p>
+    <h3 class="font-heading text-xl font-bold text-white">3. Your Rights</h3>
+    <p>You have the right to access, update, or delete your personal information. Contact <a href="mailto:privacy@apexlearninghub.com" class="text-violet-400">privacy@apexlearninghub.com</a>.</p>
+  </div>
+</section>
+</div>
+</main>
+<footer id="site-footer" class="border-t border-white/5 relative overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-t from-violet-500/3 to-transparent pointer-events-none"></div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative">
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-12">
+      <div class="col-span-2 lg:col-span-1">
+        <a href="#/" class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-400 to-rose-700 flex items-center justify-center font-heading font-bold text-white text-lg">A</div>
+          <span class="font-heading font-bold text-lg">APEX<span class="text-violet-400">.</span></span>
+        </a>
+        <p class="text-gray-500 text-sm leading-relaxed">Empowering 50,000+ students to achieve their dreams.</p>
+        <div class="flex gap-3 mt-6">
+          <a href="https://twitter.com/apexlearning" target="_blank" rel="noopener" class="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center text-gray-400 hover:text-violet-400 hover:bg-white/10 transition" aria-label="Twitter">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="https://linkedin.com/company/apexlearning" target="_blank" rel="noopener" class="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center text-gray-400 hover:text-rose-400 hover:bg-white/10 transition" aria-label="LinkedIn">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="https://instagram.com/apexlearning" target="_blank" rel="noopener" class="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center text-gray-400 hover:text-pink-400 hover:bg-white/10 transition" aria-label="Instagram">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+          <a href="https://github.com/apexlearning" target="_blank" rel="noopener" class="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition" aria-label="GitHub">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h4 class="font-heading font-bold text-sm mb-4">Programs</h4>
+        <ul class="space-y-2">
+          <li><a href="#/features" class="text-gray-500 text-sm hover:text-violet-400 transition">JEE Preparation</a></li>
+          <li><a href="#/features" class="text-gray-500 text-sm hover:text-violet-400 transition">NEET Preparation</a></li>
+          <li><a href="#/features" class="text-gray-500 text-sm hover:text-violet-400 transition">GRE / GMAT</a></li>
+          <li><a href="#/features" class="text-gray-500 text-sm hover:text-violet-400 transition">Full Stack Dev</a></li>
+          <li><a href="#/features" class="text-gray-500 text-sm hover:text-violet-400 transition">Data Science</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-heading font-bold text-sm mb-4">Company</h4>
+        <ul class="space-y-2">
+          <li><a href="#/about" class="text-gray-500 text-sm hover:text-violet-400 transition">About Us</a></li>
+          <li><a href="#/pricing" class="text-gray-500 text-sm hover:text-violet-400 transition">Pricing</a></li>
+          <li><a href="#/contact" class="text-gray-500 text-sm hover:text-violet-400 transition">Contact</a></li>
+          <li><a href="#/" class="text-gray-500 text-sm hover:text-violet-400 transition">Careers</a></li>
+          <li><a href="#/" class="text-gray-500 text-sm hover:text-violet-400 transition">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-heading font-bold text-sm mb-4">Support</h4>
+        <ul class="space-y-2">
+          <li><a href="#/" class="text-gray-500 text-sm hover:text-violet-400 transition">Help Center</a></li>
+          <li><a href="#/" class="text-gray-500 text-sm hover:text-violet-400 transition">Documentation</a></li>
+          <li><a href="#/" class="text-gray-500 text-sm hover:text-violet-400 transition">Status</a></li>
+          <li><a href="#/" class="text-gray-500 text-sm hover:text-violet-400 transition">API Reference</a></li>
+          <li><a href="#/" class="text-gray-500 text-sm hover:text-violet-400 transition">Community</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-heading font-bold text-sm mb-4">Legal</h4>
+        <ul class="space-y-2">
+          <li><a href="#/terms" class="text-gray-500 text-sm hover:text-violet-400 transition">Terms of Service</a></li>
+          <li><a href="#/privacy" class="text-gray-500 text-sm hover:text-violet-400 transition">Privacy Policy</a></li>
+          <li><a href="#/" class="text-gray-500 text-sm hover:text-violet-400 transition">Cookie Policy</a></li>
+          <li><a href="#/" class="text-gray-500 text-sm hover:text-violet-400 transition">Refund Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-white/5 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-gray-600 text-xs">&copy; 2026 Apex Learning Hub. All rights reserved.</p>
+      <p class="text-gray-600 text-xs">Made with care for learners everywhere.</p>
+    </div>
+  </div>
+</footer>
+<script>
+/* ===== ROUTING ===== */
+const routes={'/':'page-home','/about':'page-about','/features':'page-features','/pricing':'page-pricing','/contact':'page-contact','/login':'page-login','/register':'page-register','/404':'page-404','/terms':'page-terms','/privacy':'page-privacy','/forgot':'page-login'};
+function navigate(){
+  const hash=location.hash.slice(1)||'/';
+  const pageId=routes[hash]||'page-404';
+  document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active');p.style.display='none'});
+  const target=document.getElementById(pageId);
+  if(target){target.classList.add('active');target.style.display='block'}
+  window.scrollTo({top:0,behavior:'instant'});
+  setTimeout(function(){initRevealAnimations();initCounters()},100);
+  document.getElementById('mobile-menu').classList.remove('open');
+  document.getElementById('mobile-overlay').classList.remove('opacity-100');
+  document.getElementById('mobile-overlay').classList.add('opacity-0','pointer-events-none');
+}
+window.addEventListener('hashchange',navigate);
+window.addEventListener('load',function(){setTimeout(navigate,100)});
+
+/* ===== LOADER ===== */
+window.addEventListener('load',function(){
+  setTimeout(function(){document.getElementById('loader').classList.add('hidden')},800);
+  setTimeout(initCookieBanner,2000);
+});
+
+/* ===== THEME ===== */
+function toggleTheme(){
+  document.body.classList.toggle('dark');
+  document.body.classList.toggle('light');
+  const isLight=document.body.classList.contains('light');
+  localStorage.setItem('theme',isLight?'light':'dark');
+}
+(function(){
+  const saved=localStorage.getItem('theme');
+  if(saved==='light'){document.body.classList.remove('dark');document.body.classList.add('light')}
+})();
+
+/* ===== MOBILE MENU ===== */
+function toggleMobileMenu(){
+  const menu=document.getElementById('mobile-menu');
+  const overlay=document.getElementById('mobile-overlay');
+  menu.classList.toggle('open');
+  if(menu.classList.contains('open')){overlay.classList.remove('opacity-0','pointer-events-none');overlay.classList.add('opacity-100')}
+  else{overlay.classList.add('opacity-0','pointer-events-none');overlay.classList.remove('opacity-100')}
+}
+
+/* ===== SEARCH ===== */
+function toggleSearch(){
+  const overlay=document.getElementById('search-overlay');
+  const input=document.getElementById('search-input');
+  if(overlay.style.opacity==='1'){overlay.style.opacity='0';overlay.style.pointerEvents='none'}
+  else{overlay.style.opacity='1';overlay.style.pointerEvents='auto';setTimeout(function(){input.focus()},100)}
+}
+document.addEventListener('keydown',function(e){
+  if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();toggleSearch()}
+  if(e.key==='Escape'){document.getElementById('search-overlay').style.opacity='0';document.getElementById('search-overlay').style.pointerEvents='none'}
+});
+
+/* ===== TOAST ===== */
+function showToast(msg,type){
+  type=type||'info';
+  const colors={success:'from-emerald-500 to-teal-600',error:'from-red-500 to-rose-600',info:'from-violet-500 to-rose-700'};
+  const container=document.getElementById('toast-container');
+  const toast=document.createElement('div');
+  toast.className='toast glass px-6 py-4 rounded-xl flex items-center gap-3 min-w-[300px] max-w-sm';
+  toast.innerHTML='<div class="w-8 h-8 rounded-lg bg-gradient-to-br '+(colors[type]||colors.info)+' flex items-center justify-center text-white flex-shrink-0 text-sm">'+(type==='success'?'&#10003;':type==='error'?'&#10007;':'&#9432;')+'</div><p class="text-sm font-medium">'+msg+'</p>';
+  container.appendChild(toast);
+  setTimeout(function(){toast.classList.add('show')},10);
+  setTimeout(function(){toast.classList.remove('show');setTimeout(function(){toast.remove()},400)},4000);
+}
+
+/* ===== COOKIE BANNER ===== */
+function initCookieBanner(){if(!localStorage.getItem('cookies'))document.getElementById('cookie-banner').classList.remove('hidden')}
+function acceptCookies(){localStorage.setItem('cookies','accepted');document.getElementById('cookie-banner').classList.add('hidden')}
+function declineCookies(){localStorage.setItem('cookies','declined');document.getElementById('cookie-banner').classList.add('hidden')}
+
+/* ===== BACK TO TOP ===== */
+window.addEventListener('scroll',function(){
+  const btn=document.getElementById('back-to-top');
+  if(window.scrollY>500)btn.classList.add('visible');else btn.classList.remove('visible');
+  var progress=document.getElementById('scroll-progress');
+  var scrollTop=window.scrollY;
+  var docHeight=document.documentElement.scrollHeight-window.innerHeight;
+  progress.style.width=(scrollTop/docHeight*100)+'%';
+});
+
+/* ===== CUSTOM CURSOR ===== */
+(function(){
+  var dot=document.querySelector('.cursor-dot');
+  var ring=document.querySelector('.cursor-ring');
+  if(!dot||!ring)return;
+  var mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY});
+  function animateCursor(){
+    rx+=(mx-rx)*0.15;ry+=(my-ry)*0.15;
+    dot.style.left=mx-4+'px';dot.style.top=my-4+'px';
+    ring.style.left=rx-20+'px';ring.style.top=ry-20+'px';
+    requestAnimationFrame(animateCursor);
+  }
+  animateCursor();
+  document.querySelectorAll('a,button,.tilt-card').forEach(function(el){
+    el.addEventListener('mouseenter',function(){ring.classList.add('hover')});
+    el.addEventListener('mouseleave',function(){ring.classList.remove('hover')});
+  });
+})();
+
+/* ===== FAQ ===== */
+function toggleFaq(btn){
+  var answer=btn.nextElementSibling;
+  var icon=btn.querySelector('.faq-icon');
+  var isOpen=answer.classList.contains('open');
+  document.querySelectorAll('.faq-answer').forEach(function(a){a.classList.remove('open')});
+  document.querySelectorAll('.faq-icon').forEach(function(i){i.style.transform='rotate(0deg)'});
+  if(!isOpen){answer.classList.add('open');icon.style.transform='rotate(180deg)'}
+}
+
+/* ===== PRICING TOGGLE ===== */
+var isYearly=false;
+function togglePricing(yearly){
+  isYearly=yearly;
+  var mb=document.getElementById('monthly-btn');
+  var yb=document.getElementById('yearly-btn');
+  if(yearly){mb.className='px-6 py-2.5 rounded-xl text-sm font-semibold text-gray-400 transition-all';yb.className='px-6 py-2.5 rounded-xl text-sm font-semibold bg-gradient-to-r from-violet-500 to-rose-700 text-white transition-all'}
+  else{yb.className='px-6 py-2.5 rounded-xl text-sm font-semibold text-gray-400 transition-all';mb.className='px-6 py-2.5 rounded-xl text-sm font-semibold bg-gradient-to-r from-violet-500 to-rose-700 text-white transition-all'}
+  document.querySelectorAll('.price-amount').forEach(function(el){
+    var monthly=el.getAttribute('data-monthly');
+    var yearly2=el.getAttribute('data-yearly');
+    if(yearly){el.innerHTML='&#x20B9;'+Number(yearly2).toLocaleString('en-IN')}
+    else{el.innerHTML='&#x20B9;'+Number(monthly).toLocaleString('en-IN')}
+  });
+}
+
+/* ===== PASSWORD VISIBILITY ===== */
+function togglePassVisibility(id,btn){
+  var input=document.getElementById(id);
+  if(input.type==='password'){input.type='text'}
+  else{input.type='password'}
+}
+
+/* ===== COUNTER ANIMATION ===== */
+function initCounters(){
+  document.querySelectorAll('.counter').forEach(function(el){
+    if(el.dataset.animated)return;
+    var target=parseInt(el.getAttribute('data-target'));
+    var duration=2000;
+    var start=0;
+    var startTime=null;
+    function step(timestamp){
+      if(!startTime)startTime=timestamp;
+      var progress=Math.min((timestamp-startTime)/duration,1);
+      var eased=1-Math.pow(1-progress,3);
+      var current=Math.floor(eased*target);
+      if(target>=1000){el.textContent=current.toLocaleString('en-IN')+'+'}
+      else if(target===98){el.textContent=current+'%'}
+      else{el.textContent=current+'+'}
+      if(progress<1)requestAnimationFrame(step);
+    }
+    el.dataset.animated='true';
+    requestAnimationFrame(step);
+  });
+}
+
+/* ===== REVEAL ANIMATIONS ===== */
+function initRevealAnimations(){
+  var elements=document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+  if(!elements.length)return;
+  var observer=new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add('active');
+        observer.unobserve(entry.target);
+      }
+    });
+  },{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
+  elements.forEach(function(el){observer.observe(el)});
+}
+document.addEventListener('DOMContentLoaded',initRevealAnimations);
+
+/* ===== TILT CARDS ===== */
+document.querySelectorAll('.tilt-card').forEach(function(card){
+  card.addEventListener('mousemove',function(e){
+    var rect=card.getBoundingClientRect();
+    var x=e.clientX-rect.left;
+    var y=e.clientY-rect.top;
+    var centerX=rect.width/2;
+    var centerY=rect.height/2;
+    var rotateX=(y-centerY)/20;
+    var rotateY=(centerX-x)/20;
+    card.style.transform='perspective(1000px) rotateX('+rotateX+'deg) rotateY('+rotateY+'deg) scale3d(1.02,1.02,1.02)';
+  });
+  card.addEventListener('mouseleave',function(){card.style.transform='perspective(1000px) rotateX(0) rotateY(0) scale3d(1,1,1)'});
+});
+
+/* ===== MAGNETIC BUTTONS ===== */
+document.querySelectorAll('.mag-btn').forEach(function(btn){
+  btn.addEventListener('mousemove',function(e){
+    var rect=btn.getBoundingClientRect();
+    var x=e.clientX-rect.left-rect.width/2;
+    var y=e.clientY-rect.top-rect.height/2;
+    btn.style.transform='translate('+x*0.15+'px,'+y*0.15+'px)';
+  });
+  btn.addEventListener('mouseleave',function(){btn.style.transform='translate(0,0)'});
+  btn.addEventListener('click',function(e){
+    var ripple=document.createElement('span');
+    ripple.className='ripple';
+    var rect=btn.getBoundingClientRect();
+    var size=Math.max(rect.width,rect.height);
+    ripple.style.width=ripple.style.height=size+'px';
+    ripple.style.left=(e.clientX-rect.left-size/2)+'px';
+    ripple.style.top=(e.clientY-rect.top-size/2)+'px';
+    btn.appendChild(ripple);
+    setTimeout(function(){ripple.remove()},600);
+  });
+});
+
+/* ===== NAVBAR SCROLL ===== */
+window.addEventListener('scroll',function(){
+  var nav=document.getElementById('navbar');
+  if(window.scrollY>50){nav.classList.add('backdrop-blur-xl','bg-navy-950/80','shadow-lg','shadow-black/10');nav.style.borderBottom='1px solid rgba(255,255,255,0.05)'}
+  else{nav.classList.remove('backdrop-blur-xl','bg-navy-950/80','shadow-lg','shadow-black/10');nav.style.borderBottom='none'}
+});
+/* ===== PARTICLE CANVAS ===== */
+(function(){
+  var canvas=document.getElementById('hero-canvas');
+  if(!canvas)return;
+  var ctx=canvas.getContext('2d');
+  var particles=[];
+  var mouseX=0,mouseY=0;
+  function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight}
+  resize();
+  window.addEventListener('resize',resize);
+  document.addEventListener('mousemove',function(e){mouseX=e.clientX;mouseY=e.clientY});
+  function Particle(){this.x=Math.random()*canvas.width;this.y=Math.random()*canvas.height;this.vx=(Math.random()-0.5)*0.5;this.vy=(Math.random()-0.5)*0.5;this.radius=Math.random()*2+0.5;this.opacity=Math.random()*0.5+0.1}
+  for(var i=0;i<80;i++)particles.push(new Particle());
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach(function(p,i){
+      p.x+=p.vx;p.y+=p.vy;
+      if(p.x<0||p.x>canvas.width)p.vx*=-1;
+      if(p.y<0||p.y>canvas.height)p.vy*=-1;
+      ctx.beginPath();ctx.arc(p.x,p.y,p.radius,0,Math.PI*2);
+      ctx.fillStyle='rgba(167,139,250,'+p.opacity+')';ctx.fill();
+      for(var j=i+1;j<particles.length;j++){
+        var dx=p.x-particles[j].x;var dy=p.y-particles[j].y;
+        var dist=Math.sqrt(dx*dx+dy*dy);
+        if(dist<120){
+          ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(particles[j].x,particles[j].y);
+          ctx.strokeStyle='rgba(167,139,250,'+(0.08*(1-dist/120))+')';ctx.stroke();
+        }
+      }
+      var dx2=p.x-mouseX;var dy2=p.y-mouseY;
+      var dist2=Math.sqrt(dx2*dx2+dy2*dy2);
+      if(dist2<200){
+        ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(mouseX,mouseY);
+        ctx.strokeStyle='rgba(167,139,250,'+(0.15*(1-dist2/200))+')';ctx.lineWidth=0.5;ctx.stroke();
+      }
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ===== HERO 3D CANVAS ===== */
+(function(){
+  var canvas=document.getElementById('hero-3d');
+  if(!canvas)return;
+  var ctx=canvas.getContext('2d');
+  var W,H;
+  var mouseX=0.5,mouseY=0.5;
+  var cubes=[];
+  function resize(){
+    var rect=canvas.parentElement.getBoundingClientRect();
+    W=canvas.width=rect.width;H=canvas.height=rect.height;
+  }
+  resize();
+  window.addEventListener('resize',resize);
+  canvas.parentElement.addEventListener('mousemove',function(e){
+    var rect=canvas.getBoundingClientRect();
+    mouseX=(e.clientX-rect.left)/rect.width;
+    mouseY=(e.clientY-rect.top)/rect.height;
+  });
+  function Cube(x,y,z,speed){
+    this.x=x;this.y=y;this.z=z;this.speed=speed;this.angle=Math.random()*Math.PI*2;
+    this.size=15+Math.random()*25;this.hue=250+Math.random()*40;
+  }
+  for(var i=0;i<25;i++)cubes.push(new Cube(Math.random()*1-0.5,Math.random()*1-0.5,Math.random()*1-0.5,0.005+Math.random()*0.01));
+  function project(x,y,z){
+    var fov=400;var scale=fov/(fov+z*200);
+    return{x:x*W*0.4*scale+W/2+(mouseX-0.5)*30*scale,y:y*H*0.4*scale+H/2+(mouseY-0.5)*30*scale,s:scale};
+  }
+  function drawCube(cube){
+    cube.angle+=cube.speed;
+    var s=cube.size;
+    var cos=Math.cos(cube.angle);var sin=Math.sin(cube.angle);
+    var verts=[
+      {x:-s,y:-s,z:-s},{x:s,y:-s,z:-s},{x:s,y:s,z:-s},{x:-s,y:s,z:-s},
+      {x:-s,y:-s,z:s},{x:s,y:-s,z:s},{x:s,y:s,z:s},{x:-s,y:s,z:s}
+    ];
+    var rotated=verts.map(function(v){
+      var rx=v.x*cos-v.z*sin;var rz=v.x*sin+v.z*cos;
+      var ry2=v.y*cos-rz*sin;var rz2=v.y*sin+rz*cos;
+      return project(cube.x+rx*0.003,cube.y+ry2*0.003,cube.z+rz2*0.003);
+    });
+    var edges=[[0,1],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7]];
+    edges.forEach(function(e){
+      ctx.beginPath();ctx.moveTo(rotated[e[0]].x,rotated[e[0]].y);ctx.lineTo(rotated[e[1]].x,rotated[e[1]].y);
+      ctx.strokeStyle='hsla('+cube.hue+',80%,60%,'+(0.2*rotated[0].s)+')';ctx.lineWidth=rotated[0].s*1.5;ctx.stroke();
+    });
+    var cx=0,cy=0;rotated.forEach(function(p){cx+=p.x;cy+=p.y});
+    cx/=8;cy/=8;
+    ctx.beginPath();ctx.arc(cx,cy,3*rotated[0].s,0,Math.PI*2);
+    ctx.fillStyle='hsla('+cube.hue+',80%,60%,'+(0.4*rotated[0].s)+')';ctx.fill();
+  }
+  function drawConnection(c1,c2){
+    var p1=project(c1.x,c1.y,c1.z);var p2=project(c2.x,c2.y,c2.z);
+    var d=Math.sqrt(Math.pow(p1.x-p2.x,2)+Math.pow(p1.y-p2.y,2));
+    if(d<150){
+      ctx.beginPath();ctx.moveTo(p1.x,p1.y);ctx.lineTo(p2.x,p2.y);
+      ctx.strokeStyle='rgba(167,139,250,'+(0.06*(1-d/150))+')';ctx.lineWidth=0.5;ctx.stroke();
+    }
+  }
+  function animate(){
+    ctx.clearRect(0,0,W,H);
+    cubes.forEach(function(c){drawCube(c)});
+    for(var i=0;i<cubes.length;i++){for(var j=i+1;j<cubes.length;j++){drawConnection(cubes[i],cubes[j])}}
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
+
+/* ===== GSAP SCROLL ANIMATIONS ===== */
+if(typeof gsap!=='undefined'&&typeof ScrollTrigger!=='undefined'){
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.from('.marquee-track',{scrollTrigger:{trigger:'.marquee-track',start:'top 90%'},opacity:0,y:30,duration:1});
+  document.querySelectorAll('section').forEach(function(section){
+    gsap.from(section.querySelectorAll('.tilt-card'),{
+      scrollTrigger:{trigger:section,start:'top 80%'},y:60,opacity:0,duration:0.8,stagger:0.15,ease:'power3.out'
+    });
+  });
+}
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

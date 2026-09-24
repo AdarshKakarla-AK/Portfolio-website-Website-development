@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+errors.log
+server.log
+
+# Backups / scratch
+server.js.backup
+server.js.auth-backup
+server.js.complete-backup
+server.js.security-backup
+server.js.before-final-features
+server.js.before-security
+server.js trial.txt
+*.zip
+
+# Wrangler / Cloudflare
+.wrangler/
+.dev.vars
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Editors
+.vscode/
+.idea/

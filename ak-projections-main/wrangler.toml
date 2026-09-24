@@ -1,0 +1,22 @@
+﻿name = "ak-projections-main"
+main = "src/index.js"
+compatibility_date = "2026-08-23"
+
+# D1 Database Binding
+[[d1_databases]]
+binding = "DB"
+database_id = "84f9aea2-21e7-4301-9e20-821a646a03f2"
+database_name = "ak-projections-db"
+
+# KV Namespace for caching & sessions
+[[kv_namespaces]]
+binding = "AK_KV"
+id = "placeholder-id"
+preview_id = "placeholder-preview-id"
+
+# Environment variables
+[env.production]
+vars = { ENVIRONMENT = "production" }
+
+[env.development]
+vars = { ENVIRONMENT = "development" }

@@ -1,0 +1,2471 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Quantum - The next-generation SaaS platform for intelligent team collaboration, automation, and data-driven insights.">
+  <meta name="keywords" content="Quantum, SaaS, collaboration, automation, AI, productivity, team management">
+  <meta name="author" content="Quantum Inc.">
+  <meta property="og:title" content="Quantum - Intelligent SaaS Platform">
+  <meta property="og:description" content="Transform your workflow with AI-powered automation and real-time collaboration.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://quantum.app">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Quantum - Intelligent SaaS Platform">
+  <meta name="twitter:description" content="Transform your workflow with AI-powered automation and real-time collaboration.">
+  <title>Quantum - Intelligent SaaS Platform for Modern Teams</title>
+  <link rel="canonical" href="https://quantum.app">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚛</text></svg>">
+
+  <!-- Tailwind CSS Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            quantum: {
+              50: '#eef2ff', 100: '#e0e7ff', 200: '#c7d2fe', 300: '#a5b4fc',
+              400: '#818cf8', 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca',
+              800: '#3730a3', 900: '#312e81', 950: '#1e1b4b'
+            },
+            navy: { 900: '#0A0A1A', 800: '#0F0F23', 700: '#161633', 600: '#1E1E3F' },
+            electric: { 400: '#60A5FA', 500: '#3B82F6', 600: '#2563EB' },
+            accent: { cyan: '#06B6D4', emerald: '#10B981', gold: '#F59E0B', pink: '#EC4899' }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+            display: ['"Space Grotesk"', 'Inter', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- Lenis Smooth Scroll -->
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+
+  <style>
+    /* ============================
+       CSS CUSTOM PROPERTIES
+    ============================ */
+    :root {
+      --bg-primary: #0A0A1A;
+      --bg-secondary: #0F0F23;
+      --bg-tertiary: #161633;
+      --text-primary: #FFFFFF;
+      --text-secondary: #A0AEC0;
+      --text-muted: #64748B;
+      --accent-blue: #3B82F6;
+      --accent-purple: #8B5CF6;
+      --accent-cyan: #06B6D4;
+      --accent-emerald: #10B981;
+      --accent-gold: #F59E0B;
+      --accent-pink: #EC4899;
+      --gradient-primary: linear-gradient(135deg, #3B82F6, #8B5CF6);
+      --gradient-accent: linear-gradient(135deg, #06B6D4, #3B82F6);
+      --gradient-warm: linear-gradient(135deg, #F59E0B, #EC4899);
+      --glass-bg: rgba(255, 255, 255, 0.03);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      --glow-blue: 0 0 30px rgba(59, 130, 246, 0.3);
+      --glow-purple: 0 0 30px rgba(139, 92, 246, 0.3);
+    }
+
+    html.light {
+      --bg-primary: #F8FAFC;
+      --bg-secondary: #F1F5F9;
+      --bg-tertiary: #E2E8F0;
+      --text-primary: #0F172A;
+      --text-secondary: #475569;
+      --text-muted: #94A3B8;
+      --glass-bg: rgba(255, 255, 255, 0.7);
+      --glass-border: rgba(0, 0, 0, 0.08);
+      --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    }
+
+    /* ============================
+       BASE & RESET
+    ============================ */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html.lenis, html.lenis body { height: auto; }
+    .lenis.lenis-smooth { scroll-behavior: auto !important; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      cursor: none;
+    }
+    html.light body { color: var(--text-primary); }
+    a { text-decoration: none; color: inherit; cursor: none; }
+    button { cursor: none; border: none; background: none; font-family: inherit; }
+    img { max-width: 100%; display: block; }
+
+    /* ============================
+       CUSTOM SCROLLBAR
+    ============================ */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-primary); }
+    ::-webkit-scrollbar-thumb {
+      background: var(--gradient-primary);
+      border-radius: 3px;
+    }
+
+    /* ============================
+       LOADING SCREEN
+    ============================ */
+    #loading-screen {
+      position: fixed; inset: 0; z-index: 10000;
+      background: var(--bg-primary);
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 2rem;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+    #loading-screen.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+    .loader-ring {
+      width: 80px; height: 80px; border-radius: 50%;
+      border: 3px solid transparent;
+      border-top-color: var(--accent-blue);
+      border-right-color: var(--accent-purple);
+      animation: spin 1s linear infinite;
+      position: relative;
+    }
+    .loader-ring::before {
+      content: ''; position: absolute; inset: 6px;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      border-bottom-color: var(--accent-cyan);
+      border-left-color: var(--accent-pink);
+      animation: spin 1.5s linear infinite reverse;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loader-text {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.25rem; font-weight: 600;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 0.2em; text-transform: uppercase;
+    }
+
+    /* ============================
+       CUSTOM CURSOR
+    ============================ */
+    .cursor-dot {
+      position: fixed; width: 8px; height: 8px;
+      background: var(--accent-blue);
+      border-radius: 50%; pointer-events: none;
+      z-index: 9999; transform: translate(-50%, -50%);
+      transition: transform 0.1s ease, background 0.3s ease;
+      mix-blend-mode: difference;
+    }
+    .cursor-ring {
+      position: fixed; width: 40px; height: 40px;
+      border: 1.5px solid rgba(99, 102, 241, 0.5);
+      border-radius: 50%; pointer-events: none;
+      z-index: 9998; transform: translate(-50%, -50%);
+      transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
+    }
+    .cursor-ring.hovering {
+      width: 60px; height: 60px;
+      border-color: var(--accent-cyan);
+    }
+
+    /* ============================
+       GLASS MORPHISM
+    ============================ */
+    .glass {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--glass-shadow);
+    }
+    .glass-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border);
+      border-radius: 1.25rem;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .glass-card:hover {
+      border-color: rgba(99, 102, 241, 0.3);
+      box-shadow: 0 0 40px rgba(99, 102, 241, 0.1);
+      transform: translateY(-4px);
+    }
+
+    /* ============================
+       GRADIENT TEXT
+    ============================ */
+    .gradient-text {
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .gradient-text-accent {
+      background: var(--gradient-accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ============================
+       ANIMATED GRADIENT BG
+    ============================ */
+    .animated-gradient-bg {
+      position: fixed; inset: 0; z-index: -1;
+      background: linear-gradient(-45deg, #0A0A1A, #0F0F23, #1a1040, #0a1628);
+      background-size: 400% 400%;
+      animation: gradientShift 20s ease infinite;
+    }
+    html.light .animated-gradient-bg {
+      background: linear-gradient(-45deg, #F8FAFC, #F1F5F9, #E8F4FD, #F0F0FF);
+      background-size: 400% 400%;
+      animation: gradientShift 20s ease infinite;
+    }
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* ============================
+       AURORA / GLOW ORBS
+    ============================ */
+    .aurora-orb {
+      position: absolute; border-radius: 50%;
+      filter: blur(120px); opacity: 0.15;
+      pointer-events: none;
+    }
+    html.light .aurora-orb { opacity: 0.08; }
+
+    /* ============================
+       NOISE OVERLAY
+    ============================ */
+    .noise-overlay {
+      position: fixed; inset: 0; z-index: 0;
+      pointer-events: none; opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+    }
+
+    /* ============================
+       MAGNETIC BUTTON
+    ============================ */
+    .magnetic-btn {
+      position: relative; display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.875rem 2rem; border-radius: 9999px;
+      font-weight: 600; font-size: 0.95rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
+    }
+    .magnetic-btn::before {
+      content: ''; position: absolute; inset: 0;
+      border-radius: inherit;
+      background: var(--gradient-primary);
+      opacity: 0; transition: opacity 0.3s ease;
+    }
+    .magnetic-btn:hover::before { opacity: 1; }
+    .magnetic-btn span { position: relative; z-index: 1; }
+    .magnetic-btn-primary {
+      color: white;
+      box-shadow: 0 0 30px rgba(99, 102, 241, 0.3);
+    }
+    .magnetic-btn-primary:hover {
+      box-shadow: 0 0 50px rgba(99, 102, 241, 0.5);
+      transform: translateY(-2px);
+    }
+    .magnetic-btn-outline {
+      color: var(--text-primary);
+      border: 1px solid var(--glass-border);
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+    }
+    .magnetic-btn-outline:hover {
+      border-color: rgba(99, 102, 241, 0.5);
+      box-shadow: var(--glow-blue);
+    }
+
+    /* ============================
+       NAVBAR
+    ============================ */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 1000; padding: 1rem 2rem;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .navbar.scrolled {
+      background: rgba(10, 10, 26, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--glass-border);
+      padding: 0.75rem 2rem;
+    }
+    html.light .navbar.scrolled {
+      background: rgba(248, 250, 252, 0.85);
+    }
+    .nav-link {
+      position: relative; font-size: 0.875rem; font-weight: 500;
+      color: var(--text-secondary);
+      transition: color 0.3s ease;
+      padding: 0.5rem 0;
+    }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 0; height: 2px;
+      background: var(--gradient-primary);
+      transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: 1px;
+    }
+    .nav-link:hover { color: var(--text-primary); }
+    .nav-link:hover::after { width: 100%; }
+
+    /* ============================
+       MOBILE MENU
+    ============================ */
+    .mobile-menu {
+      position: fixed; inset: 0; z-index: 999;
+      background: rgba(10, 10, 26, 0.98);
+      backdrop-filter: blur(30px);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 2rem;
+      transform: translateX(100%);
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .mobile-menu.active { transform: translateX(0); }
+    .mobile-menu a {
+      font-size: 1.75rem; font-weight: 700;
+      font-family: 'Space Grotesk', sans-serif;
+      color: var(--text-secondary);
+      transition: color 0.3s ease;
+    }
+    .mobile-menu a:hover { color: var(--text-primary); }
+
+    /* ============================
+       HERO
+    ============================ */
+    .hero-section {
+      position: relative; min-height: 100vh;
+      display: flex; align-items: center;
+      overflow: hidden; padding-top: 5rem;
+    }
+    #hero-canvas {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      z-index: 1;
+    }
+    .hero-content { position: relative; z-index: 2; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.5rem 1.25rem; border-radius: 9999px;
+      font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--accent-cyan);
+      border: 1px solid rgba(6, 182, 212, 0.3);
+      background: rgba(6, 182, 212, 0.08);
+      margin-bottom: 1.5rem;
+    }
+    .hero-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.75rem, 7vw, 5.5rem);
+      font-weight: 800; line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+    }
+    .hero-subtitle {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--text-secondary);
+      max-width: 600px; line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+    .hero-stats {
+      display: flex; gap: 3rem; margin-top: 3rem;
+      flex-wrap: wrap;
+    }
+    .hero-stat-value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2rem; font-weight: 700;
+    }
+    .hero-stat-label {
+      font-size: 0.85rem; color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+
+    /* ============================
+       SCROLL INDICATOR
+    ============================ */
+    .scroll-indicator {
+      position: absolute; bottom: 2rem;
+      left: 50%; transform: translateX(-50%);
+      z-index: 2; display: flex;
+      flex-direction: column; align-items: center;
+      gap: 0.5rem; color: var(--text-muted);
+      font-size: 0.75rem; letter-spacing: 0.15em;
+      text-transform: uppercase;
+      animation: floatUp 2s ease-in-out infinite;
+    }
+    @keyframes floatUp {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(-8px); }
+    }
+
+    /* ============================
+       SECTION BASE
+    ============================ */
+    .section-container {
+      max-width: 1280px; margin: 0 auto;
+      padding: 6rem 1.5rem;
+      position: relative; z-index: 1;
+    }
+    .section-header {
+      text-align: center; max-width: 700px;
+      margin: 0 auto 4rem;
+    }
+    .section-label {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--accent-cyan);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700; line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    .section-desc {
+      font-size: 1.05rem; color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* ============================
+       LOGOS / TRUSTED
+    ============================ */
+    .logo-track {
+      display: flex; gap: 4rem; align-items: center;
+      animation: scrollLogos 30s linear infinite;
+    }
+    .logo-item {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.25rem; font-weight: 700;
+      color: var(--text-muted);
+      white-space: nowrap;
+      opacity: 0.4;
+      transition: opacity 0.3s ease;
+    }
+    .logo-item:hover { opacity: 0.8; }
+    @keyframes scrollLogos {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ============================
+       FEATURE CARDS
+    ============================ */
+    .feature-icon {
+      width: 56px; height: 56px; border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      background: var(--gradient-primary);
+      box-shadow: 0 0 30px rgba(99, 102, 241, 0.2);
+      margin-bottom: 1.25rem;
+    }
+    .feature-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.25rem; font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .feature-desc {
+      font-size: 0.9rem; color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* ============================
+       PRODUCT SHOWCASE (VIDEO)
+    ============================ */
+    .video-wrapper {
+      position: relative; border-radius: 1.25rem;
+      overflow: hidden;
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    }
+    .video-wrapper video {
+      width: 100%; display: block;
+      aspect-ratio: 16/9; object-fit: cover;
+    }
+
+    /* ============================
+       TIMELINE
+    ============================ */
+    .timeline-line {
+      position: absolute; left: 50%; top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, transparent, var(--accent-blue), var(--accent-purple), transparent);
+      transform: translateX(-50%);
+    }
+    .timeline-item {
+      position: relative; display: flex;
+      align-items: flex-start;
+      margin-bottom: 4rem;
+    }
+    .timeline-dot {
+      width: 16px; height: 16px; border-radius: 50%;
+      background: var(--gradient-primary);
+      position: absolute; left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+    }
+
+    /* ============================
+       COUNTER
+    ============================ */
+    .stat-number {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-weight: 700;
+    }
+
+    /* ============================
+       TESTIMONIALS
+    ============================ */
+    .testimonial-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border);
+      border-radius: 1.25rem;
+      padding: 2rem;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .testimonial-card::before {
+      content: '"'; position: absolute; top: -10px; right: 20px;
+      font-size: 6rem; font-family: Georgia, serif;
+      color: var(--accent-blue); opacity: 0.1;
+      line-height: 1;
+    }
+    .testimonial-card:hover {
+      border-color: rgba(99, 102, 241, 0.3);
+      transform: translateY(-4px);
+    }
+    .testimonial-avatar {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--gradient-primary);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 1rem; color: white;
+    }
+    .stars { color: #F59E0B; letter-spacing: 2px; }
+
+    /* ============================
+       PRICING
+    ============================ */
+    .pricing-toggle {
+      display: flex; align-items: center; gap: 1rem;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 9999px; padding: 0.35rem;
+    }
+    .pricing-toggle-btn {
+      padding: 0.625rem 1.5rem; border-radius: 9999px;
+      font-size: 0.875rem; font-weight: 600;
+      color: var(--text-muted);
+      transition: all 0.3s ease;
+    }
+    .pricing-toggle-btn.active {
+      background: var(--gradient-primary);
+      color: white;
+      box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+    }
+    .pricing-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border);
+      border-radius: 1.5rem;
+      padding: 2.5rem;
+      transition: all 0.4s ease;
+      position: relative;
+    }
+    .pricing-card.featured {
+      border-color: rgba(99, 102, 241, 0.4);
+      box-shadow: 0 0 60px rgba(99, 102, 241, 0.15);
+    }
+    .pricing-card.featured::before {
+      content: ''; position: absolute; inset: -1px;
+      border-radius: inherit; padding: 1px;
+      background: var(--gradient-primary);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+    }
+    .pricing-card:hover { transform: translateY(-6px); }
+    .pricing-price {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 3rem; font-weight: 800;
+    }
+    .pricing-feature {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.625rem 0; font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+    .pricing-check { color: var(--accent-emerald); font-size: 1.1rem; }
+
+    /* ============================
+       FAQ
+    ============================ */
+    .faq-item {
+      border-bottom: 1px solid var(--glass-border);
+      padding: 1.5rem 0;
+    }
+    .faq-question {
+      display: flex; justify-content: space-between;
+      align-items: center; width: 100%;
+      font-size: 1.05rem; font-weight: 600;
+      color: var(--text-primary);
+      text-align: left;
+      transition: color 0.3s ease;
+    }
+    .faq-question:hover { color: var(--accent-blue); }
+    .faq-icon {
+      font-size: 1.5rem; transition: transform 0.3s ease;
+      color: var(--accent-blue); flex-shrink: 0;
+    }
+    .faq-answer {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s ease;
+      color: var(--text-secondary); font-size: 0.95rem;
+      line-height: 1.7;
+    }
+    .faq-item.active .faq-answer {
+      max-height: 300px; padding-top: 1rem;
+    }
+    .faq-item.active .faq-icon { transform: rotate(45deg); }
+
+    /* ============================
+       CTA SECTION
+    ============================ */
+    .cta-glow {
+      position: absolute; width: 600px; height: 600px;
+      border-radius: 50%; filter: blur(160px);
+      background: var(--accent-blue);
+      opacity: 0.08; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    /* ============================
+       CONTACT FORM
+    ============================ */
+    .form-input {
+      width: 100%; padding: 1rem 1.25rem;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 0.75rem;
+      color: var(--text-primary);
+      font-size: 0.95rem; font-family: inherit;
+      transition: all 0.3s ease;
+      outline: none;
+    }
+    .form-input:focus {
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+    .form-input::placeholder { color: var(--text-muted); }
+    textarea.form-input { resize: vertical; min-height: 120px; }
+
+    /* ============================
+       FOOTER
+    ============================ */
+    .footer-link {
+      font-size: 0.875rem; color: var(--text-muted);
+      transition: color 0.3s ease;
+    }
+    .footer-link:hover { color: var(--text-primary); }
+    .social-icon {
+      width: 40px; height: 40px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid var(--glass-border);
+      color: var(--text-muted);
+      transition: all 0.3s ease;
+    }
+    .social-icon:hover {
+      border-color: var(--accent-blue);
+      color: var(--accent-blue);
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+      transform: translateY(-2px);
+    }
+
+    /* ============================
+       BACK TO TOP
+    ============================ */
+    .back-to-top {
+      position: fixed; bottom: 2rem; right: 2rem;
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--gradient-primary);
+      color: white; display: flex;
+      align-items: center; justify-content: center;
+      z-index: 100; opacity: 0; visibility: hidden;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+      box-shadow: 0 0 30px rgba(99, 102, 241, 0.3);
+    }
+    .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+    .back-to-top:hover { transform: translateY(-3px); box-shadow: 0 0 50px rgba(99, 102, 241, 0.5); }
+
+    /* ============================
+       SEARCH OVERLAY
+    ============================ */
+    .search-overlay {
+      position: fixed; inset: 0; z-index: 2000;
+      background: rgba(10, 10, 26, 0.95);
+      backdrop-filter: blur(30px);
+      display: flex; align-items: flex-start;
+      justify-content: center; padding-top: 20vh;
+      opacity: 0; visibility: hidden;
+      transition: all 0.4s ease;
+    }
+    .search-overlay.active { opacity: 1; visibility: visible; }
+    .search-input {
+      width: 100%; max-width: 600px;
+      padding: 1.25rem 1.5rem;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 1rem;
+      color: var(--text-primary);
+      font-size: 1.25rem; font-family: inherit;
+      outline: none;
+    }
+    .search-input:focus { border-color: var(--accent-blue); }
+
+    /* ============================
+       COOKIE BANNER
+    ============================ */
+    .cookie-banner {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      z-index: 1500;
+      background: rgba(10, 10, 26, 0.95);
+      backdrop-filter: blur(20px);
+      border-top: 1px solid var(--glass-border);
+      padding: 1.25rem 2rem;
+      transform: translateY(100%);
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .cookie-banner.visible { transform: translateY(0); }
+
+    /* ============================
+       DARK/LIGHT TOGGLE
+    ============================ */
+    .theme-toggle {
+      width: 44px; height: 24px; border-radius: 12px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      position: relative; transition: background 0.3s ease;
+    }
+    .theme-toggle::after {
+      content: ''; position: absolute;
+      width: 18px; height: 18px; border-radius: 50%;
+      background: var(--gradient-primary);
+      top: 2px; left: 2px;
+      transition: transform 0.3s ease;
+    }
+    html.light .theme-toggle::after { transform: translateX(20px); }
+
+    /* ============================
+       3D CANVAS SECTION
+    ============================ */
+    #three-canvas-section {
+      position: relative; width: 100%;
+      height: 600px; overflow: hidden;
+    }
+    #three-canvas-main {
+      width: 100%; height: 100%;
+    }
+
+    /* ============================
+       RESPONSIVE
+    ============================ */
+    @media (max-width: 768px) {
+      .hero-stats { gap: 1.5rem; }
+      .section-container { padding: 4rem 1rem; }
+      .timeline-line { left: 2rem; }
+      .timeline-dot { left: 2rem; }
+      .hero-title { font-size: 2.5rem; }
+      .pricing-card { padding: 1.5rem; }
+      .cursor-dot, .cursor-ring { display: none; }
+      body { cursor: auto; }
+      a, button { cursor: pointer; }
+    }
+    @media (max-width: 480px) {
+      .hero-title { font-size: 2rem; }
+      .hero-stats { flex-direction: column; gap: 1rem; }
+    }
+
+    /* ============================
+       TILT CARD
+    ============================ */
+    .tilt-card { transform-style: preserve-3d; perspective: 1000px; }
+    .tilt-card-inner {
+      transition: transform 0.15s ease-out;
+      transform-style: preserve-3d;
+    }
+
+    /* ============================
+       GLOW BORDER ON HOVER
+    ============================ */
+    .glow-border {
+      position: relative;
+    }
+    .glow-border::after {
+      content: ''; position: absolute; inset: -1px;
+      border-radius: inherit; padding: 1px;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple), var(--accent-cyan));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0; transition: opacity 0.4s ease;
+    }
+    .glow-border:hover::after { opacity: 1; }
+
+    /* ============================
+       PROGRESS BAR
+    ============================ */
+    .scroll-progress {
+      position: fixed; top: 0; left: 0;
+      height: 3px; z-index: 10000;
+      background: var(--gradient-primary);
+      transform-origin: left;
+      transform: scaleX(0);
+    }
+
+    /* ============================
+       RIPPLE EFFECT
+    ============================ */
+    .ripple {
+      position: absolute; border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(0);
+      animation: rippleAnim 0.6s ease-out;
+      pointer-events: none;
+    }
+    @keyframes rippleAnim {
+      to { transform: scale(4); opacity: 0; }
+    }
+
+    /* ============================
+       PAGE TRANSITION
+    ============================ */
+    .page-transition {
+      position: fixed; inset: 0; z-index: 9999;
+      background: var(--bg-primary);
+      transform: scaleY(0); transform-origin: bottom;
+    }
+  </style>
+</head>
+<body>
+  <!-- ============================
+       LOADING SCREEN
+  ============================ -->
+  <div id="loading-screen">
+    <div class="loader-ring"></div>
+    <div class="loader-text">Quantum</div>
+  </div>
+
+  <!-- ============================
+       PAGE TRANSITION
+  ============================ -->
+  <div class="page-transition" id="page-transition"></div>
+
+  <!-- ============================
+       ANIMATED BACKGROUND
+  ============================ -->
+  <div class="animated-gradient-bg"></div>
+  <div class="noise-overlay"></div>
+
+  <!-- ============================
+       SCROLL PROGRESS BAR
+  ============================ -->
+  <div class="scroll-progress" id="scroll-progress"></div>
+
+  <!-- ============================
+       CUSTOM CURSOR
+  ============================ -->
+  <div class="cursor-dot" id="cursor-dot"></div>
+  <div class="cursor-ring" id="cursor-ring"></div>
+
+  <!-- ============================
+       SEARCH OVERLAY
+  ============================ -->
+  <div class="search-overlay" id="search-overlay">
+    <div style="width: 100%; max-width: 600px; padding: 0 1.5rem;">
+      <input type="text" class="search-input" placeholder="Search Quantum..." id="search-input">
+      <p style="text-align: center; color: var(--text-muted); font-size: 0.8rem; margin-top: 1rem;">Press ESC to close</p>
+    </div>
+  </div>
+
+  <!-- ============================
+       COOKIE BANNER
+  ============================ -->
+  <div class="cookie-banner" id="cookie-banner">
+    <div style="max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+      <p style="font-size: 0.875rem; color: var(--text-secondary); flex: 1;">
+        🍪 We use cookies to enhance your experience. By continuing, you agree to our
+        <a href="#privacy" style="color: var(--accent-blue); text-decoration: underline;">Privacy Policy</a>.
+      </p>
+      <div style="display: flex; gap: 0.75rem;">
+        <button onclick="closeCookieBanner()" class="magnetic-btn magnetic-btn-outline" style="padding: 0.5rem 1.25rem; font-size: 0.85rem;">
+          <span>Decline</span>
+        </button>
+        <button onclick="closeCookieBanner()" class="magnetic-btn magnetic-btn-primary" style="padding: 0.5rem 1.25rem; font-size: 0.85rem;">
+          <span>Accept All</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================
+       BACK TO TOP
+  ============================ -->
+  <button class="back-to-top" id="back-to-top" onclick="lenis.scrollTo(0)">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+  </button>
+
+  <!-- ============================
+       NAVBAR
+  ============================ -->
+  <nav class="navbar" id="navbar">
+    <div style="max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between;">
+      <!-- Logo -->
+      <a href="#hero" style="display: flex; align-items: center; gap: 0.75rem;">
+        <div style="width: 36px; height: 36px; border-radius: 10px; background: var(--gradient-primary); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; font-weight: 800; color: white; font-family: 'Space Grotesk', sans-serif;">Q</div>
+        <span style="font-family: 'Space Grotesk', sans-serif; font-size: 1.25rem; font-weight: 700;">Quantum</span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <div style="display: flex; align-items: center; gap: 2rem;" class="nav-desktop">
+        <a href="#features" class="nav-link magnetic" data-hover>Features</a>
+        <a href="#product" class="nav-link magnetic" data-hover>Product</a>
+        <a href="#pricing" class="nav-link magnetic" data-hover>Pricing</a>
+        <a href="#testimonials" class="nav-link magnetic" data-hover>Reviews</a>
+        <a href="#contact" class="nav-link magnetic" data-hover>Contact</a>
+      </div>
+
+      <!-- Right Actions -->
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <!-- Search -->
+        <button onclick="toggleSearch()" class="magnetic" data-hover style="width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); transition: color 0.3s;" onmouseover="this.style.color='var(--text-primary)'" onmouseout="this.style.color='var(--text-secondary)'">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        </button>
+
+        <!-- Theme Toggle -->
+        <button class="theme-toggle" onclick="toggleTheme()" data-hover aria-label="Toggle dark/light mode"></button>
+
+        <!-- Login -->
+        <a href="#login" class="nav-link magnetic nav-desktop" data-hover style="font-size: 0.875rem;">Log in</a>
+
+        <!-- CTA Button -->
+        <a href="#pricing" class="magnetic-btn magnetic-btn-primary magnetic nav-desktop" data-hover style="padding: 0.625rem 1.5rem; font-size: 0.85rem;">
+          <span>Get Started Free</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="mobile-toggle" onclick="toggleMobileMenu()" class="magnetic" data-hover style="display: none; flex-direction: column; gap: 5px; padding: 8px;">
+          <span id="hamburger-1" style="width: 22px; height: 2px; background: var(--text-primary); border-radius: 2px; transition: all 0.3s ease;"></span>
+          <span id="hamburger-2" style="width: 22px; height: 2px; background: var(--text-primary); border-radius: 2px; transition: all 0.3s ease;"></span>
+          <span id="hamburger-3" style="width: 16px; height: 2px; background: var(--text-primary); border-radius: 2px; transition: all 0.3s ease;"></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <button onclick="toggleMobileMenu()" style="position: absolute; top: 1.5rem; right: 1.5rem; color: var(--text-primary); font-size: 2rem;" aria-label="Close menu">✕</button>
+    <a href="#hero" onclick="toggleMobileMenu()">Home</a>
+    <a href="#features" onclick="toggleMobileMenu()">Features</a>
+    <a href="#product" onclick="toggleMobileMenu()">Product</a>
+    <a href="#pricing" onclick="toggleMobileMenu()">Pricing</a>
+    <a href="#testimonials" onclick="toggleMobileMenu()">Reviews</a>
+    <a href="#contact" onclick="toggleMobileMenu()">Contact</a>
+    <div style="margin-top: 1rem; display: flex; flex-direction: column; gap: 1rem; align-items: center;">
+      <a href="#login" onclick="toggleMobileMenu()" style="color: var(--text-secondary); font-size: 1rem;">Log in</a>
+      <a href="#pricing" onclick="toggleMobileMenu()" class="magnetic-btn magnetic-btn-primary" style="font-size: 1rem;"><span>Get Started Free</span></a>
+    </div>
+  </div>
+
+  <!-- ============================
+       HERO SECTION
+  ============================ -->
+  <section class="hero-section" id="hero">
+    <!-- Three.js Canvas for 3D background -->
+    <canvas id="hero-canvas"></canvas>
+
+    <!-- Aurora / Glow orbs -->
+    <div class="aurora-orb" style="width: 600px; height: 600px; background: var(--accent-blue); top: -10%; right: -10%;"></div>
+    <div class="aurora-orb" style="width: 500px; height: 500px; background: var(--accent-purple); bottom: -10%; left: -10%;"></div>
+    <div class="aurora-orb" style="width: 300px; height: 300px; background: var(--accent-cyan); top: 40%; left: 30%;"></div>
+
+    <div class="section-container" style="padding-top: 8rem; padding-bottom: 8rem;">
+      <div class="hero-content" style="max-width: 1280px; margin: 0 auto;">
+        <!-- Badge -->
+        <div class="hero-badge" id="hero-badge">
+          <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-emerald); animation: pulse 2s infinite;"></span>
+          <span>v2.0 is here — Now with AI-powered workflows</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </div>
+
+        <!-- Title -->
+        <h1 class="hero-title" id="hero-title">
+          Build the future<br>
+          with <span class="gradient-text">Quantum</span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="hero-subtitle" id="hero-subtitle">
+          The intelligent SaaS platform that transforms how teams collaborate, automate, and scale. Powered by AI, designed for the future of work.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;" id="hero-cta">
+          <a href="#pricing" class="magnetic-btn magnetic-btn-primary magnetic" data-hover>
+            <span>Start Free Trial</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+          <a href="#product" class="magnetic-btn magnetic-btn-outline magnetic" data-hover>
+            <span>Watch Demo</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </a>
+        </div>
+
+        <!-- Stats -->
+        <div class="hero-stats" id="hero-stats">
+          <div>
+            <div class="hero-stat-value gradient-text">10K+</div>
+            <div class="hero-stat-label">Active Teams</div>
+          </div>
+          <div>
+            <div class="hero-stat-value gradient-text-accent">99.9%</div>
+            <div class="hero-stat-label">Uptime SLA</div>
+          </div>
+          <div>
+            <div class="hero-stat-value" style="color: var(--accent-emerald);">4.9/5</div>
+            <div class="hero-stat-label">User Rating</div>
+          </div>
+          <div>
+            <div class="hero-stat-value" style="color: var(--accent-gold);">50M+</div>
+            <div class="hero-stat-label">Tasks Automated</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator">
+      <span>Scroll</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+    </div>
+  </section>
+
+  <!-- ============================
+       TRUSTED COMPANIES
+  ============================ -->
+  <section style="position: relative; z-index: 1; padding: 3rem 0; border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border); overflow: hidden;">
+    <p style="text-align: center; font-size: 0.8rem; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 2rem;">Trusted by industry leaders worldwide</p>
+    <div style="overflow: hidden; mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);">
+      <div class="logo-track" id="logo-track">
+        <span class="logo-item">Google</span>
+        <span class="logo-item">Microsoft</span>
+        <span class="logo-item">Amazon</span>
+        <span class="logo-item">Netflix</span>
+        <span class="logo-item">Spotify</span>
+        <span class="logo-item">Slack</span>
+        <span class="logo-item">Notion</span>
+        <span class="logo-item">Figma</span>
+        <span class="logo-item">Vercel</span>
+        <span class="logo-item">Linear</span>
+        <span class="logo-item">Stripe</span>
+        <span class="logo-item">GitHub</span>
+        <!-- Duplicate for seamless loop -->
+        <span class="logo-item">Google</span>
+        <span class="logo-item">Microsoft</span>
+        <span class="logo-item">Amazon</span>
+        <span class="logo-item">Netflix</span>
+        <span class="logo-item">Spotify</span>
+        <span class="logo-item">Slack</span>
+        <span class="logo-item">Notion</span>
+        <span class="logo-item">Figma</span>
+        <span class="logo-item">Vercel</span>
+        <span class="logo-item">Linear</span>
+        <span class="logo-item">Stripe</span>
+        <span class="logo-item">GitHub</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       FEATURES
+  ============================ -->
+  <section id="features" style="position: relative; z-index: 1;">
+    <div class="section-container">
+      <div class="section-header" data-animate="fade-up">
+        <span class="section-label">✨ Features</span>
+        <h2 class="section-title">Everything you need to<br><span class="gradient-text">scale your business</span></h2>
+        <p class="section-desc">Powerful tools designed for modern teams. From AI automation to real-time collaboration, Quantum has it all.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;" id="features-grid">
+        <!-- Feature 1 -->
+        <div class="glass-card glow-border tilt-card" data-animate="fade-up" data-delay="0">
+          <div style="padding: 2rem;">
+            <div class="feature-icon">🤖</div>
+            <h3 class="feature-title">AI-Powered Automation</h3>
+            <p class="feature-desc">Intelligent workflows that learn from your team's patterns and automate repetitive tasks effortlessly.</p>
+          </div>
+        </div>
+        <!-- Feature 2 -->
+        <div class="glass-card glow-border tilt-card" data-animate="fade-up" data-delay="100">
+          <div style="padding: 2rem;">
+            <div class="feature-icon" style="background: linear-gradient(135deg, #06B6D4, #3B82F6);">⚡</div>
+            <h3 class="feature-title">Real-Time Collaboration</h3>
+            <p class="feature-desc">Work together seamlessly with live editing, instant sync, and zero latency across global teams.</p>
+          </div>
+        </div>
+        <!-- Feature 3 -->
+        <div class="glass-card glow-border tilt-card" data-animate="fade-up" data-delay="200">
+          <div style="padding: 2rem;">
+            <div class="feature-icon" style="background: linear-gradient(135deg, #10B981, #06B6D4);">📊</div>
+            <h3 class="feature-title">Advanced Analytics</h3>
+            <p class="feature-desc">Deep insights with real-time dashboards, custom reports, and predictive analytics powered by ML.</p>
+          </div>
+        </div>
+        <!-- Feature 4 -->
+        <div class="glass-card glow-border tilt-card" data-animate="fade-up" data-delay="300">
+          <div style="padding: 2rem;">
+            <div class="feature-icon" style="background: linear-gradient(135deg, #F59E0B, #EC4899);">🛡️</div>
+            <h3 class="feature-title">Enterprise Security</h3>
+            <p class="feature-desc">Bank-grade encryption, SSO, 2FA, SOC 2 compliance, and granular role-based access control.</p>
+          </div>
+        </div>
+        <!-- Feature 5 -->
+        <div class="glass-card glow-border tilt-card" data-animate="fade-up" data-delay="400">
+          <div style="padding: 2rem;">
+            <div class="feature-icon" style="background: linear-gradient(135deg, #8B5CF6, #EC4899);">🔌</div>
+            <h3 class="feature-title">200+ Integrations</h3>
+            <p class="feature-desc">Connect with every tool your team uses. Slack, GitHub, Jira, Figma, and hundreds more.</p>
+          </div>
+        </div>
+        <!-- Feature 6 -->
+        <div class="glass-card glow-border tilt-card" data-animate="fade-up" data-delay="500">
+          <div style="padding: 2rem;">
+            <div class="feature-icon" style="background: linear-gradient(135deg, #3B82F6, #10B981);">🌍</div>
+            <h3 class="feature-title">Global Infrastructure</h3>
+            <p class="feature-desc">Deployed across 40+ regions with edge computing, ensuring blazing fast performance everywhere.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       PRODUCT SHOWCASE (Video)
+  ============================ -->
+  <section id="product" style="position: relative; z-index: 1;">
+    <div class="section-container">
+      <div class="section-header" data-animate="fade-up">
+        <span class="section-label">🚀 Product</span>
+        <h2 class="section-title">See Quantum <span class="gradient-text">in action</span></h2>
+        <p class="section-desc">Experience the future of team productivity. Watch how Quantum transforms your workflow.</p>
+      </div>
+
+      <div class="video-wrapper" data-animate="scale-in" id="video-showcase">
+        <video id="product-video" muted loop playsinline preload="none" poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1920' height='1080' viewBox='0 0 1920 1080'%3E%3Crect fill='%230A0A1A' width='1920' height='1080'/%3E%3Ctext x='960' y='540' text-anchor='middle' dominant-baseline='central' fill='%236366F1' font-family='system-ui' font-size='48' font-weight='700'%3EQuantum Dashboard%3C/text%3E%3C/svg%3E">
+          <!-- Placeholder: use a real video URL in production -->
+        </video>
+        <!-- Play button overlay -->
+        <div id="video-play-btn" style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(10,10,26,0.4); cursor: pointer;" onclick="toggleVideo()">
+          <div style="width: 80px; height: 80px; border-radius: 50%; background: var(--gradient-primary); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 40px rgba(99, 102, 241, 0.4); transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       HOW IT WORKS / TIMELINE
+  ============================ -->
+  <section id="how-it-works" style="position: relative; z-index: 1;">
+    <div class="section-container">
+      <div class="section-header" data-animate="fade-up">
+        <span class="section-label">⚙️ How It Works</span>
+        <h2 class="section-title">Up and running in<br><span class="gradient-text">four simple steps</span></h2>
+        <p class="section-desc">Get your entire team onboarded and productive in minutes, not months.</p>
+      </div>
+
+      <div style="position: relative; max-width: 900px; margin: 0 auto;">
+        <div class="timeline-line" id="timeline-line"></div>
+
+        <!-- Step 1 -->
+        <div class="timeline-item" data-animate="fade-left">
+          <div class="timeline-dot"></div>
+          <div style="width: 45%; padding-right: 3rem; text-align: right;">
+            <div class="glass-card" style="padding: 1.5rem; display: inline-block; text-align: left; max-width: 100%;">
+              <span style="font-size: 0.75rem; font-weight: 700; color: var(--accent-blue); letter-spacing: 0.1em; text-transform: uppercase;">Step 01</span>
+              <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; font-weight: 700; margin: 0.5rem 0;">Sign Up & Connect</h3>
+              <p style="font-size: 0.875rem; color: var(--text-secondary); line-height: 1.6;">Create your account in 30 seconds. Connect your existing tools with one-click integrations.</p>
+            </div>
+          </div>
+          <div style="width: 45%;"></div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="timeline-item" data-animate="fade-right">
+          <div class="timeline-dot"></div>
+          <div style="width: 45%;"></div>
+          <div style="width: 45%; padding-left: 3rem;">
+            <div class="glass-card" style="padding: 1.5rem; max-width: 100%;">
+              <span style="font-size: 0.75rem; font-weight: 700; color: var(--accent-purple); letter-spacing: 0.1em; text-transform: uppercase;">Step 02</span>
+              <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; font-weight: 700; margin: 0.5rem 0;">Configure Workflows</h3>
+              <p style="font-size: 0.875rem; color: var(--text-secondary); line-height: 1.6;">Use AI-suggested templates or build custom workflows tailored to your team's needs.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="timeline-item" data-animate="fade-left">
+          <div class="timeline-dot"></div>
+          <div style="width: 45%; padding-right: 3rem; text-align: right;">
+            <div class="glass-card" style="padding: 1.5rem; display: inline-block; text-align: left; max-width: 100%;">
+              <span style="font-size: 0.75rem; font-weight: 700; color: var(--accent-cyan); letter-spacing: 0.1em; text-transform: uppercase;">Step 03</span>
+              <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; font-weight: 700; margin: 0.5rem 0;">Invite Your Team</h3>
+              <p style="font-size: 0.875rem; color: var(--text-secondary); line-height: 1.6;">Send invites via email or link. Everyone gets a personalized onboarding experience.</p>
+            </div>
+          </div>
+          <div style="width: 45%;"></div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="timeline-item" data-animate="fade-right">
+          <div class="timeline-dot"></div>
+          <div style="width: 45%;"></div>
+          <div style="width: 45%; padding-left: 3rem;">
+            <div class="glass-card" style="padding: 1.5rem; max-width: 100%;">
+              <span style="font-size: 0.75rem; font-weight: 700; color: var(--accent-emerald); letter-spacing: 0.1em; text-transform: uppercase;">Step 04</span>
+              <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; font-weight: 700; margin: 0.5rem 0;">Scale & Optimize</h3>
+              <p style="font-size: 0.875rem; color: var(--text-secondary); line-height: 1.6;">Let AI optimize your processes. Watch productivity soar with real-time analytics and insights.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       3D INTERACTIVE SECTION
+  ============================ -->
+  <section id="three-section" style="position: relative; z-index: 1; overflow: hidden;">
+    <div class="section-container">
+      <div class="section-header" data-animate="fade-up">
+        <span class="section-label">🌐 Technology</span>
+        <h2 class="section-title">Built with <span class="gradient-text">cutting-edge tech</span></h2>
+        <p class="section-desc">Our platform leverages the latest in AI, distributed systems, and cloud infrastructure.</p>
+      </div>
+    </div>
+    <canvas id="three-canvas-main" style="width: 100%; height: 500px; display: block;"></canvas>
+  </section>
+
+  <!-- ============================
+       STATISTICS
+  ============================ -->
+  <section id="stats" style="position: relative; z-index: 1;">
+    <div class="aurora-orb" style="width: 400px; height: 400px; background: var(--accent-purple); top: 0; left: 50%; transform: translateX(-50%);"></div>
+    <div class="section-container">
+      <div class="section-header" data-animate="fade-up">
+        <span class="section-label">📈 By the Numbers</span>
+        <h2 class="section-title">Results that <span class="gradient-text">speak volumes</span></h2>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem;" id="stats-grid">
+        <div class="glass-card" style="padding: 2rem; text-align: center;" data-animate="fade-up" data-delay="0">
+          <div class="stat-number gradient-text" data-count="10000">0</div>
+          <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.5rem;">Active Teams</p>
+        </div>
+        <div class="glass-card" style="padding: 2rem; text-align: center;" data-animate="fade-up" data-delay="100">
+          <div class="stat-number gradient-text-accent" data-count="99.9">0</div>
+          <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.5rem;">% Uptime</p>
+        </div>
+        <div class="glass-card" style="padding: 2rem; text-align: center;" data-animate="fade-up" data-delay="200">
+          <div class="stat-number" style="color: var(--accent-emerald);" data-count="50">0</div>
+          <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.5rem;">M+ Tasks Automated</p>
+        </div>
+        <div class="glass-card" style="padding: 2rem; text-align: center;" data-animate="fade-up" data-delay="300">
+          <div class="stat-number" style="color: var(--accent-gold);" data-count="150">0</div>
+          <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.5rem;">+ Integrations</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       TESTIMONIALS
+  ============================ -->
+  <section id="testimonials" style="position: relative; z-index: 1;">
+    <div class="section-container">
+      <div class="section-header" data-animate="fade-up">
+        <span class="section-label">💬 Testimonials</span>
+        <h2 class="section-title">Loved by <span class="gradient-text">thousands of teams</span></h2>
+        <p class="section-desc">Don't take our word for it. Here's what our customers have to say.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.5rem;" id="testimonials-grid">
+        <!-- Testimonial 1 -->
+        <div class="testimonial-card" data-animate="fade-up" data-delay="0">
+          <div class="stars">★★★★★</div>
+          <p style="font-size: 0.95rem; line-height: 1.7; color: var(--text-secondary); margin: 1rem 0;">"Quantum completely transformed our engineering workflow. We've cut sprint planning time by 60% and our team velocity has never been higher."</p>
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-top: 1.5rem;">
+            <div class="testimonial-avatar">SK</div>
+            <div>
+              <div style="font-weight: 600; font-size: 0.9rem;">Sarah Kim</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">VP of Engineering, TechCorp</div>
+            </div>
+          </div>
+        </div>
+        <!-- Testimonial 2 -->
+        <div class="testimonial-card" data-animate="fade-up" data-delay="100">
+          <div class="stars">★★★★★</div>
+          <p style="font-size: 0.95rem; line-height: 1.7; color: var(--text-secondary); margin: 1rem 0;">"The AI automation alone saved us 200+ hours per month. It's like having an extra team member who never sleeps. Absolutely incredible product."</p>
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-top: 1.5rem;">
+            <div class="testimonial-avatar" style="background: linear-gradient(135deg, #06B6D4, #3B82F6);">MR</div>
+            <div>
+              <div style="font-weight: 600; font-size: 0.9rem;">Marcus Rodriguez</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">CEO, StartupXYZ</div>
+            </div>
+          </div>
+        </div>
+        <!-- Testimonial 3 -->
+        <div class="testimonial-card" data-animate="fade-up" data-delay="200">
+          <div class="stars">★★★★★</div>
+          <p style="font-size: 0.95rem; line-height: 1.7; color: var(--text-secondary); margin: 1rem 0;">"We evaluated 12 different platforms. Quantum was the only one that checked every box. The real-time collaboration features are unmatched."</p>
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-top: 1.5rem;">
+            <div class="testimonial-avatar" style="background: linear-gradient(135deg, #F59E0B, #EC4899);">EP</div>
+            <div>
+              <div style="font-weight: 600; font-size: 0.9rem;">Elena Petrov</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">Head of Ops, ScaleUp Inc</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       PRICING
+  ============================ -->
+  <section id="pricing" style="position: relative; z-index: 1;">
+    <div class="section-container">
+      <div class="section-header" data-animate="fade-up">
+        <span class="section-label">💎 Pricing</span>
+        <h2 class="section-title">Simple, transparent <span class="gradient-text">pricing</span></h2>
+        <p class="section-desc">No hidden fees. No surprises. Choose the plan that fits your team.</p>
+
+        <!-- Pricing Toggle -->
+        <div style="display: flex; justify-content: center; margin-top: 2rem;">
+          <div class="pricing-toggle">
+            <button class="pricing-toggle-btn active" id="monthly-btn" onclick="togglePricing('monthly')">Monthly</button>
+            <button class="pricing-toggle-btn" id="annual-btn" onclick="togglePricing('annual')">Annual <span style="color: var(--accent-emerald); font-size: 0.75rem; font-weight: 700;">-20%</span></button>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; max-width: 1000px; margin: 0 auto;" id="pricing-grid">
+        <!-- Starter -->
+        <div class="pricing-card" data-animate="fade-up" data-delay="0">
+          <div style="margin-bottom: 1.5rem;">
+            <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 600;">Starter</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">Perfect for small teams</p>
+          </div>
+          <div style="margin-bottom: 1.5rem;">
+            <span class="pricing-price" id="price-starter">$29</span>
+            <span style="color: var(--text-muted); font-size: 0.9rem;">/month</span>
+          </div>
+          <a href="#register" class="magnetic-btn magnetic-btn-outline magnetic" data-hover style="width: 100%; justify-content: center; margin-bottom: 1.5rem;">
+            <span>Get Started</span>
+          </a>
+          <div>
+            <div class="pricing-feature"><span class="pricing-check">✓</span> Up to 10 team members</div>
+            <div class="pricing-feature"><span class="pricing-check">✓</span> 5 GB storage</div>
+            <div class="pricing-feature"><span class="pricing-check">✓</span> Basic analytics</div>
+            <div class="pricing-feature"><span class="pricing-check">✓</span> 20+ integrations</div>
+            <div class="pricing-feature"><span class="pricing-check">✓</span> Email support</div>
+          </div>
+        </div>
+
+        <!-- Pro (Featured) -->
+        <div class="pricing-card featured" data-animate="fade-up" data-delay="100">
+          <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); padding: 0.3rem 1rem; border-radius: 9999px; background: var(--gradient-primary); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;">Most Popular</div>
+          <div style="margin-bottom: 1.5rem;">
+            <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 600;">Professional</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">For growing teams</p>
+          </div>
+          <div style="margin-bottom: 1.5rem;">
+            <span class="pricing-price gradient-text" id="price-pro">$79</span>
+            <span style="color: var(--text-muted); font-size: 0.9rem;">/month</span>
+          </div>
+          <a href="#register" class="magnetic-btn magnetic-btn-primary magnetic" data-hover style="width: 100%; justify-content: center; margin-bottom: 1.5rem;">
+            <span>Get Started</span>
+          </a>
+          <div>
+            <div class="pricing-feature"><span class="pricing-check">✓</span> Up to 50 team members</div>
+            <div class="pricing-feature"><span class="pricing-check">✓</span> 100 GB storage</div>
+            <div class="pricing-feature"><span class="pricing-check">✓</span> Advanced analytics & AI</div>
+            <div class="pricing-feature"><span class="pricing-check">✓</span> 100+ integrations</div>
+            <div class="pricing-feature"><span class="pricing-check">✓</span> Priority support</div>
+            <div class="pricing-feature"><span class="pricing-check">✓</span> Custom workflows</div>
+          </div>
+        </div>
+
+        <!-- Enterprise -->
+        <div class="pricing-card" data-animate="fade-up" data-delay="200">
+          <div style="margin-bottom: 1.5rem;">
+            <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 600;">Enterprise</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">For large organizations</p>
+          </div>
+          <div style="margin-bottom: 1.5rem;">
+            <span class="pricing-price" id="price-enterprise">$199</span>
+            <span style="color: var(--text-muted); font-size: 0.9rem;">/month</span>
+          </div>
+          <a href="#contact" class="magnetic-btn magnetic-btn-outline magnetic" data-hover style="width: 100%; justify-content: center; margin-bottom: 1.5rem;">
+            <span>Contact Sales</span>
+          </a>
+          <div>
+            <div class="pricing-feature"><span class="pricing-check">✓</span> Unlimited team members</div>
+            <div class="pricing-feature"><span class="pricing-check">✓</span> Unlimited storage</div>
+            <div class="pricing-feature"><span class="pricing-check">✓</span> Full AI suite</div>
+            <div class="pricing-feature"><span class="pricing-check">✓</span> 200+ integrations</div>
+            <div class="pricing-feature"><span class="pricing-check">✓</span> 24/7 dedicated support</div>
+            <div class="pricing-feature"><span class="pricing-check">✓</span> SSO, SAML & audit logs</div>
+            <div class="pricing-feature"><span class="pricing-check">✓</span> Custom SLA</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       FAQ
+  ============================ -->
+  <section id="faq" style="position: relative; z-index: 1;">
+    <div class="section-container">
+      <div class="section-header" data-animate="fade-up">
+        <span class="section-label">❓ FAQ</span>
+        <h2 class="section-title">Frequently asked <span class="gradient-text">questions</span></h2>
+        <p class="section-desc">Everything you need to know about Quantum.</p>
+      </div>
+
+      <div style="max-width: 700px; margin: 0 auto;" id="faq-list">
+        <div class="faq-item" data-animate="fade-up">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>How does the free trial work?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Start your 14-day free trial with full access to all Professional features. No credit card required. Simply sign up, connect your tools, and start experiencing the Quantum difference.</p>
+          </div>
+        </div>
+        <div class="faq-item" data-animate="fade-up">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>Can I switch plans at any time?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Absolutely. Upgrade or downgrade your plan at any time from your dashboard. Changes take effect immediately, and we'll prorate any payments.</p>
+          </div>
+        </div>
+        <div class="faq-item" data-animate="fade-up">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>Is my data secure?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Security is our top priority. We use AES-256 encryption at rest, TLS 1.3 in transit, and are SOC 2 Type II certified. Your data is hosted on AWS with 99.99% uptime SLA.</p>
+          </div>
+        </div>
+        <div class="faq-item" data-animate="fade-up">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>What integrations do you support?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>We support 200+ integrations including Slack, GitHub, Jira, Figma, Google Workspace, Microsoft 365, Salesforce, HubSpot, and many more. We also offer a REST API for custom integrations.</p>
+          </div>
+        </div>
+        <div class="faq-item" data-animate="fade-up">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>Do you offer enterprise support?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes, Enterprise customers get a dedicated account manager, 24/7 priority support, custom onboarding, SLA guarantees, and access to our premium professional services team.</p>
+          </div>
+        </div>
+        <div class="faq-item" data-animate="fade-up">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>Can I cancel my subscription?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes, you can cancel at any time from your account settings. Your subscription will remain active until the end of your current billing period. No cancellation fees.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       CTA / NEWSLETTER
+  ============================ -->
+  <section id="cta" style="position: relative; z-index: 1; overflow: hidden;">
+    <div class="section-container">
+      <div class="cta-glow"></div>
+      <div style="position: relative; max-width: 800px; margin: 0 auto; text-align: center;" data-animate="fade-up">
+        <span class="section-label">🚀 Get Started</span>
+        <h2 class="section-title" style="font-size: clamp(2rem, 4.5vw, 3.5rem);">Ready to transform<br>your <span class="gradient-text">workflow?</span></h2>
+        <p class="section-desc" style="margin-bottom: 2.5rem;">Join 10,000+ teams already using Quantum. Start your free trial today.</p>
+
+        <!-- Newsletter Form -->
+        <form id="newsletter-form" onsubmit="handleNewsletter(event)" style="display: flex; gap: 0.75rem; max-width: 480px; margin: 0 auto; flex-wrap: wrap; justify-content: center;">
+          <input type="email" placeholder="Enter your email" required class="form-input" style="flex: 1; min-width: 250px;">
+          <button type="submit" class="magnetic-btn magnetic-btn-primary magnetic" data-hover>
+            <span>Subscribe</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </button>
+        </form>
+        <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 1rem;">Free 14-day trial · No credit card required</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       CONTACT
+  ============================ -->
+  <section id="contact" style="position: relative; z-index: 1;">
+    <div class="section-container">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;" id="contact-grid">
+        <div data-animate="fade-right">
+          <span class="section-label">📬 Contact</span>
+          <h2 class="section-title">Let's start a<br><span class="gradient-text">conversation</span></h2>
+          <p class="section-desc" style="margin-bottom: 2rem;">Have a question or want to learn more? We'd love to hear from you.</p>
+
+          <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(59, 130, 246, 0.1); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">📧</div>
+              <div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">Email</div>
+                <div style="font-weight: 500; font-size: 0.95rem;">hello@quantum.app</div>
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(139, 92, 246, 0.1); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">📍</div>
+              <div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">Office</div>
+                <div style="font-weight: 500; font-size: 0.95rem;">San Francisco, CA</div>
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(6, 182, 212, 0.1); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">💬</div>
+              <div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">Live Chat</div>
+                <div style="font-weight: 500; font-size: 0.95rem;">Available 24/7</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div data-animate="fade-left">
+          <form class="glass-card" style="padding: 2rem;" onsubmit="handleContact(event)" id="contact-form">
+            <div style="display: flex; flex-direction: column; gap: 1rem;">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <input type="text" placeholder="First name" required class="form-input" id="contact-first">
+                <input type="text" placeholder="Last name" required class="form-input" id="contact-last">
+              </div>
+              <input type="email" placeholder="Email address" required class="form-input" id="contact-email">
+              <input type="text" placeholder="Subject" class="form-input" id="contact-subject">
+              <textarea placeholder="Your message..." required class="form-input" id="contact-message"></textarea>
+              <button type="submit" class="magnetic-btn magnetic-btn-primary magnetic" data-hover style="width: 100%; justify-content: center;">
+                <span id="contact-btn-text">Send Message</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       FOOTER
+  ============================ -->
+  <footer style="position: relative; z-index: 1; border-top: 1px solid var(--glass-border); overflow: hidden;">
+    <!-- Footer gradient glow -->
+    <div style="position: absolute; top: -200px; left: 50%; transform: translateX(-50%); width: 800px; height: 400px; background: var(--accent-blue); filter: blur(200px); opacity: 0.04; pointer-events: none;"></div>
+
+    <div style="max-width: 1280px; margin: 0 auto; padding: 4rem 1.5rem 2rem; position: relative; z-index: 1;">
+      <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 2rem; margin-bottom: 3rem;" id="footer-grid">
+        <!-- Brand -->
+        <div>
+          <a href="#hero" style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+            <div style="width: 36px; height: 36px; border-radius: 10px; background: var(--gradient-primary); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; font-weight: 800; color: white; font-family: 'Space Grotesk', sans-serif;">Q</div>
+            <span style="font-family: 'Space Grotesk', sans-serif; font-size: 1.25rem; font-weight: 700;">Quantum</span>
+          </a>
+          <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.7; max-width: 300px; margin-bottom: 1.5rem;">The intelligent SaaS platform for modern teams. Build faster, collaborate better, scale smarter.</p>
+          <div style="display: flex; gap: 0.75rem;">
+            <a href="https://github.com/quantum" class="social-icon magnetic" data-hover aria-label="GitHub">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+            <a href="https://linkedin.com/company/quantum" class="social-icon magnetic" data-hover aria-label="LinkedIn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="https://twitter.com/quantum" class="social-icon magnetic" data-hover aria-label="Twitter">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="https://instagram.com/quantum" class="social-icon magnetic" data-hover aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Product -->
+        <div>
+          <h4 style="font-weight: 600; font-size: 0.9rem; margin-bottom: 1rem;">Product</h4>
+          <div style="display: flex; flex-direction: column; gap: 0.6rem;">
+            <a href="#features" class="footer-link">Features</a>
+            <a href="#pricing" class="footer-link">Pricing</a>
+            <a href="#product" class="footer-link">Product Tour</a>
+            <a href="#" class="footer-link">Changelog</a>
+            <a href="#" class="footer-link">Roadmap</a>
+          </div>
+        </div>
+
+        <!-- Company -->
+        <div>
+          <h4 style="font-weight: 600; font-size: 0.9rem; margin-bottom: 1rem;">Company</h4>
+          <div style="display: flex; flex-direction: column; gap: 0.6rem;">
+            <a href="#" class="footer-link">About Us</a>
+            <a href="#" class="footer-link">Careers</a>
+            <a href="#" class="footer-link">Blog</a>
+            <a href="#" class="footer-link">Press Kit</a>
+            <a href="#" class="footer-link">Partners</a>
+          </div>
+        </div>
+
+        <!-- Resources -->
+        <div>
+          <h4 style="font-weight: 600; font-size: 0.9rem; margin-bottom: 1rem;">Resources</h4>
+          <div style="display: flex; flex-direction: column; gap: 0.6rem;">
+            <a href="#" class="footer-link">Documentation</a>
+            <a href="#" class="footer-link">API Reference</a>
+            <a href="#" class="footer-link">Status Page</a>
+            <a href="#" class="footer-link">Community</a>
+            <a href="#" class="footer-link">Support</a>
+          </div>
+        </div>
+
+        <!-- Legal -->
+        <div>
+          <h4 style="font-weight: 600; font-size: 0.9rem; margin-bottom: 1rem;">Legal</h4>
+          <div style="display: flex; flex-direction: column; gap: 0.6rem;">
+            <a href="#" class="footer-link">Privacy Policy</a>
+            <a href="#" class="footer-link">Terms of Service</a>
+            <a href="#" class="footer-link">Cookie Policy</a>
+            <a href="#" class="footer-link">GDPR</a>
+            <a href="#" class="footer-link">Security</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div style="border-top: 1px solid var(--glass-border); padding-top: 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+        <p style="font-size: 0.8rem; color: var(--text-muted);">&copy; 2026 Quantum Inc. All rights reserved.</p>
+        <p style="font-size: 0.8rem; color: var(--text-muted);">Crafted with precision for the future of work.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================
+       JAVASCRIPT
+  ============================ -->
+  <script>
+    /* ============================
+       LENIS SMOOTH SCROLL
+    ============================ */
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    /* ============================
+       SCROLL PROGRESS BAR
+    ============================ */
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = scrollTop / docHeight;
+      document.getElementById('scroll-progress').style.transform = `scaleX(${progress})`;
+    });
+
+    /* ============================
+       CUSTOM CURSOR
+    ============================ */
+    const cursorDot = document.getElementById('cursor-dot');
+    const cursorRing = document.getElementById('cursor-ring');
+    let mouseX = 0, mouseY = 0;
+    let ringX = 0, ringY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      cursorDot.style.left = mouseX + 'px';
+      cursorDot.style.top = mouseY + 'px';
+    });
+
+    function animateCursor() {
+      ringX += (mouseX - ringX) * 0.15;
+      ringY += (mouseY - ringY) * 0.15;
+      cursorRing.style.left = ringX + 'px';
+      cursorRing.style.top = ringY + 'px';
+      requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+
+    // Cursor hover effects
+    document.querySelectorAll('[data-hover], a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => cursorRing.classList.add('hovering'));
+      el.addEventListener('mouseleave', () => cursorRing.classList.remove('hovering'));
+    });
+
+    /* ============================
+       LOADING SCREEN
+    ============================ */
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loading-screen').classList.add('hidden');
+        initHeroAnimations();
+      }, 1200);
+    });
+
+    /* ============================
+       DARK / LIGHT MODE
+    ============================ */
+    function toggleTheme() {
+      document.documentElement.classList.toggle('dark');
+      document.documentElement.classList.toggle('light');
+      localStorage.setItem('theme', document.documentElement.classList.contains('light') ? 'light' : 'dark');
+    }
+
+    // Restore theme
+    (function() {
+      const saved = localStorage.getItem('theme');
+      if (saved === 'light') {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.classList.add('light');
+      }
+    })();
+
+    /* ============================
+       SEARCH OVERLAY
+    ============================ */
+    function toggleSearch() {
+      const overlay = document.getElementById('search-overlay');
+      overlay.classList.toggle('active');
+      if (overlay.classList.contains('active')) {
+        setTimeout(() => document.getElementById('search-input').focus(), 300);
+      }
+    }
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.getElementById('search-overlay').classList.remove('active');
+      }
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        toggleSearch();
+      }
+    });
+
+    /* ============================
+       MOBILE MENU
+    ============================ */
+    let mobileMenuOpen = false;
+    function toggleMobileMenu() {
+      mobileMenuOpen = !mobileMenuOpen;
+      document.getElementById('mobile-menu').classList.toggle('active', mobileMenuOpen);
+      document.body.style.overflow = mobileMenuOpen ? 'hidden' : '';
+
+      const btn = document.getElementById('mobile-toggle');
+      const h1 = document.getElementById('hamburger-1');
+      const h2 = document.getElementById('hamburger-2');
+      const h3 = document.getElementById('hamburger-3');
+
+      if (mobileMenuOpen) {
+        h1.style.transform = 'rotate(45deg) translate(5px, 5px)';
+        h2.style.opacity = '0';
+        h3.style.transform = 'rotate(-45deg) translate(5px, -5px)';
+        h3.style.width = '22px';
+      } else {
+        h1.style.transform = 'none';
+        h2.style.opacity = '1';
+        h3.style.transform = 'none';
+        h3.style.width = '16px';
+      }
+    }
+
+    // Show mobile toggle on small screens
+    function checkMobile() {
+      const btn = document.getElementById('mobile-toggle');
+      const desktopNav = document.querySelector('.nav-desktop');
+      if (window.innerWidth <= 768) {
+        btn.style.display = 'flex';
+        if (desktopNav) desktopNav.style.display = 'none';
+      } else {
+        btn.style.display = 'none';
+        if (desktopNav) desktopNav.style.display = 'flex';
+        if (mobileMenuOpen) toggleMobileMenu();
+      }
+    }
+    window.addEventListener('resize', checkMobile);
+    checkMobile();
+
+    /* ============================
+       NAVBAR SCROLL
+    ============================ */
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+
+      // Back to top visibility
+      const btt = document.getElementById('back-to-top');
+      btt.classList.toggle('visible', window.scrollY > 500);
+    });
+
+    /* ============================
+       COOKIE BANNER
+    ============================ */
+    function closeCookieBanner() {
+      document.getElementById('cookie-banner').classList.remove('visible');
+      localStorage.setItem('cookies-accepted', 'true');
+    }
+    if (!localStorage.getItem('cookies-accepted')) {
+      setTimeout(() => {
+        document.getElementById('cookie-banner').classList.add('visible');
+      }, 3000);
+    }
+
+    /* ============================
+       HERO ANIMATIONS (GSAP)
+    ============================ */
+    function initHeroAnimations() {
+      gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+      tl.from('#hero-badge', { y: 30, opacity: 0, duration: 0.8 })
+        .from('#hero-title', { y: 50, opacity: 0, duration: 1 }, '-=0.4')
+        .from('#hero-subtitle', { y: 30, opacity: 0, duration: 0.8 }, '-=0.5')
+        .from('#hero-cta', { y: 30, opacity: 0, duration: 0.8 }, '-=0.4')
+        .from('#hero-stats > div', { y: 20, opacity: 0, duration: 0.6, stagger: 0.1 }, '-=0.3');
+
+      // Initialize all scroll-triggered animations
+      initScrollAnimations();
+      initThreeJS();
+      initThreeCanvasScene();
+    }
+
+    /* ============================
+       SCROLL ANIMATIONS (GSAP)
+    ============================ */
+    function initScrollAnimations() {
+      // Fade up animations
+      document.querySelectorAll('[data-animate="fade-up"]').forEach(el => {
+        gsap.from(el, {
+          y: 60, opacity: 0, duration: 0.9,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' }
+        });
+      });
+
+      // Fade left animations
+      document.querySelectorAll('[data-animate="fade-left"]').forEach(el => {
+        gsap.from(el, {
+          x: -60, opacity: 0, duration: 0.9,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' }
+        });
+      });
+
+      // Fade right animations
+      document.querySelectorAll('[data-animate="fade-right"]').forEach(el => {
+        gsap.from(el, {
+          x: 60, opacity: 0, duration: 0.9,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' }
+        });
+      });
+
+      // Scale in animations
+      document.querySelectorAll('[data-animate="scale-in"]').forEach(el => {
+        gsap.from(el, {
+          scale: 0.9, opacity: 0, duration: 1,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' }
+        });
+      });
+
+      // Staggered grid items
+      gsap.utils.toArray('#features-grid .glass-card').forEach((card, i) => {
+        gsap.from(card, {
+          y: 60, opacity: 0, duration: 0.8,
+          delay: i * 0.1,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: card, start: 'top 90%', toggleActions: 'play none none none' }
+        });
+      });
+
+      gsap.utils.toArray('#testimonials-grid .testimonial-card').forEach((card, i) => {
+        gsap.from(card, {
+          y: 60, opacity: 0, duration: 0.8,
+          delay: i * 0.15,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: card, start: 'top 90%', toggleActions: 'play none none none' }
+        });
+      });
+
+      gsap.utils.toArray('#pricing-grid .pricing-card').forEach((card, i) => {
+        gsap.from(card, {
+          y: 60, opacity: 0, duration: 0.8,
+          delay: i * 0.15,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: card, start: 'top 90%', toggleActions: 'play none none none' }
+        });
+      });
+
+      // Counter animation
+      initCounters();
+
+      // Timeline line animation
+      const timelineLine = document.getElementById('timeline-line');
+      if (timelineLine) {
+        gsap.fromTo(timelineLine,
+          { scaleY: 0, transformOrigin: 'top' },
+          {
+            scaleY: 1, duration: 2,
+            ease: 'power2.out',
+            scrollTrigger: { trigger: timelineLine, start: 'top 80%', end: 'bottom 20%', scrub: 1 }
+          }
+        );
+      }
+    }
+
+    /* ============================
+       ANIMATED COUNTERS
+    ============================ */
+    function initCounters() {
+      document.querySelectorAll('[data-count]').forEach(el => {
+        const target = parseFloat(el.getAttribute('data-count'));
+        const isDecimal = target % 1 !== 0;
+
+        ScrollTrigger.create({
+          trigger: el,
+          start: 'top 85%',
+          onEnter: () => {
+            gsap.to({ val: 0 }, {
+              val: target,
+              duration: 2,
+              ease: 'power2.out',
+              onUpdate: function() {
+                if (isDecimal) {
+                  el.textContent = this.targets()[0].val.toFixed(1);
+                } else {
+                  el.textContent = Math.floor(this.targets()[0].val).toLocaleString();
+                }
+              }
+            });
+          },
+          once: true
+        });
+      });
+    }
+
+    /* ============================
+       FAQ ACCORDION
+    ============================ */
+    function toggleFaq(btn) {
+      const item = btn.parentElement;
+      const isActive = item.classList.contains('active');
+      // Close all
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+      if (!isActive) item.classList.add('active');
+    }
+
+    /* ============================
+       PRICING TOGGLE
+    ============================ */
+    function togglePricing(plan) {
+      const monthly = document.getElementById('monthly-btn');
+      const annual = document.getElementById('annual-btn');
+      const starter = document.getElementById('price-starter');
+      const pro = document.getElementById('price-pro');
+      const enterprise = document.getElementById('price-enterprise');
+
+      if (plan === 'annual') {
+        monthly.classList.remove('active');
+        annual.classList.add('active');
+        starter.textContent = '$23';
+        pro.textContent = '$63';
+        enterprise.textContent = '$159';
+      } else {
+        annual.classList.remove('active');
+        monthly.classList.add('active');
+        starter.textContent = '$29';
+        pro.textContent = '$79';
+        enterprise.textContent = '$199';
+      }
+    }
+
+    /* ============================
+       VIDEO CONTROL
+    ============================ */
+    let videoPlaying = false;
+    function toggleVideo() {
+      const video = document.getElementById('product-video');
+      const playBtn = document.getElementById('video-play-btn');
+      if (videoPlaying) {
+        video.pause();
+        playBtn.style.opacity = '1';
+      } else {
+        video.play();
+        playBtn.style.opacity = '0';
+      }
+      videoPlaying = !videoPlaying;
+    }
+
+    // Scroll-controlled video
+    ScrollTrigger.create({
+      trigger: '#video-showcase',
+      start: 'top center',
+      end: 'bottom center',
+      onUpdate: (self) => {
+        const video = document.getElementById('product-video');
+        if (video && video.duration) {
+          video.currentTime = self.progress * video.duration;
+        }
+      }
+    });
+
+    /* ============================
+       FORM HANDLERS
+    ============================ */
+    function handleNewsletter(e) {
+      e.preventDefault();
+      const form = e.target;
+      const input = form.querySelector('input');
+      const btn = form.querySelector('button');
+
+      btn.innerHTML = '<span>✓ Subscribed!</span>';
+      input.value = '';
+      btn.style.pointerEvents = 'none';
+
+      setTimeout(() => {
+        btn.innerHTML = '<span>Subscribe</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>';
+        btn.style.pointerEvents = 'auto';
+      }, 3000);
+    }
+
+    function handleContact(e) {
+      e.preventDefault();
+      const btn = document.getElementById('contact-btn-text');
+      btn.textContent = '✓ Message Sent!';
+
+      setTimeout(() => {
+        btn.textContent = 'Send Message';
+        e.target.reset();
+      }, 3000);
+    }
+
+    /* ============================
+       TILT CARDS
+    ============================ */
+    document.querySelectorAll('.tilt-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = (y - centerY) / 20;
+        const rotateY = (centerX - x) / 20;
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+      });
+    });
+
+    /* ============================
+       MAGNETIC BUTTONS
+    ============================ */
+    document.querySelectorAll('.magnetic').forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = 'translate(0, 0)';
+      });
+    });
+
+    /* ============================
+       RIPPLE ON BUTTONS
+    ============================ */
+    document.querySelectorAll('.magnetic-btn').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        const ripple = document.createElement('span');
+        ripple.classList.add('ripple');
+        const rect = this.getBoundingClientRect();
+        ripple.style.left = (e.clientX - rect.left) + 'px';
+        ripple.style.top = (e.clientY - rect.top) + 'px';
+        ripple.style.width = ripple.style.height = Math.max(rect.width, rect.height) + 'px';
+        this.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 600);
+      });
+    });
+
+    /* ============================
+       THREE.JS - HERO 3D SCENE
+    ============================ */
+    function initThreeJS() {
+      const canvas = document.getElementById('hero-canvas');
+      if (!canvas) return;
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+      camera.position.z = 30;
+
+      const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setClearColor(0x000000, 0);
+
+      // Particles
+      const particleCount = 1500;
+      const particlesGeometry = new THREE.BufferGeometry();
+      const posArray = new Float32Array(particleCount * 3);
+      const colorsArray = new Float32Array(particleCount * 3);
+
+      const colorPalette = [
+        new THREE.Color(0x3B82F6),
+        new THREE.Color(0x8B5CF6),
+        new THREE.Color(0x06B6D4),
+        new THREE.Color(0x6366F1),
+      ];
+
+      for (let i = 0; i < particleCount; i++) {
+        posArray[i * 3] = (Math.random() - 0.5) * 80;
+        posArray[i * 3 + 1] = (Math.random() - 0.5) * 80;
+        posArray[i * 3 + 2] = (Math.random() - 0.5) * 80;
+
+        const color = colorPalette[Math.floor(Math.random() * colorPalette.length)];
+        colorsArray[i * 3] = color.r;
+        colorsArray[i * 3 + 1] = color.g;
+        colorsArray[i * 3 + 2] = color.b;
+      }
+
+      particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+      particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colorsArray, 3));
+
+      const particlesMaterial = new THREE.PointsMaterial({
+        size: 0.08,
+        vertexColors: true,
+        transparent: true,
+        opacity: 0.8,
+        blending: THREE.AdditiveBlending,
+      });
+
+      const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+      scene.add(particlesMesh);
+
+      // Floating geometric shapes
+      const shapes = [];
+
+      // Icosahedron
+      const icoGeo = new THREE.IcosahedronGeometry(3, 1);
+      const icoMat = new THREE.MeshBasicMaterial({ color: 0x3B82F6, wireframe: true, transparent: true, opacity: 0.3 });
+      const ico = new THREE.Mesh(icoGeo, icoMat);
+      ico.position.set(15, 5, -10);
+      scene.add(ico);
+      shapes.push(ico);
+
+      // Octahedron
+      const octGeo = new THREE.OctahedronGeometry(2.5, 0);
+      const octMat = new THREE.MeshBasicMaterial({ color: 0x8B5CF6, wireframe: true, transparent: true, opacity: 0.25 });
+      const oct = new THREE.Mesh(octGeo, octMat);
+      oct.position.set(-12, -8, -5);
+      scene.add(oct);
+      shapes.push(oct);
+
+      // Torus
+      const torusGeo = new THREE.TorusGeometry(2, 0.5, 16, 40);
+      const torusMat = new THREE.MeshBasicMaterial({ color: 0x06B6D4, wireframe: true, transparent: true, opacity: 0.2 });
+      const torus = new THREE.Mesh(torusGeo, torusMat);
+      torus.position.set(-8, 10, -15);
+      scene.add(torus);
+      shapes.push(torus);
+
+      // Ring
+      const ringGeo = new THREE.RingGeometry(4, 4.5, 64);
+      const ringMat = new THREE.MeshBasicMaterial({ color: 0x6366F1, wireframe: true, transparent: true, opacity: 0.15, side: THREE.DoubleSide });
+      const ring = new THREE.Mesh(ringGeo, ringMat);
+      ring.position.set(10, -10, -8);
+      scene.add(ring);
+      shapes.push(ring);
+
+      // Mouse tracking
+      let targetMouseX = 0, targetMouseY = 0;
+      let currentMouseX = 0, currentMouseY = 0;
+
+      document.addEventListener('mousemove', (e) => {
+        targetMouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+        targetMouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+      });
+
+      // Animation loop
+      function animate() {
+        requestAnimationFrame(animate);
+
+        currentMouseX += (targetMouseX - currentMouseX) * 0.05;
+        currentMouseY += (targetMouseY - currentMouseY) * 0.05;
+
+        particlesMesh.rotation.y += 0.0005;
+        particlesMesh.rotation.x += 0.0002;
+        particlesMesh.rotation.y += currentMouseX * 0.001;
+        particlesMesh.rotation.x += currentMouseY * 0.001;
+
+        shapes.forEach((shape, i) => {
+          shape.rotation.x += 0.003 + i * 0.001;
+          shape.rotation.y += 0.002 + i * 0.0005;
+          shape.position.y += Math.sin(Date.now() * 0.001 + i) * 0.005;
+        });
+
+        renderer.render(scene, camera);
+      }
+      animate();
+
+      // Resize
+      window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+    }
+
+    /* ============================
+       THREE.JS - MAIN CANVAS (Tech Section)
+    ============================ */
+    function initThreeCanvasScene() {
+      const canvas = document.getElementById('three-canvas-main');
+      if (!canvas) return;
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(60, canvas.clientWidth / 500, 0.1, 1000);
+      camera.position.set(0, 0, 20);
+
+      const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+      renderer.setSize(canvas.clientWidth, 500);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setClearColor(0x000000, 0);
+
+      // Central rotating structure
+      const group = new THREE.Group();
+      scene.add(group);
+
+      // Central sphere
+      const sphereGeo = new THREE.SphereGeometry(2, 32, 32);
+      const sphereMat = new THREE.MeshBasicMaterial({ color: 0x3B82F6, wireframe: true, transparent: true, opacity: 0.4 });
+      const sphere = new THREE.Mesh(sphereGeo, sphereMat);
+      group.add(sphere);
+
+      // Orbiting rings
+      for (let i = 0; i < 3; i++) {
+        const ringGeo = new THREE.TorusGeometry(4 + i * 1.5, 0.05, 16, 100);
+        const ringMat = new THREE.MeshBasicMaterial({
+          color: [0x3B82F6, 0x8B5CF6, 0x06B6D4][i],
+          transparent: true, opacity: 0.3
+        });
+        const ring = new THREE.Mesh(ringGeo, ringMat);
+        ring.rotation.x = Math.PI / 2 + i * 0.4;
+        ring.rotation.y = i * 0.3;
+        group.add(ring);
+      }
+
+      // Floating nodes
+      const nodeCount = 30;
+      const nodes = [];
+      const nodeMat = new THREE.MeshBasicMaterial({ color: 0x6366F1, transparent: true, opacity: 0.6 });
+
+      for (let i = 0; i < nodeCount; i++) {
+        const nodeGeo = new THREE.SphereGeometry(0.15, 8, 8);
+        const node = new THREE.Mesh(nodeGeo, nodeMat);
+        const theta = Math.random() * Math.PI * 2;
+        const phi = Math.acos(2 * Math.random() - 1);
+        const r = 6 + Math.random() * 4;
+        node.position.set(
+          r * Math.sin(phi) * Math.cos(theta),
+          r * Math.sin(phi) * Math.sin(theta),
+          r * Math.cos(phi)
+        );
+        group.add(node);
+        nodes.push(node);
+      }
+
+      // Connection lines
+      const lineMat = new THREE.LineBasicMaterial({ color: 0x6366F1, transparent: true, opacity: 0.1 });
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          if (nodes[i].position.distanceTo(nodes[j].position) < 4) {
+            const lineGeo = new THREE.BufferGeometry().setFromPoints([nodes[i].position, nodes[j].position]);
+            const line = new THREE.Line(lineGeo, lineMat);
+            group.add(line);
+          }
+        }
+      }
+
+      // Mouse parallax for main canvas
+      let tMX = 0, tMY = 0, cMX = 0, cMY = 0;
+      canvas.addEventListener('mousemove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        tMX = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+        tMY = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+      });
+
+      function animateMain() {
+        requestAnimationFrame(animateMain);
+        cMX += (tMX - cMX) * 0.05;
+        cMY += (tMY - cMY) * 0.05;
+
+        group.rotation.y += 0.003;
+        group.rotation.x += 0.001;
+        group.rotation.y += cMX * 0.003;
+        group.rotation.x += cMY * 0.002;
+
+        sphere.rotation.y -= 0.005;
+        nodes.forEach(n => {
+          n.material.opacity = 0.3 + Math.sin(Date.now() * 0.002 + n.position.x) * 0.3;
+        });
+
+        renderer.render(scene, camera);
+      }
+      animateMain();
+
+      // Resize
+      const resizeObserver = new ResizeObserver(() => {
+        if (canvas.clientWidth > 0) {
+          camera.aspect = canvas.clientWidth / 500;
+          camera.updateProjectionMatrix();
+          renderer.setSize(canvas.clientWidth, 500);
+        }
+      });
+      resizeObserver.observe(canvas);
+    }
+
+    /* ============================
+       SMOOTH ANCHOR SCROLLING
+    ============================ */
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          lenis.scrollTo(target, { offset: -80 });
+        }
+      });
+    });
+
+    /* ============================
+       PARALLAX ON AURORA ORBS
+    ============================ */
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      document.querySelectorAll('.aurora-orb').forEach((orb, i) => {
+        const speed = 0.05 + i * 0.02;
+        orb.style.transform = `translateY(${scrollY * speed}px)`;
+      });
+    });
+  </script>
+
+  <!-- JSON-LD Schema for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Quantum",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "description": "The intelligent SaaS platform for modern teams. AI-powered automation, real-time collaboration, and advanced analytics.",
+    "url": "https://quantum.app",
+    "offers": [
+      {
+        "@type": "Offer",
+        "price": "29",
+        "priceCurrency": "USD",
+        "name": "Starter"
+      },
+      {
+        "@type": "Offer",
+        "price": "79",
+        "priceCurrency": "USD",
+        "name": "Professional"
+      },
+      {
+        "@type": "Offer",
+        "price": "199",
+        "priceCurrency": "USD",
+        "name": "Enterprise"
+      }
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "2540"
+    }
+  }
+  </script>
+</body>
+</html>

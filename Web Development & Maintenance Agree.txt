@@ -1,0 +1,137 @@
+Web Development & Maintenance Agreement
+
+Date:
+
+Parties
+
+**Developer:** ADARSH KAKARLA, an individual freelancer, Residential-317, Shashank Aavaas, Shamarajapura, MS Palaya, Bangalore-560097 , Aadhaar No. xxxx-xxxx-4001, ("Developer")
+**Client:**(legal name of owner / entity operating as "Sri Mathru Driving School"),(address),(GSTIN, if registered) ("Client")
+
+## 1. Project
+
+Design, development, and delivery of a website and web application for the Client's driving school ("___________"), including:
+
+- Public marketing site (home, courses, pricing, instructors, fleet, testimonials, FAQ, contact)
+- Online course booking flow with Razorpay payment integration (test mode during development; live mode after Client completes Razorpay KYC)
+- Student portal (dashboard, lessons, progress, payments, documents, certificates)
+- Instructor and Admin portals (schedule, students, vehicles, leads/CRM, analytics, expenses, automations)
+- Certificate generation with QR-based verification
+- Trilingual content: English, Kannada, Hindi
+- SEO (sitemap, robots, structured data) and accessibility compliance (WCAG AA, axe-audited)
+- Analytics wiring (Google Analytics 4 / Microsoft Clarity, activated once Client provides IDs)
+- Self-host deployment pack (Dockerfile, systemd, Caddy TLS) or Vercel deployment, per Section 8
+
+## 2. Deliverables
+
+1. Complete source code shared to Client at final payment
+2. Working deployment (staging, then live at Client's domain)
+3. Admin/portal usage guide (written or recorded walkthrough)
+4. Handover of all accounts (hosting, domain registrar, analytics, payment gateway) in Client's name
+
+## 3. Timeline
+
+- Development and demo: (delivery date)
+- Acceptance testing: 3 working days after delivery
+- Go-live: within 5 days after Client provides domain, hosting access, and payment-gateway keys
+
+## 4. Fees & Payment
+
+Design & development-> 50% advance, 50% on acceptance 
+One Time Payment-> ________________
+Monthly maintenance-> 2500/month | First month free, then monthly in advance.
+
+- The monthly maintenance fee after first month (from go-live)is month-to-month for first fixed term of **6 months** and carried on month-to-month until terminated under Section 12.
+- Additional work beyond the scope in Section 1 billed at ₹250/hour after written approval.
+- Payments by _________________ (UPI / bank transfer / cheque) to ____________________ (account details).
+- Late payment: 2% per month on overdue amounts after 7 days' notice.
+
+## 5. Client Responsibilities
+
+Client will provide, in a timely manner:
+
+1. All text, photos, logos, and brand assets in the required languages
+2. Domain name and hosting account (or credentials for Developer to set up in Client's name)
+3. Razorpay account completed with KYC and live-mode approval
+4. Google Analytics / Clarity / Turnstile / Sentry accounts (or access for Developer to create them in Client's name)
+5. Approval of content, design, and test results within 3 working days of each milestone
+
+Delay by Client in providing the above extends the timeline accordingly and does not constitute breach by Developer.
+
+## 6. Ownership
+
+- **Client owns** the final Website source code, content, data, and the deployed Website, in full, after final payment.
+- **Developer retains** ownership of reusable components, libraries, and pre-existing code it brings to the project, licensed to the Client for use solely in the Website.
+- Domain name, hosting, and all third-party accounts are registered in the **Client's name** from the start.
+- Developer may list the Website in its portfolio, may use the source code as reference for future projects and may not use or reuse Client data (students, bookings, payments) for any other purpose.
+
+## 7. Warranties
+
+1. The Website will be delivered free of material defects and will function substantially in accordance with this Agreement during the warranty period.
+2. Developer warrants that, to its knowledge, the delivered code does not infringe any third-party rights.
+3. Warranty period: **60 days** from go-live, covering bug fixes; excludes third-party services (Razorpay, hosting, fonts, analytics) and content provided by Client.
+4. THE WEBSITE IS PROVIDED "AS IS" AFTER THE WARRANTY PERIOD, EXCEPT AS EXPRESSLY STATED.
+
+## 8. Hosting, Maintenance & Support
+
+- Hosting is provided on free/low-cost tiers by default; any paid hosting/domain/third-party fees are **billed to Client at actuals** (Developer pays on Client's behalf and invoices back with receipts).
+- Monthly maintenance includes: uptime checks, security/OS/package updates, backups (daily, retained 30 days), bug fixes, and **one content update per quarter** (additional content updates billed separately at the hourly rate).
+- Support hours: **16:00–24:00 IST, Monday–Saturday**.
+- Response time: **within 24–48 hours (2 working days)** for all queries, including critical (site-down) incidents.
+- Data backups: automated daily; Client data is the Client's responsibility to preserve after warranty period.
+
+## 9. Payments & Razorpay Policy
+
+Payments on the Website are processed exclusively through **Razorpay** (www.razorpay.com). The parties agree to follow and be bound by Razorpay's then-current policies, including:
+
+1. **Merchant onboarding & KYC:** The Client is the merchant of record. Go-live in live payment mode requires the Client to complete Razorpay's KYC and be approved. Until then, the Website operates in test mode.
+2. **Transaction fees (MDR):** Razorpay's standard transaction charges (currently ~2% per transaction, subject to Razorpay's published rate card) are borne by the Client/business, not the Developer.
+3. **Settlements:** Funds are settled by Razorpay directly to the Client's registered bank account as per Razorpay's settlement schedule (currently T+2 / T+1 subject to Razorpay's policies).
+4. **Refunds & cancellations:** Refunds and cancellations are initiated through the Razorpay dashboard/API. The Developer does not hold, receive, or handle customer funds at any point.
+5. **Disputes & chargebacks:** Disputes, chargebacks, and retrievals are processed and resolved under Razorpay's dispute policy; the Client is responsible for responding to them and for any amounts debited by Razorpay.
+6. **Data & PCI-DSS:** Card data is handled by Razorpay's PCI-DSS-compliant infrastructure. Neither the Developer nor the Client stores full card data.
+7. **Compliance:** The Client must comply with Razorpay's Terms of Service, Acceptable Use Policy, and applicable RBI/payment regulations. To the extent of any conflict between this Agreement and Razorpay's policies, Razorpay's policies govern payment processing.
+8. **Disclosure:** The Website's checkout displays the applicable payment terms; the Client must keep its published refund/cancellation policy consistent with Razorpay's requirements.
+
+Third-party services (Razorpay, Google Analytics, Clarity, Turnstile, Sentry, hosting) are subject to their own terms. Developer is not liable for their downtime, changes, or fees.
+
+## 10. Confidentiality
+
+Each party will keep confidential the other's business information, credentials, and data, and will not disclose them except as required by law or with written consent. This obligation survives termination.
+
+## 11. Limitation of Liability
+
+- To the maximum extent permitted by law, Developer's total liability under this Agreement is limited to the fees actually paid by Client.
+- Developer is not liable for indirect, incidental, or consequential damages, lost revenue, or data loss, except where caused by Developer's fraud or gross negligence.
+- Developer is not liable for failures of third-party services, internet, or Client-provided content, or for any act or omission of Razorpay.
+
+## 12. Termination
+
+- Either party may terminate for material breach with **2 weeks (14 days)** written notice if the breach is not cured.
+- Client may terminate without cause with **2 weeks (14 days)** notice; fees accrued to the date of termination remain payable, and no refund of the advance is due after work has commenced.
+- On termination, Developer will be handed over source code, data, and access promptly (within 7 days), subject to payment of all outstanding fees.
+
+## 13. Dispute Resolution
+
+This Agreement is governed by the laws of India. Disputes will first be attempted to be resolved by mutual negotiation; failing that, they will be subject to the exclusive jurisdiction of the courts of **Bengaluru**.
+
+## 14. General
+
+- This Agreement is the entire understanding between the parties and supersedes prior discussions.
+- Amendments must be in writing and signed by both parties.
+- Either party may assign this Agreement only with the other's written consent.
+- Notices are by email to the addresses below.
+
+## Signatures
+
+**For the Developer**
+
+Name:
+Signature: 
+Date: 
+
+**For the Client (Sri Mathru Driving School)**
+
+Name:
+Title: 
+Signature:
+Date:
